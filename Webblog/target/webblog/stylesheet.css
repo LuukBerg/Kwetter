@@ -1,0 +1,24 @@
+div.left-sidebar-items {
+    border-style: solid;
+    margin-top: 20px;
+    height:80px;
+}
+div.left-sidebar {
+    float: left;
+    min-width: 20%;
+}
+div.title{
+    text-align: center;
+    width: 100%;
+    font-size: large;
+    font-weight: bold;
+}
+div.posts{
+    position: fixed;
+    left: 30%;
+}
+div.post{
+    position: relative;
+    margin-top: 20px;
+    border-style: solid;
+}
