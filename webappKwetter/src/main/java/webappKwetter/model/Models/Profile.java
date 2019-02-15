@@ -12,7 +12,7 @@ import java.util.List;
 public class Profile {
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
     @OneToOne
     private User owner;
     @ManyToMany
@@ -86,4 +86,11 @@ public class Profile {
 
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void addKweet(Kweet kweet) {
+        kweets.add(kweet);
+    }
 }

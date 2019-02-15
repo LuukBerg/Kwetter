@@ -1,4 +1,4 @@
-package DAL.IContext;
+package webappKwetter.dao.IContext;
 
 import webappKwetter.model.Models.Details;
 import webappKwetter.model.Models.Kweet;
@@ -8,9 +8,13 @@ import webappKwetter.model.Models.User;
 import java.util.List;
 
 public interface IProfileContext {
-    List<Kweet> getTimeLine(Profile profile);
-    void hearthKweet(Kweet kweet);
-    void postKweet(String content);
-    void followProfile(Profile profile);
-    void createProfile(User owner, Details detail);
+    //List<Kweet> getTimeLine(Profile profile);
+    //void hearthKweet(Kweet kweet);
+    //void postKweet(String content);
+    //void followProfile(Profile profile);
+    //void createProfile(User owner, Details detail);
+    Profile update(Profile entity);
+    Profile create(Profile entity);
+    Profile findbyId(long id);
+    void deleteById(long id);
 }

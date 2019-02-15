@@ -1,34 +1,42 @@
 package webappKwetter.dao.Repo;
 
-import DAL.IContext.IProfileContext;
+
+import webappKwetter.dao.IContext.IProfileContext;
 import webappKwetter.model.Models.Details;
 import webappKwetter.model.Models.Kweet;
 import webappKwetter.model.Models.Profile;
 import webappKwetter.model.Models.User;
 
+import javax.inject.Inject;
 import java.util.List;
 
 public class ProfileRepo {
-
+    @Inject @JPA
     private IProfileContext context;
 
     public ProfileRepo(IProfileContext context) {
         this.context = context;
     }
 
-    public List<Kweet> getTimeLine(Profile profile){
-        return context.getTimeLine(profile);
+    public ProfileRepo() {
     }
-    void hearthKweet(Kweet kweet){
-        context.hearthKweet(kweet);
+
+
+    public Profile update(Profile entity) {
+        return context.update(entity);
+
     }
-    void postKweet(String content){
-        context.postKweet(content);
+
+    public Profile create(Profile entity) {
+        return context.create(entity);
     }
-    void followProfile(Profile profile){
-        context.followProfile(profile);
+
+    public Profile findbyId(long id) {
+        return context.findbyId(id);
     }
-    void createProfile(User owner, Details detail){
-        context.createProfile(owner,detail);
+
+
+    public void deleteById(long id) {
+        context.deleteById(id);
     }
 }

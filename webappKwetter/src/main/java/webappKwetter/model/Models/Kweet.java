@@ -11,7 +11,7 @@ import java.util.List;
 public class Kweet {
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
     private String content;
     private Date date;
     @ManyToOne
@@ -46,7 +46,7 @@ public class Kweet {
         this.commands = commands;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

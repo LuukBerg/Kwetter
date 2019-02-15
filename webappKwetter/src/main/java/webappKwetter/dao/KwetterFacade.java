@@ -1,8 +1,8 @@
 package webappKwetter.dao;
 
-import DAL.IContext.IProfileContext;
-import DAL.IContext.IUserContext;
 
+import webappKwetter.dao.IContext.IProfileContext;
+import webappKwetter.dao.IContext.IUserContext;
 import webappKwetter.dao.Repo.ProfileRepo;
 import webappKwetter.dao.Repo.UserRepo;
 import webappKwetter.model.Models.Details;
@@ -23,8 +23,8 @@ public class KwetterFacade {
         return user;
     }
     public KwetterFacade(IUserContext userContext, IProfileContext profileContext) {
-        userRepo = new UserRepo(userContext);
-        profileRepo = new ProfileRepo(profileContext);
+        userRepo = new UserRepo();
+        profileRepo = new ProfileRepo();
     }
 
     public User registerUser(String username){
