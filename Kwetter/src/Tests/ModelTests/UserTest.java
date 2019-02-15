@@ -1,4 +1,4 @@
-package Tests;
+package Tests.ModelTests;
 
 import Enums.Role;
 import Models.Details;

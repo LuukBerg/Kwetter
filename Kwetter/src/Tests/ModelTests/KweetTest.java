@@ -1,20 +1,15 @@
-package Tests;
+package Tests.ModelTests;
 
-import Enums.Role;
-import Models.Details;
+
 import Models.Kweet;
-import Models.Profile;
-import Models.User;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testng.Assert;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class KweetTest {
 
@@ -44,6 +39,7 @@ class KweetTest {
         Assert.assertNull(kweet.getDate());
 
     }
+
 
 
 }

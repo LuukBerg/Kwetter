@@ -1,6 +1,8 @@
-package Tests;
+package Tests.ModelTests;
 
 import Enums.Role;
+import Models.Commands.Hearth;
+import Models.Commands.React;
 import Models.Details;
 import Models.Kweet;
 import Models.Profile;
@@ -104,5 +106,19 @@ class ProfileTest {
         Assert.assertNull(profile.getFollowing());
         Assert.assertNull(profile.getKweets());
         Assert.assertNull(profile.getTimeline());
+    }
+    @Test
+    void hearthTest(){
+        Profile testProfile = profileList.get(0);
+        Kweet kweet = new Kweet("test");
+        Hearth hearth = new Hearth(testProfile, kweet);
+        Assert.assertEquals(hearth, kweet.getCommands().get(0));
+    }
+    @Test
+    void reactTest(){
+        Profile testProfile = profileList.get(0);
+        Kweet kweet = new Kweet("test");
+        React reaction = new React("content" ,testProfile,kweet);
+        Assert.assertEquals(reaction, kweet.getCommands().get(0));
     }
 }

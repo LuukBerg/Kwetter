@@ -2,6 +2,7 @@ package Models;
 
 import Enums.Role;
 
+@Entity
 public class User {
     private long id;
     private String username;
