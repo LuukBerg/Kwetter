@@ -6,6 +6,8 @@ import webappKwetter.model.Models.Kweet;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import webappKwetter.model.Models.Profile;
+
 import java.io.IOException;
 import java.util.Date;
 
@@ -17,7 +19,7 @@ class KweetTest {
     @BeforeEach
     public  void beforeEach() throws IOException { ;
         date = new Date();
-        testKweet = new Kweet("test kweet");
+        testKweet = new Kweet("test kweet", new Profile());
     }
 
     @Test

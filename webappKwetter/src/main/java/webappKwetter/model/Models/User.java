@@ -19,6 +19,10 @@ public class User {
     @OneToOne
     private Profile profile;
 
+    public long getId() {
+        return id;
+    }
+
     public User(){
 
     }

@@ -1,24 +1,32 @@
 package webappKwetter.model.Models;
 
-import Models.Commands.Command;
+import webappKwetter.model.Commands.Command;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Kweet {
+    @Id
+    @GeneratedValue
     private Long id;
     private String content;
     private Date date;
+    @ManyToOne
+    private Profile owner;
+    @Transient
     private List<Command> commands;
 
     public Kweet() {
     }
 
-    public Kweet(String content) {
+    public Kweet(String content, Profile owner) {
         this.content = content;
         this.date = new Date();
         commands = new ArrayList<>();
+        this.owner = owner;
     }
 
 
@@ -36,5 +44,13 @@ public class Kweet {
 
     public void setCommands(List<Command> commands) {
         this.commands = commands;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Profile getOwner() {
+        return owner;
     }
 }

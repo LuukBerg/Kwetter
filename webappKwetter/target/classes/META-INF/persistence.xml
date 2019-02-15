@@ -25,11 +25,18 @@
          data source, this example data source is just for development and testing! -->
       <!-- The datasource is deployed as WEB-INF/webapp Kwetter-ds.xml, you
          can find it in the source at src/main/webapp/WEB-INF/webapp Kwetter-ds.xml -->
-      <jta-data-source>java:jboss/datasources/webapp KwetterDS</jta-data-source>
+      <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+      <class>webappKwetter.model.Models.User</class>
+      <exclude-unlisted-classes>false</exclude-unlisted-classes>
       <properties>
-         <!-- Properties for Hibernate -->
-         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
-         <property name="hibernate.show_sql" value="false" />
+         <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
+         <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/kwetter"/>
+         <property name="hibernate.connection.username" value="root"/>
+         <property name="hibernate.connection.password" value="root"/>
+         <property name="javax.persistence.jdbc.driver" value="com.mysql.jc.jdbc.Driver"/>
+         <property name="hibernate.show_sql" value="true"/>
+         <property name="hibernate.format_sql" value="true"/>
+         <property name="hibernate.hbm2ddl.auto" value="update"/>
       </properties>
    </persistence-unit>
 </persistence>

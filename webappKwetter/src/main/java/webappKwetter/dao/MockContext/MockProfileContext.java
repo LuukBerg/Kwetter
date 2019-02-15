@@ -1,4 +1,4 @@
-package DAL.MockContext;
+package webappKwetter.dao.MockContext;
 
 import DAL.IContext.IProfileContext;
 import webappKwetter.model.Models.Details;

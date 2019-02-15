@@ -1,10 +1,20 @@
-package Models.Commands;
+package webappKwetter.model.Commands;
 
 import webappKwetter.model.Models.Kweet;
 import webappKwetter.model.Models.Profile;
 
-public class Hearth implements Command {
+import javax.persistence.*;
+
+@Entity
+public class Hearth extends Command {
+    @Id
+    @GeneratedValue
+    private long id;
+    @ManyToOne
     private Profile owner;
+
+    public Hearth() {
+    }
 
     public Hearth(Profile owner, Kweet kweet) {
         this.owner = owner;

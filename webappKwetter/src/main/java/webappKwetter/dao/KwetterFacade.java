@@ -1,14 +1,15 @@
-package Facade;
+package webappKwetter.dao;
 
 import DAL.IContext.IProfileContext;
 import DAL.IContext.IUserContext;
-import DAL.Repo.ProfileRepo;
-import DAL.Repo.UserRepo;
+
+import webappKwetter.dao.Repo.ProfileRepo;
+import webappKwetter.dao.Repo.UserRepo;
 import webappKwetter.model.Models.Details;
 import webappKwetter.model.Models.Kweet;
 import webappKwetter.model.Models.Profile;
 import webappKwetter.model.Models.User;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 
 import java.util.List;
 
@@ -27,34 +28,34 @@ public class KwetterFacade {
     }
 
     public User registerUser(String username){
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
     public User loginUser(String username){
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
     public void logoutUser(){
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
     public List<Kweet> getTimeLine(Profile profile){
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
     public void hearthKweet(Kweet kweet){
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
     public void postKweet(String content){
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
     public void followProfile(Profile profile){
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
     public void createProfile(User owner, Details detail){
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
     public Profile getProfile(String username){
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
     public void setDetails(Details details){
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
 }

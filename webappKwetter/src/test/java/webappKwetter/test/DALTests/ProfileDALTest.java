@@ -1,9 +1,9 @@
 package webappKwetter.test.DALTests;
 
-import DAL.MockContext.MockProfileContext;
-import DAL.MockContext.MockUserContext;
-import Facade.KwetterFacade;
+
 import org.junit.Assert;
+import webappKwetter.dao.KwetterFacade;
+import webappKwetter.dao.MockContext.MockProfileContext;
 import webappKwetter.model.Models.Details;
 import webappKwetter.model.Models.Kweet;
 import webappKwetter.model.Models.Profile;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
-
+import webappKwetter.dao.MockContext.MockUserContext;
 
 class ProfileDALTest {
 

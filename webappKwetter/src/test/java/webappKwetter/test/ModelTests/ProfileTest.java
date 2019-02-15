@@ -1,9 +1,10 @@
 package webappKwetter.test.ModelTests;
 
 
-import Models.Commands.Hearth;
-import Models.Commands.React;
+
 import org.junit.Assert;
+import webappKwetter.model.Commands.Hearth;
+import webappKwetter.model.Commands.React;
 import webappKwetter.model.Enums.Role;
 import webappKwetter.model.Models.Details;
 import webappKwetter.model.Models.Kweet;
@@ -36,7 +37,7 @@ class ProfileTest {
         }
         for (int i = 0; i < 10 ; i++){
             for (int j = 0; j < 10 ; j++){
-                    profileList.get(i).postKweet(new Kweet("profile " + i + " kweet " + j));
+                    profileList.get(i).postKweet("profile " + i + " kweet " + j);
             }
         }
 
@@ -60,7 +61,7 @@ class ProfileTest {
         List<Kweet> timeline = testProfile.getTimeline();
         Assert.assertEquals(timeline.size(), 10);
         Assert.assertEquals(timeline.get(0).getContent(), "profile 0 kweet 9");
-        testProfile.postKweet(new Kweet("profile 0 kweet 10"));
+        testProfile.postKweet("profile 0 kweet 10");
         timeline = testProfile.getTimeline();
         Assert.assertEquals(timeline.size(), 10);
         Assert.assertEquals(timeline.get(0).getContent(), "profile 0 kweet 10");
@@ -70,10 +71,9 @@ class ProfileTest {
     void postKweet() {
         String content = "test";
         Profile testProfile = profileList.get(0);
-        Kweet testKweet = new Kweet(content);
         Assert.assertEquals(testProfile.getKweets().size(), 10);
         Date date = new Date();
-        testProfile.postKweet(testKweet);
+        Kweet testKweet = testProfile.postKweet(content);
         Assert.assertEquals(date, testKweet.getDate());
         date.setTime(10);
         Assert.assertNotEquals(date, testKweet.getDate());
@@ -99,7 +99,7 @@ class ProfileTest {
     @Test
     void nullTest(){
         Profile profile = new Profile();
-        profile.postKweet(new Kweet("test"));
+        profile.postKweet("test");
         Assert.assertNull(profile.getFollowers());
         Assert.assertNull(profile.getFollowing());
         Assert.assertNull(profile.getKweets());
@@ -108,14 +108,14 @@ class ProfileTest {
     @Test
     void hearthTest(){
         Profile testProfile = profileList.get(0);
-        Kweet kweet = new Kweet("test");
+        Kweet kweet = new Kweet("test", testProfile);
         Hearth hearth = new Hearth(testProfile, kweet);
         Assert.assertEquals(hearth, kweet.getCommands().get(0));
     }
     @Test
     void reactTest(){
         Profile testProfile = profileList.get(0);
-        Kweet kweet = new Kweet("test");
+        Kweet kweet = new Kweet("test", testProfile);
         React reaction = new React("content" ,testProfile,kweet);
         Assert.assertEquals(reaction, kweet.getCommands().get(0));
     }

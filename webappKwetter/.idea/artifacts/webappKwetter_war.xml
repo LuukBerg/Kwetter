@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="webappKwetter:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>webappKwetter</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="webappKwetter.war">
+      <element id="artifact" artifact-name="webappKwetter:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,4 +1,4 @@
-package DAL.Repo;
+package webappKwetter.dao.Repo;
 
 import DAL.IContext.IProfileContext;
 import webappKwetter.model.Models.Details;

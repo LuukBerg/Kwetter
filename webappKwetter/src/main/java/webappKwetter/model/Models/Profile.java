@@ -1,10 +1,14 @@
 package webappKwetter.model.Models;
 
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 
+@Entity
 public class Profile {
     @Id
     @GeneratedValue
@@ -13,11 +17,12 @@ public class Profile {
     private User owner;
     @ManyToMany
     private List<Profile> following;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "following")
     private List <Profile> followers;
     @Embedded
     private Details details;
-    @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "owner")
     private List<Kweet> kweets;
 
     public Profile() {
@@ -50,10 +55,14 @@ public class Profile {
     public List<Profile> getFollowers() {
         return followers;
     }
-    public void postKweet(Kweet kweet){
-        if(kweets != null){
+    public Kweet postKweet(String content){
+        Kweet kweet = null;
+        if(content != null){
+            kweet = new Kweet(content, this);
             kweets.add(kweet);
+
         }
+        return kweet;
 
     }
 

@@ -1,5 +1,8 @@
 package webappKwetter.model.Models;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Details {
     private String name;
     private String location;

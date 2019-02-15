@@ -1,9 +1,18 @@
-package Models.Commands;
+package webappKwetter.model.Commands;
 
 import webappKwetter.model.Models.Kweet;
 
-public interface Command {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-    void action(Kweet kweet);
+@Entity
+public abstract class Command {
+    @Id
+    @GeneratedValue
+    private long id;
+    void action(Kweet kweet){
+
+    };
 
 }
