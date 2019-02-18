@@ -4,23 +4,16 @@ package webappKwetter.test.DALTests;
 import org.junit.Assert;
 import org.junit.Before;
 import webappKwetter.dao.IContext.IProfileContext;
-import webappKwetter.dao.IContext.IUserContext;
 import webappKwetter.dao.KwetterFacade;
-import webappKwetter.dao.MockContext.MockProfileContext;
 import webappKwetter.dao.MySqlContext.MySQLProfileContext;
-import webappKwetter.dao.MySqlContext.MySQLUserContext;
 import webappKwetter.dao.Repo.ProfileRepo;
-import webappKwetter.dao.Repo.UserRepo;
 import webappKwetter.model.Enums.Role;
 import webappKwetter.model.Models.Details;
-import webappKwetter.model.Models.Kweet;
 import webappKwetter.model.Models.Profile;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.Test;
 import webappKwetter.model.Models.User;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

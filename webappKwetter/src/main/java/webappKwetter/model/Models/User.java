@@ -55,6 +55,10 @@ public class User {
     public void setProfile(Profile profile) {
         this.profile = profile;
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
 
 

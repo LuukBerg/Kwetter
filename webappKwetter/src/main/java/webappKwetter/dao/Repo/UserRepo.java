@@ -18,13 +18,11 @@ public class UserRepo {
     }
 
     public User registerUser(User user){
-        return context.registerUser(user);
+        return context.create(user);
     }
 
     public User loginUser(String username){
-        return context.loginUser(username);
+        return context.findByUsername(username);
     }
-    public void logoutUser(){
-        context.logoutUser();
-    }
+
 }

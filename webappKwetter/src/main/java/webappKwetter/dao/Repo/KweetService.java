@@ -16,6 +16,7 @@ public class KweetService {
 
     @Inject @JPA
     private IProfileContext profileContext;
+
     public KweetService() {
     }
 

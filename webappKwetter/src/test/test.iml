@@ -50,5 +50,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" scope="TEST" name="Maven: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jboss.arquillian.junit:arquillian-junit-core:1.1.2.Final-wildfly-1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jboss.arquillian.container:arquillian-container-spi:1.1.2.Final-wildfly-1" level="project" />
   </component>
 </module>

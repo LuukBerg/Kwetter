@@ -4,11 +4,12 @@ import webappKwetter.model.Commands.Command;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Kweet {
+public class Kweet implements Comparable<Kweet>{
     @Id
     @GeneratedValue
     private long id;
@@ -52,5 +53,14 @@ public class Kweet {
 
     public Profile getOwner() {
         return owner;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int compareTo(Kweet o) {
+        return date.compareTo(o.getDate());
     }
 }

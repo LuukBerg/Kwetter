@@ -54,17 +54,13 @@ public class UserDALTest {
     }
     @Test
     public void loginUser() {
-        facade.loginUser("testUser");
-        Assert.assertEquals(facade.getUser(), "testUser");
-        Assert.assertEquals(facade.getUser().getRole(), Role.user);
-        Assert.assertNotNull(facade.getUser().getProfile());
+        transaction.begin();
+        User user = repo.registerUser(new User("testuser", Role.user));
+        transaction.commit();
+        transaction.begin();
+        User loginUser = repo.loginUser("testuser");
+        Assert.assertEquals(user, loginUser);
     }
-    @Test
-    public void logoutUser(){
-        facade.loginUser("testUser");
-        Assert.assertEquals(facade.getUser(), "testUser");
-        facade.logoutUser();
-        Assert.assertNull(facade.getUser());
-    }
+
 
 }

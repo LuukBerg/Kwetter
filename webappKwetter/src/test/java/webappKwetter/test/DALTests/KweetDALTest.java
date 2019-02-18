@@ -19,6 +19,7 @@ import webappKwetter.model.Models.Kweet;
 import webappKwetter.model.Models.Profile;
 import webappKwetter.model.Models.User;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -28,11 +29,12 @@ import java.util.List;
 
 public class KweetDALTest {
 
-    KwetterFacade facade;
+
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("kwetterTestPU");
 
     private EntityManager entityManager;
     private EntityTransaction transaction;
+
     private IKweetContext context;
     private Profile profile;
     public KweetDALTest() {
@@ -42,10 +44,9 @@ public class KweetDALTest {
 
     @Before
     public void Before(){
-
         entityManager = emf.createEntityManager();
         transaction = entityManager.getTransaction();
-        context = new MySQLKweetContext(entityManager);
+        //context = new MySQLKweetContext(entityManager);
         transaction.begin();
         User user = new User("testUser", Role.user);
         entityManager.persist(user);
@@ -72,9 +73,10 @@ public class KweetDALTest {
 
         }
         transaction.commit();
+        transaction.begin();
         List<Kweet> kweets = context.findByProfile(profile.getId());
         Assert.assertEquals(10, kweets.size());
-
+        transaction.commit();
     }
     @Test
     public void findKweetById(){

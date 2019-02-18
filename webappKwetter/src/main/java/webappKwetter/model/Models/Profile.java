@@ -93,4 +93,8 @@ public class Profile {
     public void addKweet(Kweet kweet) {
         kweets.add(kweet);
     }
+
+    public void setId(long id) {
+        this.id =id;
+    }
 }

@@ -1,6 +1,7 @@
 package webappKwetter.dao.MySqlContext;
 
 import webappKwetter.dao.IContext.IProfileContext;
+import webappKwetter.dao.Repo.JPA;
 import webappKwetter.model.Models.Details;
 import webappKwetter.model.Models.Kweet;
 import webappKwetter.model.Models.Profile;
@@ -10,6 +11,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+@JPA
 public class MySQLProfileContext implements IProfileContext {
     @Inject
     @MySQLDatabase
