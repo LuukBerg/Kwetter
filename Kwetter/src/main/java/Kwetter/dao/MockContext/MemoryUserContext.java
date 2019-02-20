@@ -1,0 +1,62 @@
+package Kwetter.dao.MockContext;
+
+
+import Kwetter.model.Models.User;
+import Kwetter.dao.IContext.IUserContext;
+import Kwetter.dao.Repo.Mock;
+
+import javax.ejb.Stateful;
+import javax.enterprise.inject.Default;
+import java.util.ArrayList;
+import java.util.List;
+@Default
+@Stateful
+@Mock
+public class MemoryUserContext implements IUserContext {
+    List<User> users = new ArrayList<>();
+    private long idIncrement = 0;
+
+
+    @Override
+    public User update(User entity) {
+        for(User user : users){
+            if(user.getId() == entity.getId()){
+                 users.remove(user);
+                 users.add(entity);
+                 return entity;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public User create(User entity) {
+        entity.setId(idIncrement++);
+        users.add(entity);
+        return entity;
+    }
+
+    @Override
+    public User findbyId(long id) {
+        for(User user : users){
+            if(user.getId() == id)return user;
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteById(long id) {
+        for(User user : users){
+            if(user.getId() == id)users.remove(user);
+        }
+
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        for(User user : users){
+            if(user.getUsername().equals(username)) return user;
+        }
+        return null;
+    }
+}
