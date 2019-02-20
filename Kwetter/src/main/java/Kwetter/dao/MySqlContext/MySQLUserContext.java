@@ -4,13 +4,17 @@ import Kwetter.model.Models.User;
 import Kwetter.dao.IContext.IUserContext;
 import Kwetter.dao.Repo.JPA;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 @JPA
+@Stateless
 public class MySQLUserContext implements IUserContext {
-    @Inject @MySQLDatabase
+
+    @PersistenceContext(unitName = "KwetterPU")
     private EntityManager entityManager;
 
     public MySQLUserContext(EntityManager entityManager) {

@@ -4,13 +4,16 @@ import Kwetter.dao.IContext.IProfileContext;
 import Kwetter.model.Models.Profile;
 import Kwetter.dao.Repo.JPA;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @JPA
+@Stateless
 public class MySQLProfileContext implements IProfileContext {
-    @Inject
-    @MySQLDatabase
+
+    @PersistenceContext(unitName = "KwetterPU")
     private EntityManager entityManager;
 
     public MySQLProfileContext() {

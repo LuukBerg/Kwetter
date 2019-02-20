@@ -3,15 +3,17 @@ package Kwetter.model.Models;
 
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
 @Entity
-public class Profile {
+public class Profile implements Serializable {
     @Id
     @GeneratedValue
     private long id;
@@ -23,6 +25,7 @@ public class Profile {
     private List <Profile> followers;
     @Embedded
     private Details details;
+    @JsonBackReference
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "owner")
     private List<Kweet> kweets;

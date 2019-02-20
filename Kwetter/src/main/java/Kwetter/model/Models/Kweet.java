@@ -3,12 +3,13 @@ package Kwetter.model.Models;
 import Kwetter.model.Commands.Command;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Kweet implements Comparable<Kweet>{
+public class Kweet implements Comparable<Kweet>, Serializable {
     @Id
     @GeneratedValue
     private long id;

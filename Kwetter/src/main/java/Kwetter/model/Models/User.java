@@ -3,9 +3,10 @@ package Kwetter.model.Models;
 import Kwetter.model.Enums.Role;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue
     private long id;

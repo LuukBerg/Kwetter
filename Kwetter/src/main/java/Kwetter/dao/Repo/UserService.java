@@ -17,7 +17,10 @@ public class UserService {
     }
 
     public User registerUser(User user){
-        return context.create(user);
+        if(context.findByUsername(user.getUsername()) == null){
+            return context.create(user);
+        }
+        return null;
     }
 
     public User loginUser(String username){
@@ -33,4 +36,5 @@ public class UserService {
         user.setRole(role);
         context.update(user);
     }
+
 }

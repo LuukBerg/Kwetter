@@ -3,10 +3,12 @@ package Kwetter.Controller;
 import Kwetter.dao.Repo.KweetService;
 import Kwetter.dao.Repo.ProfileService;
 import Kwetter.dao.Repo.UserService;
+import Kwetter.model.Models.Details;
 import Kwetter.model.Models.Profile;
 import Kwetter.model.Models.User;
 import Kwetter.model.Models.Kweet;
 
+import javax.ejb.PostActivate;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -24,6 +26,12 @@ public class ProfileController {
     @Inject
     private UserService userService;
 
+    @POST
+    public Profile post(@QueryParam("userid") long userid){
+        Profile profile = new Profile(userService.findById(userid),new Details("","", "", ""));
+        profileService.create(profile);
+        return profile;
+    }
     @GET
     @Path("/{id}/kweet")
     public List<Kweet> getKweetByProfile(@PathParam("id") long id){

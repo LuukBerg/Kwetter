@@ -5,14 +5,19 @@ import Kwetter.dao.IContext.IKweetContext;
 import Kwetter.dao.Repo.JPA;
 import Kwetter.model.Models.Kweet;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
+
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
 @JPA
+@Stateless
 public class MySQLKweetContext implements IKweetContext {
-    @Inject @MySQLDatabase
+
+    @PersistenceContext(unitName = "KwetterPU")
     private EntityManager entityManager;
 
     public MySQLKweetContext(EntityManager entityManager) {
