@@ -6,8 +6,8 @@ import Kwetter.model.Models.Profile;
 import Kwetter.model.Models.User;
 import Kwetter.dao.IContext.IProfileContext;
 import Kwetter.dao.IContext.IUserContext;
-import Kwetter.dao.Repo.ProfileService;
-import Kwetter.dao.Repo.UserService;
+import Kwetter.dao.Service.ProfileService;
+import Kwetter.dao.Service.UserService;
 import Kwetter.model.Models.Kweet;
 
 

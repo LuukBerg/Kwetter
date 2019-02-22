@@ -1,0 +1,122 @@
+package Kwetter.test.ServiceTests;
+
+
+import Kwetter.dao.IContext.IProfileContext;
+import Kwetter.dao.MySqlContext.MySQLProfileContext;
+import Kwetter.dao.Service.ProfileService;
+import Kwetter.model.Enums.Role;
+import Kwetter.model.Models.Details;
+import Kwetter.model.Models.Profile;
+import Kwetter.model.Models.User;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import java.io.IOException;
+
+public class ProfileServiceTest {
+
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("kwetterTestPU");
+    private EntityManager entityManager;
+    private EntityTransaction transaction;
+    private ProfileService profileService;
+    private User user;
+    @Before
+    public void beforeEach() throws IOException {
+
+        entityManager = emf.createEntityManager();
+        transaction = entityManager.getTransaction();
+        IProfileContext context = new MySQLProfileContext(entityManager);
+        profileService = new ProfileService(context);
+
+        transaction.begin();
+        user = new User("testUser", Role.user);
+        entityManager.persist(user);
+        transaction.commit();
+    }
+
+
+    @Test
+    public void createProfile(){
+        transaction.begin();
+        Profile profile = new Profile(user, new Details("test", "test", "test","test"));
+        profileService.create(profile);
+        transaction.commit();
+
+        Assert.assertEquals(1, profile.getId());
+    }
+    @Test
+    public void updateProfile(){
+        transaction.begin();
+        Profile profile = new Profile(user, new Details("test", "test", "test","test"));
+        profileService.create(profile);
+        transaction.commit();
+        Assert.assertEquals(1, profile.getId());
+        Assert.assertEquals("test", profile.getDetails().getName());
+        transaction.begin();
+        profile.getDetails().setName("updatename");
+        profileService.update(profile);
+        transaction.commit();
+        Profile getProfile = profileService.findbyId(profile.getId());
+        Assert.assertEquals("updatename", getProfile.getDetails().getName());
+    }
+
+    //TODO FIX TEST
+    //@Test
+    public void deleteProfile(){
+        transaction.begin();
+        Profile profile = new Profile(user, new Details("test", "test", "test","test"));
+        profileService.create(profile);
+        transaction.commit();
+        Assert.assertEquals(1, profile.getId());
+        Assert.assertEquals("test", profile.getDetails().getName());
+        transaction.begin();
+        profileService.deleteById(1);
+        transaction.commit();
+        Profile found = profileService.findbyId(1);
+        Assert.assertNull(found);
+    }
+
+    @Test
+    public void addFollow(){
+        transaction.begin();
+        Profile profile = new Profile(user, new Details("test", "test", "test","test"));
+        Profile followProfile = new Profile(user, new Details("test", "test", "test","test"));
+        profileService.create(profile);
+        profileService.create(followProfile);
+        transaction.commit();
+        transaction.begin();
+        profileService.addFollow(profile.getId(), followProfile.getId());
+        transaction.commit();
+        Profile found = profileService.findbyId(profile.getId());
+        Profile followFound = profileService.findbyId(followProfile.getId());
+        Assert.assertEquals(1, found.getFollowers().size());
+        Assert.assertEquals(1, followFound.getFollowing().size());
+    }
+    @Test
+    public void unfollow(){
+        transaction.begin();
+        Profile profile = new Profile(user, new Details("test", "test", "test","test"));
+        Profile followProfile = new Profile(user, new Details("test", "test", "test","test"));
+        profileService.create(profile);
+        profileService.create(followProfile);
+        transaction.commit();
+        transaction.begin();
+        profileService.addFollow(profile.getId(), followProfile.getId());
+        transaction.commit();
+        Profile found = profileService.findbyId(profile.getId());
+        Profile followFound = profileService.findbyId(followProfile.getId());
+        Assert.assertEquals(1, found.getFollowers().size());
+        Assert.assertEquals(1, followFound.getFollowing().size());
+
+        transaction.begin();
+        profileService.unFollow(profile.getId(),followProfile.getId());
+        transaction.commit();
+        Assert.assertEquals(0, found.getFollowers().size());
+        Assert.assertEquals(0, followFound.getFollowing().size());
+    }
+}

@@ -2,10 +2,9 @@ package Kwetter.dao.MySqlContext;
 
 import Kwetter.dao.IContext.IProfileContext;
 import Kwetter.model.Models.Profile;
-import Kwetter.dao.Repo.JPA;
+import Kwetter.dao.Service.JPA;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -41,11 +40,15 @@ public class MySQLProfileContext implements IProfileContext {
 
     @Override
     public Profile findbyId(long id) {
-        return entityManager.find(Profile.class, id);
+        Profile profile = entityManager.find(Profile.class, id);
+        if(profile != null) return profile;
+
+        return null;
     }
 
     @Override
     public void deleteById(long id) {
-        entityManager.remove(entityManager.find(Profile.class, id));
+        Profile profile = entityManager.find(Profile.class, id);
+        entityManager.remove(profile);
     }
 }

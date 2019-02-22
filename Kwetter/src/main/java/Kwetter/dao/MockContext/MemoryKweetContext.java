@@ -1,7 +1,7 @@
 package Kwetter.dao.MockContext;
 
 import Kwetter.dao.IContext.IKweetContext;
-import Kwetter.dao.Repo.Mock;
+import Kwetter.dao.Service.Mock;
 import Kwetter.model.Models.Profile;
 import Kwetter.model.Models.Kweet;
 
@@ -15,7 +15,7 @@ import java.util.List;
 @Mock
 public class MemoryKweetContext implements IKweetContext {
     private List<Kweet> kweets = new ArrayList<>();
-    private long idIncrement=0;
+    private long idIncrement=1;
 
     @Override
     public Kweet create(Kweet kweet) {
@@ -45,11 +45,10 @@ public class MemoryKweetContext implements IKweetContext {
     public List<Kweet> getTimeLine(Profile profile) {
         List<Kweet> result = new ArrayList<>();
         for(Kweet kweet : kweets){
-            if(kweet.getOwner().getId() == profile.getId())result.add(kweet);
+            if(result.size() != 10){
+                if(kweet.getOwner().getId() == profile.getId())result.add(kweet);
+            }
         }
-        //TODO add sort on date
-        //KweetComparator comp = new KweetComparator();
-        //result.sort(comp);
         return result;
     }
 
@@ -59,7 +58,27 @@ public class MemoryKweetContext implements IKweetContext {
     }
 
     @Override
-    public void delete(Kweet kweet) {
+    public void deleteById(Long id) {
+        Kweet kweetToRemove = null;
+        for(Kweet kweetItem : kweets){
+            if(kweetItem.getId() == id){
+                kweetToRemove = kweetItem;
+            }
+        }
+        kweets.remove(kweetToRemove);
+    }
 
+
+    @Override
+    public Kweet update(Kweet kweet) {
+        if(kweets.contains(kweet)){
+            for(Kweet kweetItem : kweets){
+                if(kweetItem.getId() == kweet.getId()){
+                    kweets.remove(kweetItem);
+                    kweets.add(kweet);
+                }
+            }
+        }
+        return kweet;
     }
 }

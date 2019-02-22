@@ -1,14 +1,13 @@
 package Kwetter.Controller;
 
-import Kwetter.dao.Repo.KweetService;
-import Kwetter.dao.Repo.ProfileService;
-import Kwetter.dao.Repo.UserService;
+import Kwetter.dao.Service.KweetService;
+import Kwetter.dao.Service.ProfileService;
+import Kwetter.dao.Service.UserService;
 import Kwetter.model.Models.Details;
 import Kwetter.model.Models.Profile;
 import Kwetter.model.Models.User;
 import Kwetter.model.Models.Kweet;
 
-import javax.ejb.PostActivate;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;

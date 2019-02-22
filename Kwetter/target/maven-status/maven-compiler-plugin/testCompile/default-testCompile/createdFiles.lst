@@ -1,6 +1,5 @@
 Kwetter\test\DAOTests\UserDALTest.class
 Kwetter\test\ModelTests\KweetTest.class
-Kwetter\test\APITests\APITest.class
 Kwetter\test\ModelTests\ProfileTest.class
 Kwetter\test\ModelTests\UserTest.class
 Kwetter\test\APITests\UserAPITest.class

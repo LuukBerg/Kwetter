@@ -1,6 +1,7 @@
 package Kwetter.model.Models;
 
 import Kwetter.model.Commands.Command;
+import Kwetter.model.Commands.Hearth;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,8 +18,9 @@ public class Kweet implements Comparable<Kweet>, Serializable {
     private Date date;
     @ManyToOne
     private Profile owner;
+    //TODO add hearths to jpa
     @Transient
-    private List<Command> commands;
+    private List<Hearth> hearths;
 
     public Kweet() {
     }
@@ -26,7 +28,7 @@ public class Kweet implements Comparable<Kweet>, Serializable {
     public Kweet(String content, Profile owner) {
         this.content = content;
         this.date = new Date();
-        commands = new ArrayList<>();
+        hearths = new ArrayList<>();
         this.owner = owner;
     }
 
@@ -39,12 +41,20 @@ public class Kweet implements Comparable<Kweet>, Serializable {
         return date;
     }
 
-    public List<Command> getCommands() {
-        return commands;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public void setCommands(List<Command> commands) {
-        this.commands = commands;
+    public List<Hearth> getHearths() {
+        return hearths;
+    }
+    public void addHearht(Hearth hearth){
+        hearths.add(hearth);
+    }
+    public void removeHearth(Hearth hearth){
+        if(hearths.contains(hearth)){
+            hearths.remove(hearth);
+        }
     }
 
     public long getId() {
@@ -57,6 +67,10 @@ public class Kweet implements Comparable<Kweet>, Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Override

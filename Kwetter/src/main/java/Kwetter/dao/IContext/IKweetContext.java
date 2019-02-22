@@ -1,5 +1,6 @@
 package Kwetter.dao.IContext;
 
+import Kwetter.model.Commands.Hearth;
 import Kwetter.model.Models.Profile;
 import Kwetter.model.Models.Kweet;
 
@@ -13,5 +14,7 @@ public interface IKweetContext {
 
     List<Kweet> getAllOrderedByDate();
 
-    void delete(Kweet kweet);
+    void deleteById(Long id);
+    Kweet update(Kweet kweet);
+
 }

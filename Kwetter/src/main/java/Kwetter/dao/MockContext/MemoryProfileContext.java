@@ -2,7 +2,7 @@ package Kwetter.dao.MockContext;
 
 import Kwetter.model.Models.Profile;
 import Kwetter.dao.IContext.IProfileContext;
-import Kwetter.dao.Repo.Mock;
+import Kwetter.dao.Service.Mock;
 
 import javax.ejb.Stateful;
 import javax.enterprise.inject.Default;
@@ -47,10 +47,12 @@ public class MemoryProfileContext implements IProfileContext {
 
     @Override
     public void deleteById(long id) {
+        Profile profileToRemove = null;
         for (Profile profile : profiles){
             if(profile.getId() == id){
-                profiles.remove(profile);
+                profileToRemove = profile;
             }
         }
+        profiles.remove(profileToRemove);
     }
 }

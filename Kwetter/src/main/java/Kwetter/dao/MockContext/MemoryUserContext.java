@@ -3,7 +3,7 @@ package Kwetter.dao.MockContext;
 
 import Kwetter.model.Models.User;
 import Kwetter.dao.IContext.IUserContext;
-import Kwetter.dao.Repo.Mock;
+import Kwetter.dao.Service.Mock;
 
 import javax.ejb.Stateful;
 import javax.enterprise.inject.Default;
@@ -46,9 +46,11 @@ public class MemoryUserContext implements IUserContext {
 
     @Override
     public void deleteById(long id) {
+        User userToRemove = null;
         for(User user : users){
-            if(user.getId() == id)users.remove(user);
+            if(user.getId() == id) userToRemove = user;
         }
+        users.remove(userToRemove);
 
     }
 

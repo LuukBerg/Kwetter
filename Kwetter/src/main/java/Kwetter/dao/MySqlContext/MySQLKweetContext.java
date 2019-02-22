@@ -2,11 +2,10 @@ package Kwetter.dao.MySqlContext;
 
 import Kwetter.model.Models.Profile;
 import Kwetter.dao.IContext.IKweetContext;
-import Kwetter.dao.Repo.JPA;
+import Kwetter.dao.Service.JPA;
 import Kwetter.model.Models.Kweet;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -51,18 +50,25 @@ public class MySQLKweetContext implements IKweetContext {
 
     @Override
     public List<Kweet> getTimeLine(Profile profile) {
-        Query query = entityManager.createQuery("SELECT k FROM Kweet k where owner.id = :id order by date").setParameter("id", profile.getId()).setMaxResults(10);
+        Query query = entityManager.createQuery("SELECT k FROM Kweet k where owner.id = :id order by date desc").setParameter("id", profile.getId()).setMaxResults(10);
         return query.getResultList();
     }
 
     @Override
     public List<Kweet> getAllOrderedByDate() {
-        Query query = entityManager.createQuery("SELECT k FROM Kweet k ORDER BY date");
+        Query query = entityManager.createQuery("SELECT k FROM Kweet k ORDER BY date desc");
         return query.getResultList();
     }
 
     @Override
-    public void delete(Kweet kweet) {
-        entityManager.remove(kweet);
+    public void deleteById(Long id) {
+        entityManager.remove(entityManager.find(Kweet.class,id));
+    }
+
+
+    @Override
+    public Kweet update(Kweet kweet){
+        entityManager.persist(kweet);
+        return kweet;
     }
 }

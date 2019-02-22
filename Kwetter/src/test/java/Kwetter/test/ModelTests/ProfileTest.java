@@ -2,18 +2,16 @@ package Kwetter.test.ModelTests;
 
 
 
-import org.junit.Assert;
+
 import Kwetter.model.Commands.Hearth;
-import Kwetter.model.Commands.React;
 import Kwetter.model.Enums.Role;
 import Kwetter.model.Models.Details;
 import Kwetter.model.Models.Kweet;
 import Kwetter.model.Models.Profile;
 import Kwetter.model.Models.User;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 
 import java.io.IOException;
@@ -22,13 +20,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-class ProfileTest {
+public class ProfileTest {
 
     private List<Profile> profileList;
     //(User owner, Image image, List<Profile> following, List<Profile> followers, Details details, List<Kweet> kweets)
     // String name, String location, String web, String bio
-    @BeforeEach
-    public  void beforeEach() throws IOException {
+    @Before
+    public void beforeEach() throws IOException {
         profileList = new LinkedList<>();
 
         for (int i = 0; i < 10 ; i++){
@@ -45,19 +43,37 @@ class ProfileTest {
 
 
     @Test
-    void followProfile() {
+    public void followProfile() {
+
         Profile profile = profileList.get(0);
         Profile followingProfile = profileList.get(1);
         Assert.assertEquals(profile.getFollowers().size(), 0);
         Assert.assertEquals(followingProfile.getFollowing().size(), 0);
-        followingProfile.addFollower(profile);
-        profile.addFollowing(followingProfile);
+        profile.addFollower(followingProfile);
+        followingProfile.addFollowing(profile);
         Assert.assertEquals(profile.getFollowers().get(0), followingProfile);
         Assert.assertEquals(followingProfile.getFollowing().get(0), profile);
     }
+    @Test
+    public void unfollowProfile(){
+        Profile profile = profileList.get(0);
+        Profile followingProfile = profileList.get(1);
+        Assert.assertEquals(profile.getFollowers().size(), 0);
+        Assert.assertEquals(followingProfile.getFollowing().size(), 0);
+        profile.addFollower(followingProfile);
+        followingProfile.addFollowing(profile);
+        Assert.assertEquals(profile.getFollowers().get(0), followingProfile);
+        Assert.assertEquals(followingProfile.getFollowing().get(0), profile);
+
+
+        profile.removeFollower(followingProfile);
+        followingProfile.removeFollower(profile);
+        Assert.assertEquals(0, profile.getFollowers().size());
+        Assert.assertEquals(0,followingProfile.getFollowers().size());
+    }
 
     @Test
-    void getTimeLine(){
+    public void getTimeLine(){
         Profile testProfile = profileList.get(0);
         List<Kweet> timeline = testProfile.getTimeline();
         Assert.assertEquals(timeline.size(), 10);
@@ -69,7 +85,7 @@ class ProfileTest {
     }
 
     @Test
-    void postKweet() {
+    public void postKweet() {
         String content = "test";
         Profile testProfile = profileList.get(0);
         Assert.assertEquals(testProfile.getKweets().size(), 10);
@@ -81,7 +97,7 @@ class ProfileTest {
         Assert.assertEquals(testProfile.getKweets().get(10), testKweet);
     }
     @Test
-    void detailsTest(){
+    public void detailsTest(){
         Profile testProfile = profileList.get(0);
         Assert.assertEquals(testProfile.getDetails().getName(), "testName0");
         Assert.assertEquals(testProfile.getDetails().getLocation(), "testLocation0");
@@ -98,26 +114,19 @@ class ProfileTest {
 
     }
     @Test
-    void nullTest(){
+    public void nullTest(){
         Profile profile = new Profile();
-        profile.postKweet("test");
         Assert.assertNull(profile.getFollowers());
         Assert.assertNull(profile.getFollowing());
         Assert.assertNull(profile.getKweets());
         Assert.assertNull(profile.getTimeline());
     }
     @Test
-    void hearthTest(){
+    public void hearthTest(){
         Profile testProfile = profileList.get(0);
         Kweet kweet = new Kweet("test", testProfile);
-        Hearth hearth = new Hearth(testProfile, kweet);
-        Assert.assertEquals(hearth, kweet.getCommands().get(0));
-    }
-    @Test
-    void reactTest(){
-        Profile testProfile = profileList.get(0);
-        Kweet kweet = new Kweet("test", testProfile);
-        React reaction = new React("content" ,testProfile,kweet);
-        Assert.assertEquals(reaction, kweet.getCommands().get(0));
+        Hearth hearth = new Hearth(testProfile);
+        kweet.addHearht(hearth);
+        Assert.assertEquals(hearth, kweet.getHearths().get(0));
     }
 }

@@ -1,12 +1,10 @@
 package Kwetter.Controller;
 
 import Kwetter.model.Enums.Role;
-import Kwetter.model.Models.Profile;
 import Kwetter.model.Models.User;
-import Kwetter.dao.Repo.UserService;
+import Kwetter.dao.Service.UserService;
 
 import javax.annotation.Resource;
-import javax.ejb.PostActivate;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
