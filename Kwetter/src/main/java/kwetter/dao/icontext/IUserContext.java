@@ -1,6 +1,6 @@
-package Kwetter.dao.IContext;
+package kwetter.dao.icontext;
 
-import Kwetter.model.Models.User;
+import kwetter.model.models.User;
 
 public interface IUserContext {
     User update(User entity);

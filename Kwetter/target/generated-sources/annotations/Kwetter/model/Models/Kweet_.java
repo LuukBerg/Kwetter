@@ -1,4 +1,4 @@
-package Kwetter.model.Models;
+package kwetter.model.models;
 
 import java.util.Date;
 import javax.annotation.Generated;

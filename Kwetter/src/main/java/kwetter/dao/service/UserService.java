@@ -1,8 +1,8 @@
-package Kwetter.dao.Service;
+package kwetter.dao.service;
 
-import Kwetter.dao.IContext.IUserContext;
-import Kwetter.model.Enums.Role;
-import Kwetter.model.Models.User;
+import kwetter.dao.icontext.IUserContext;
+import kwetter.model.enums.Role;
+import kwetter.model.models.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

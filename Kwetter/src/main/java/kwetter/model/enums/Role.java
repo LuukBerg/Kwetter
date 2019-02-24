@@ -1,7 +1,7 @@
-package Kwetter.model.Enums;
+package kwetter.model.enums;
 
 public enum Role {
-    user,
-    admin,
-    mod
+    USER,
+    ADMIN,
+    MOD
 }

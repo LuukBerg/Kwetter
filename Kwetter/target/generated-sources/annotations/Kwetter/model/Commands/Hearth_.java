@@ -1,10 +1,10 @@
-package Kwetter.model.Commands;
+package kwetter.model.commands;
 
-import Kwetter.model.Models.Kweet;
-import Kwetter.model.Models.Profile;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
+import kwetter.model.models.Kweet;
+import kwetter.model.models.Profile;
 
 @Generated(value = "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
 @StaticMetamodel(Hearth.class)

@@ -1,7 +1,7 @@
-package Kwetter.model.Commands;
+package kwetter.model.commands;
 
-import Kwetter.model.Models.Profile;
-import Kwetter.model.Models.Kweet;
+import kwetter.model.models.Profile;
+import kwetter.model.models.Kweet;
 
 import javax.persistence.*;
 

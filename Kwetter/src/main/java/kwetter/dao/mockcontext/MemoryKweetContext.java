@@ -1,13 +1,14 @@
-package Kwetter.dao.MockContext;
+package kwetter.dao.mockcontext;
 
-import Kwetter.dao.IContext.IKweetContext;
-import Kwetter.dao.Service.Mock;
-import Kwetter.model.Models.Profile;
-import Kwetter.model.Models.Kweet;
+import kwetter.dao.icontext.IKweetContext;
+import kwetter.dao.service.Mock;
+import kwetter.model.models.Profile;
+import kwetter.model.models.Kweet;
 
 import javax.ejb.Stateful;
 import javax.enterprise.inject.Default;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Default
@@ -54,7 +55,7 @@ public class MemoryKweetContext implements IKweetContext {
 
     @Override
     public List<Kweet> getAllOrderedByDate() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override

@@ -1,16 +1,15 @@
 
 
-package Kwetter.test.ServiceTests;
+package kwetter.test.ServiceTests;
 
 
 
 
-import Kwetter.dao.IContext.IUserContext;
-import Kwetter.dao.KwetterFacade;
-import Kwetter.dao.MySqlContext.MySQLUserContext;
-import Kwetter.dao.Service.UserService;
-import Kwetter.model.Enums.Role;
-import Kwetter.model.Models.User;
+import kwetter.dao.icontext.IUserContext;
+import kwetter.dao.mysqlcontext.MySQLUserContext;
+import kwetter.dao.service.UserService;
+import kwetter.model.enums.Role;
+import kwetter.model.models.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,18 +43,18 @@ public class UserServiceContextTest {
     @Test
     public void registerUser(){
         transaction.begin();
-        User user = repo.registerUser(new User("testuser", Role.user));
+        User user = repo.registerUser(new User("testuser", Role.USER));
         transaction.commit();
         Assert.assertEquals(1,user.getId());
         transaction.begin();
-        User user2 = repo.registerUser(new User("testuser2", Role.user));
+        User user2 = repo.registerUser(new User("testuser2", Role.USER));
         transaction.commit();
         Assert.assertEquals(2,user2.getId());
     }
     @Test
     public void loginUser() {
         transaction.begin();
-        User user = repo.registerUser(new User("testuser", Role.user));
+        User user = repo.registerUser(new User("testuser", Role.USER));
         transaction.commit();
         transaction.begin();
         User loginUser = repo.loginUser("testuser");

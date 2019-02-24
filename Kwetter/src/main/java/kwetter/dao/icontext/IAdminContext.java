@@ -1,4 +1,4 @@
-package Kwetter.dao.IContext;
+package kwetter.dao.icontext;
 
 public interface IAdminContext {
     //TODO: add methods

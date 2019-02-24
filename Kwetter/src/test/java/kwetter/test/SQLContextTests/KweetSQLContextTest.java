@@ -1,15 +1,15 @@
 
 
-package Kwetter.test.SQLContextTests;
+package kwetter.test.SQLContextTests;
 
 
-import Kwetter.dao.MySqlContext.MySQLKweetContext;
-import Kwetter.dao.IContext.IKweetContext;
-import Kwetter.model.Enums.Role;
-import Kwetter.model.Models.Details;
-import Kwetter.model.Models.Kweet;
-import Kwetter.model.Models.Profile;
-import Kwetter.model.Models.User;
+import kwetter.dao.mysqlcontext.MySQLKweetContext;
+import kwetter.dao.icontext.IKweetContext;
+import kwetter.model.enums.Role;
+import kwetter.model.models.Details;
+import kwetter.model.models.Kweet;
+import kwetter.model.models.Profile;
+import kwetter.model.models.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +42,7 @@ public class KweetSQLContextTest {
         transaction = entityManager.getTransaction();
         context = new MySQLKweetContext(entityManager);
         transaction.begin();
-        User user = new User("testUser", Role.user);
+        User user = new User("testUser", Role.USER);
         entityManager.persist(user);
         profile = new Profile(user, new Details("test","test","test", "test"));
         entityManager.persist(profile);

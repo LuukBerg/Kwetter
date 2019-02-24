@@ -1,9 +1,8 @@
-package Kwetter.test.ModelTests;
+package kwetter.test.ModelTests;
 
 
-import Kwetter.model.Models.Kweet;
-
-import Kwetter.model.Models.Profile;
+import kwetter.model.models.Kweet;
+import kwetter.model.models.Profile;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

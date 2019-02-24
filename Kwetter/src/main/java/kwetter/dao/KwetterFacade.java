@@ -1,14 +1,14 @@
-package Kwetter.dao;
+package kwetter.dao;
 
 
-import Kwetter.model.Models.Details;
-import Kwetter.model.Models.Profile;
-import Kwetter.model.Models.User;
-import Kwetter.dao.IContext.IProfileContext;
-import Kwetter.dao.IContext.IUserContext;
-import Kwetter.dao.Service.ProfileService;
-import Kwetter.dao.Service.UserService;
-import Kwetter.model.Models.Kweet;
+import kwetter.model.models.Details;
+import kwetter.model.models.Profile;
+import kwetter.model.models.User;
+import kwetter.dao.icontext.IProfileContext;
+import kwetter.dao.icontext.IUserContext;
+import kwetter.dao.service.ProfileService;
+import kwetter.dao.service.UserService;
+import kwetter.model.models.Kweet;
 
 
 import java.util.List;

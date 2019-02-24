@@ -1,19 +1,19 @@
 
 
-package Kwetter.test.MemoryContextTests;
+package kwetter.test.MemoryContextTests;
 
 
-import Kwetter.dao.IContext.IKweetContext;
-import Kwetter.dao.IContext.IProfileContext;
-import Kwetter.dao.IContext.IUserContext;
-import Kwetter.dao.MockContext.MemoryKweetContext;
-import Kwetter.dao.MockContext.MemoryProfileContext;
-import Kwetter.dao.MockContext.MemoryUserContext;
-import Kwetter.model.Enums.Role;
-import Kwetter.model.Models.Details;
-import Kwetter.model.Models.Kweet;
-import Kwetter.model.Models.Profile;
-import Kwetter.model.Models.User;
+import kwetter.dao.icontext.IKweetContext;
+import kwetter.dao.icontext.IProfileContext;
+import kwetter.dao.icontext.IUserContext;
+import kwetter.dao.mockcontext.MemoryKweetContext;
+import kwetter.dao.mockcontext.MemoryProfileContext;
+import kwetter.dao.mockcontext.MemoryUserContext;
+import kwetter.model.enums.Role;
+import kwetter.model.models.Details;
+import kwetter.model.models.Kweet;
+import kwetter.model.models.Profile;
+import kwetter.model.models.User;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -37,7 +37,7 @@ public class KweetMemoryTest {
         kweetContext = new MemoryKweetContext();
         profileContext = new MemoryProfileContext();
         userContext = new MemoryUserContext();
-        User user = new User("testUser", Role.user);
+        User user = new User("testUser", Role.USER);
         userContext.create(user);
         profile = new Profile(user, new Details("test","test","test", "test"));
         profileContext.create(profile);

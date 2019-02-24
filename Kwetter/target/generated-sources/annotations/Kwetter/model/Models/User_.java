@@ -1,9 +1,9 @@
-package Kwetter.model.Models;
+package kwetter.model.models;
 
-import Kwetter.model.Enums.Role;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
+import kwetter.model.enums.Role;
 
 @Generated(value = "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
 @StaticMetamodel(User.class)

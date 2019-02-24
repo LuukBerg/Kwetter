@@ -1,9 +1,9 @@
-package Kwetter.dao.MockContext;
+package kwetter.dao.mockcontext;
 
 
-import Kwetter.model.Models.User;
-import Kwetter.dao.IContext.IUserContext;
-import Kwetter.dao.Service.Mock;
+import kwetter.model.models.User;
+import kwetter.dao.icontext.IUserContext;
+import kwetter.dao.service.Mock;
 
 import javax.ejb.Stateful;
 import javax.enterprise.inject.Default;

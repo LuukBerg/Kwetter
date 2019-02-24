@@ -1,4 +1,4 @@
-package Kwetter.model.Models;
+package kwetter.model.models;
 
 
 
@@ -76,7 +76,7 @@ public class Profile implements Serializable {
     public List<Kweet> getTimeline(){
         List<Kweet> timeline = null;
         if(kweets != null) {
-            timeline = new LinkedList<Kweet>();
+            timeline = new LinkedList<>();
 
             for (int i = kweets.size() - 1; i >= kweets.size() - 10; i--) {
                 if (kweets.get(i) != null) timeline.add(kweets.get(i));

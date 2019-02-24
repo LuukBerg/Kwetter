@@ -1,6 +1,6 @@
-package Kwetter.model.Models;
+package kwetter.model.models;
 
-import Kwetter.model.Enums.Role;
+import kwetter.model.enums.Role;
 
 import javax.persistence.*;
 import java.io.Serializable;

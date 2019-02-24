@@ -1,8 +1,9 @@
-package Kwetter.Controller;
+package kwetter.controller;
 
-import Kwetter.model.Enums.Role;
-import Kwetter.model.Models.User;
-import Kwetter.dao.Service.UserService;
+
+import kwetter.model.enums.Role;
+import kwetter.model.models.User;
+import kwetter.dao.service.UserService;
 
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
@@ -12,7 +13,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Stateless
-@Path("/user")
+@Path("/USER")
 @Produces({MediaType.APPLICATION_JSON})
 public class UserController {
     @Resource
@@ -31,7 +32,7 @@ public class UserController {
     }
     @POST
     public User post(@QueryParam("username") String username){
-        User user = userService.registerUser(new User(username, Role.user));
+        User user = userService.registerUser(new User(username, Role.USER));
         if(user != null){
             return user;
         }
@@ -41,14 +42,13 @@ public class UserController {
     @GET
     @Path("/username")
     public User getProfileByUsername(@QueryParam("username") String username){
-        User user = userService.findByUsername(username);
-        return user;
+        return userService.findByUsername(username);
+
     }
 
     @GET
     @Path("/id")
     public User getUserById(@QueryParam("id") long id){
-        User user = userService.findById(id);
-        return user;
+        return userService.findById(id);
     }
 }

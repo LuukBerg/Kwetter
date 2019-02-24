@@ -1,9 +1,9 @@
-package Kwetter.dao.MySqlContext;
+package kwetter.dao.mysqlcontext;
 
-import Kwetter.model.Models.Profile;
-import Kwetter.dao.IContext.IKweetContext;
-import Kwetter.dao.Service.JPA;
-import Kwetter.model.Models.Kweet;
+import kwetter.model.models.Profile;
+import kwetter.dao.icontext.IKweetContext;
+import kwetter.dao.service.JPA;
+import kwetter.model.models.Kweet;
 
 import javax.ejb.Stateless;
 
@@ -28,11 +28,10 @@ public class MySQLKweetContext implements IKweetContext {
 
     @Override
     public Kweet create(Kweet kweet) {
-        if(!kweet.getContent().isEmpty()){
-            if(kweet.getContent().length() < 141){
+        if(!kweet.getContent().isEmpty() && kweet.getContent().length() < 141){
                 entityManager.persist(kweet);
                 return kweet;
-            }
+
         }
         return null;
     }

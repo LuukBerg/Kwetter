@@ -1,8 +1,8 @@
-package Kwetter.dao.MySqlContext;
+package kwetter.dao.mysqlcontext;
 
-import Kwetter.model.Models.User;
-import Kwetter.dao.IContext.IUserContext;
-import Kwetter.dao.Service.JPA;
+import kwetter.model.models.User;
+import kwetter.dao.icontext.IUserContext;
+import kwetter.dao.service.JPA;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -40,7 +40,9 @@ public class MySQLUserContext implements IUserContext {
     }
 
     @Override
-    public void deleteById(long id) { }
+    public void deleteById(long id) {
+        entityManager.remove(entityManager.find(User.class, id));
+    }
     @Override
     public User findByUsername(String username) {
         Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username").setParameter("username", username);

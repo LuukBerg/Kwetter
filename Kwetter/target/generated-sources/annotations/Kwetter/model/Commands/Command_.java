@@ -1,4 +1,4 @@
-package Kwetter.model.Commands;
+package kwetter.model.commands;
 
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;

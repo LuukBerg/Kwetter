@@ -1,16 +1,14 @@
-package Kwetter.test.ServiceTests;
+package kwetter.test.ServiceTests;
 
-import Kwetter.dao.IContext.IKweetContext;
-import Kwetter.dao.IContext.IProfileContext;
-import Kwetter.dao.MySqlContext.MySQLKweetContext;
-import Kwetter.dao.MySqlContext.MySQLProfileContext;
-import Kwetter.dao.Service.KweetService;
-import Kwetter.dao.Service.ProfileService;
-import Kwetter.model.Enums.Role;
-import Kwetter.model.Models.Details;
-import Kwetter.model.Models.Kweet;
-import Kwetter.model.Models.Profile;
-import Kwetter.model.Models.User;
+import kwetter.dao.icontext.IKweetContext;
+import kwetter.dao.mysqlcontext.MySQLKweetContext;
+import kwetter.dao.mysqlcontext.MySQLProfileContext;
+import kwetter.dao.service.KweetService;
+import kwetter.model.enums.Role;
+import kwetter.model.models.Details;
+import kwetter.model.models.Kweet;
+import kwetter.model.models.Profile;
+import kwetter.model.models.User;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,8 +22,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-
-import static org.junit.Assert.*;
 
 public class KweetServiceTest {
 
@@ -43,7 +39,7 @@ public class KweetServiceTest {
         IKweetContext context = new MySQLKweetContext(entityManager);
         kweetService = new KweetService(context, new MySQLProfileContext(entityManager));
         transaction.begin();
-        user = new User("testuser", Role.user);
+        user = new User("testuser", Role.USER);
         profile = new Profile(user, new Details("test","test","test", "test"));
         entityManager.persist(user);
         entityManager.persist(profile);
@@ -98,7 +94,7 @@ public class KweetServiceTest {
         Assert.assertNotNull(kweet.getId());
         transaction.commit();
         transaction.begin();
-        kweetService.delete(kweet.getId(), profile);
+        kweetService.delete(kweet.getId());
         transaction.commit();
         transaction.begin();
         Kweet found = kweetService.findById(1);

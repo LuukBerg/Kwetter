@@ -1,4 +1,4 @@
-package Kwetter.dao.MySqlContext;
+package kwetter.dao.mysqlcontext;
 
 
 import javax.inject.Qualifier;

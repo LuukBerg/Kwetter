@@ -1,8 +1,8 @@
-package Kwetter.dao.MockContext;
+package kwetter.dao.mockcontext;
 
-import Kwetter.model.Models.Profile;
-import Kwetter.dao.IContext.IProfileContext;
-import Kwetter.dao.Service.Mock;
+import kwetter.model.models.Profile;
+import kwetter.dao.icontext.IProfileContext;
+import kwetter.dao.service.Mock;
 
 import javax.ejb.Stateful;
 import javax.enterprise.inject.Default;
@@ -13,7 +13,7 @@ import java.util.List;
 @Stateful
 @Mock
 public class MemoryProfileContext implements IProfileContext {
-    private List<Profile> profiles = new ArrayList<Profile>();
+    private List<Profile> profiles = new ArrayList<>();
     private long idIncrement = 0;
     @Override
     public Profile update(Profile entity) {

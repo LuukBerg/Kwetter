@@ -1,11 +1,11 @@
-package Kwetter.dao.Service;
+package kwetter.dao.service;
 
-import Kwetter.model.Commands.Hearth;
-import Kwetter.model.Models.Profile;
-import Kwetter.dao.IContext.IKweetContext;
-import Kwetter.dao.IContext.IProfileContext;
+import kwetter.model.commands.Hearth;
+import kwetter.model.models.Profile;
+import kwetter.dao.icontext.IKweetContext;
+import kwetter.dao.icontext.IProfileContext;
 
-import Kwetter.model.Models.Kweet;
+import kwetter.model.models.Kweet;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -45,7 +45,7 @@ public class KweetService {
         return kweetContext.getAllOrderedByDate();
     }
 
-    public void delete(long id, Profile profile) {
+    public void delete(long id) {
         Kweet kweet = kweetContext.findKweetById(id);
         if(kweet != null){
 

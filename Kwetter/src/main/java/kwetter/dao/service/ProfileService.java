@@ -1,10 +1,9 @@
-package Kwetter.dao.Service;
+package kwetter.dao.service;
 
 
-import Kwetter.dao.IContext.IProfileContext;
-import Kwetter.model.Models.Profile;
+import kwetter.dao.icontext.IProfileContext;
+import kwetter.model.models.Profile;
 
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 

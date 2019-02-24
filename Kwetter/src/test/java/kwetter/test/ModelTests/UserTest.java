@@ -1,12 +1,12 @@
-package Kwetter.test.ModelTests;
+package kwetter.test.ModelTests;
 
 
 
 
-import Kwetter.model.Enums.Role;
-import Kwetter.model.Models.Details;
-import Kwetter.model.Models.Profile;
-import Kwetter.model.Models.User;
+import kwetter.model.enums.Role;
+import kwetter.model.models.Details;
+import kwetter.model.models.Profile;
+import kwetter.model.models.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class UserTest {
     User testUser;
     @Before
     public void beforeEach(){
-        testUser = new User("testUsername", Role.user);
+        testUser = new User("testUsername", Role.USER);
         testUser.setProfile(new Profile(testUser,new Details("testName" , "testLocation","testWeb", "testBio")));
     }
     @Test
@@ -34,14 +34,14 @@ public class UserTest {
 
     @Test
     public void getRole() {
-        Assert.assertEquals(testUser.getRole(), Role.user);
+        Assert.assertEquals(testUser.getRole(), Role.USER);
     }
 
     @Test
     public void setRole() {
-        Assert.assertEquals(testUser.getRole(), Role.user);
-        testUser.setRole(Role.mod);
-        Assert.assertEquals(testUser.getRole(), Role.mod);
+        Assert.assertEquals(testUser.getRole(), Role.USER);
+        testUser.setRole(Role.MOD);
+        Assert.assertEquals(testUser.getRole(), Role.MOD);
     }
 
     @Test

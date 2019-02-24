@@ -1,4 +1,4 @@
-package Kwetter.test.APITests;
+package kwetter.test.APITests;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -21,7 +21,7 @@ import java.net.URL;
 
 @RunWith(Arquillian.class)
 public class UserAPITest {
-    private static String baseUrl = "http://localhost:8080/Kwetter/api";
+    private static String baseUrl = "http://localhost:8080/kwetter/api";
 
 
    @Deployment(testable = false)
@@ -32,7 +32,7 @@ public class UserAPITest {
                 .resolve()
                 .withTransitivity()
                 .asFile();
-        return ShrinkWrap.create(WebArchive.class, "Kwetter.war")
+        return ShrinkWrap.create(WebArchive.class, "kwetter.war")
                 .addPackage("Kwetter")
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/beans.xml"))
                 .addAsLibraries(files);
@@ -41,7 +41,7 @@ public class UserAPITest {
     @Test
     public void createUserTest(@ArquillianResource URL url){
         ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(url.toString() + "api/user/?username=testuser");
+        WebTarget target = client.target(url.toString() + "api/USER/?username=testuser");
         Invocation.Builder builder = target.request();
         Response response = builder.post(Entity.json(""));
         Assert.assertEquals(200, response.getStatus());
@@ -50,7 +50,7 @@ public class UserAPITest {
     //@InSequence(2)
     public void createUserTest2(){
         ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(baseUrl + "/user/?username=testuser2");
+        WebTarget target = client.target(baseUrl + "/USER/?username=testuser2");
         Invocation.Builder builder = target.request();
         Response response = builder.post(Entity.json(""));
         Assert.assertEquals(200, response.getStatus());
@@ -59,7 +59,7 @@ public class UserAPITest {
     //@InSequence(3)
     public void findUserByUsername(){
         ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(baseUrl + "/user/username/?username=testuser");
+        WebTarget target = client.target(baseUrl + "/USER/username/?username=testuser");
         Response response = target.request().get();
         System.out.println(response.getEntity());
         System.out.println(response.readEntity(String.class));
@@ -69,7 +69,7 @@ public class UserAPITest {
     //@InSequence(4)
     public void findUserById(){
         ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(baseUrl + "/user/id/?id=1");
+        WebTarget target = client.target(baseUrl + "/USER/id/?id=1");
         Response response = target.request().get();
         System.out.println(response.getEntity());
         System.out.println(response.readEntity(String.class));
@@ -79,12 +79,12 @@ public class UserAPITest {
     //@InSequence(5)
     public void updateRole(){
         ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(baseUrl + "/user/1?role=mod");
+        WebTarget target = client.target(baseUrl + "/USER/1?role=MOD");
         Invocation.Builder builder = target.request();
         Response response = builder.put(Entity.json(""));
         Assert.assertEquals(204, response.getStatus());
 
-        target = client.target(baseUrl + "/user/username/?username=testuser");
+        target = client.target(baseUrl + "/USER/username/?username=testuser");
         response = target.request().get();
         System.out.println(response.getEntity());
         System.out.println(response.readEntity(String.class));

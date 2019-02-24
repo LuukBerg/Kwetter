@@ -1,7 +1,6 @@
-package Kwetter.model.Models;
+package kwetter.model.models;
 
-import Kwetter.model.Commands.Command;
-import Kwetter.model.Commands.Hearth;
+import kwetter.model.commands.Hearth;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -74,7 +73,7 @@ public class Kweet implements Comparable<Kweet>, Serializable {
     }
 
     @Override
-    public int compareTo(Kweet o) {
-        return date.compareTo(o.getDate());
+    public int compareTo(Kweet kweet) {
+        return date.compareTo(kweet.getDate());
     }
 }

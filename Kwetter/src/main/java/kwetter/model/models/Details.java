@@ -1,4 +1,4 @@
-package Kwetter.model.Models;
+package kwetter.model.models;
 
 import javax.persistence.Embeddable;
 

@@ -1,8 +1,7 @@
-package Kwetter.dao.IContext;
+package kwetter.dao.icontext;
 
-import Kwetter.model.Commands.Hearth;
-import Kwetter.model.Models.Profile;
-import Kwetter.model.Models.Kweet;
+import kwetter.model.models.Profile;
+import kwetter.model.models.Kweet;
 
 import java.util.List;
 

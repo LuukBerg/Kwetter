@@ -1,12 +1,12 @@
-package Kwetter.Controller;
+package kwetter.controller;
 
-import Kwetter.dao.Service.KweetService;
-import Kwetter.dao.Service.ProfileService;
-import Kwetter.dao.Service.UserService;
-import Kwetter.model.Models.Details;
-import Kwetter.model.Models.Profile;
-import Kwetter.model.Models.User;
-import Kwetter.model.Models.Kweet;
+import kwetter.dao.service.KweetService;
+import kwetter.dao.service.ProfileService;
+import kwetter.dao.service.UserService;
+import kwetter.model.models.Details;
+import kwetter.model.models.Profile;
+import kwetter.model.models.User;
+import kwetter.model.models.Kweet;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

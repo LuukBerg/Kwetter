@@ -22,9 +22,9 @@
         http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
    <persistence-unit name="kwetterTestPU" transaction-type="RESOURCE_LOCAL">
       <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-      <class>Kwetter.model.Models.Profile</class>
-      <class>Kwetter.model.Models.Kweet</class>
-      <class>Kwetter.model.Models.User</class>
+      <class>kwetter.model.models.Profile</class>
+      <class>kwetter.model.models.Kweet</class>
+      <class>kwetter.model.models.User</class>
       <exclude-unlisted-classes>false</exclude-unlisted-classes>
       <properties>
          <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />

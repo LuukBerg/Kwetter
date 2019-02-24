@@ -1,4 +1,4 @@
-package Kwetter.dao.Service;
+package kwetter.dao.service;
 
 
 import javax.inject.Qualifier;

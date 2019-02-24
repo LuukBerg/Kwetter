@@ -1,13 +1,13 @@
-package Kwetter.test.ServiceTests;
+package kwetter.test.ServiceTests;
 
 
-import Kwetter.dao.IContext.IProfileContext;
-import Kwetter.dao.MySqlContext.MySQLProfileContext;
-import Kwetter.dao.Service.ProfileService;
-import Kwetter.model.Enums.Role;
-import Kwetter.model.Models.Details;
-import Kwetter.model.Models.Profile;
-import Kwetter.model.Models.User;
+import kwetter.dao.icontext.IProfileContext;
+import kwetter.dao.mysqlcontext.MySQLProfileContext;
+import kwetter.dao.service.ProfileService;
+import kwetter.model.enums.Role;
+import kwetter.model.models.Details;
+import kwetter.model.models.Profile;
+import kwetter.model.models.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +34,7 @@ public class ProfileServiceTest {
         profileService = new ProfileService(context);
 
         transaction.begin();
-        user = new User("testUser", Role.user);
+        user = new User("testUser", Role.USER);
         entityManager.persist(user);
         transaction.commit();
     }

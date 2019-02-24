@@ -1,14 +1,14 @@
-package Kwetter.test.ModelTests;
+package kwetter.test.ModelTests;
 
 
 
 
-import Kwetter.model.Commands.Hearth;
-import Kwetter.model.Enums.Role;
-import Kwetter.model.Models.Details;
-import Kwetter.model.Models.Kweet;
-import Kwetter.model.Models.Profile;
-import Kwetter.model.Models.User;
+import kwetter.model.commands.Hearth;
+import kwetter.model.enums.Role;
+import kwetter.model.models.Details;
+import kwetter.model.models.Kweet;
+import kwetter.model.models.Profile;
+import kwetter.model.models.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class ProfileTest {
         profileList = new LinkedList<>();
 
         for (int i = 0; i < 10 ; i++){
-            Profile profile = new Profile(new User("test" + i , Role.user),  new Details("testName" + i, "testLocation" + i,"testWeb" + i, "testBio" + i));
+            Profile profile = new Profile(new User("test" + i , Role.USER),  new Details("testName" + i, "testLocation" + i,"testWeb" + i, "testBio" + i));
             profileList.add(profile);
         }
         for (int i = 0; i < 10 ; i++){

@@ -1,8 +1,8 @@
-package Kwetter.dao.MySqlContext;
+package kwetter.dao.mysqlcontext;
 
-import Kwetter.dao.IContext.IProfileContext;
-import Kwetter.model.Models.Profile;
-import Kwetter.dao.Service.JPA;
+import kwetter.dao.icontext.IProfileContext;
+import kwetter.model.models.Profile;
+import kwetter.dao.service.JPA;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
