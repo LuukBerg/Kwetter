@@ -65,8 +65,7 @@ public class ProfileServiceTest {
         Assert.assertEquals("updatename", getProfile.getDetails().getName());
     }
 
-    //TODO FIX TEST
-    //@Test
+    @Test
     public void deleteProfile(){
         transaction.begin();
         Profile profile = new Profile(user, new Details("test", "test", "test","test"));
@@ -77,7 +76,9 @@ public class ProfileServiceTest {
         transaction.begin();
         profileService.deleteById(1);
         transaction.commit();
+        transaction.begin();
         Profile found = profileService.findbyId(1);
+        transaction.commit();
         Assert.assertNull(found);
     }
 
@@ -94,6 +95,7 @@ public class ProfileServiceTest {
         transaction.commit();
         Profile found = profileService.findbyId(profile.getId());
         Profile followFound = profileService.findbyId(followProfile.getId());
+        //Profile found1 = profileService.findbyId(4);
         Assert.assertEquals(1, found.getFollowers().size());
         Assert.assertEquals(1, followFound.getFollowing().size());
     }

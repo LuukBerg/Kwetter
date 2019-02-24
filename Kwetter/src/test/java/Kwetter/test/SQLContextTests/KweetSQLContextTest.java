@@ -61,10 +61,8 @@ public class KweetSQLContextTest {
     public void findKweetByProfile() {
         transaction.begin();
         for (int i =0; i <10 ; i++){
-
             Kweet kweet = new Kweet("testkweet" + i, profile);
             context.create(kweet);
-
         }
         transaction.commit();
         transaction.begin();

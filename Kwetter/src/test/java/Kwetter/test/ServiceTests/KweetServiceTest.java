@@ -11,6 +11,7 @@ import Kwetter.model.Models.Details;
 import Kwetter.model.Models.Kweet;
 import Kwetter.model.Models.Profile;
 import Kwetter.model.Models.User;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,13 +49,17 @@ public class KweetServiceTest {
         entityManager.persist(profile);
         transaction.commit();
     }
+    @After
+    public void after(){
+
+    }
     @Test
     public void create() {
         Kweet kweet = new Kweet("test", profile);
         kweetService.create(kweet);
         Assert.assertNotNull(kweet.getId());
     }
-    //TODO fix
+
     @Test
     public void findByProfile() {
         transaction.begin();
@@ -62,7 +67,9 @@ public class KweetServiceTest {
             kweetService.create(new Kweet("test" + i, profile));
         }
         transaction.commit();
+        transaction.begin();
         List<Kweet> result = kweetService.findByProfile(profile.getId());
+        transaction.commit();
         Assert.assertEquals(10,result.size());
     }
 
@@ -76,12 +83,13 @@ public class KweetServiceTest {
             kweetService.create(kweet);
         }
         transaction.commit();
+        transaction.begin();
         List<Kweet> kweets = kweetService.getAllOrderedByDate();
+        transaction.commit();
         Assert.assertEquals(1,kweets.get(0).getDate().compareTo(kweets.get(1).getDate()));
 
     }
 
-    //TODO fix
     @Test
     public void delete() {
         transaction.begin();
@@ -92,8 +100,14 @@ public class KweetServiceTest {
         transaction.begin();
         kweetService.delete(kweet.getId(), profile);
         transaction.commit();
+        transaction.begin();
         Kweet found = kweetService.findById(1);
+        transaction.commit();
         Assert.assertNull(found);
+        transaction.begin();
+        Profile foundProfile = entityManager.find(Profile.class, profile.getId());
+        transaction.commit();
+        Assert.assertNotNull(foundProfile);
 
     }
     @Test

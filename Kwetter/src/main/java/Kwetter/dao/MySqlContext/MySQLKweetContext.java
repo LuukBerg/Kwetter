@@ -62,7 +62,8 @@ public class MySQLKweetContext implements IKweetContext {
 
     @Override
     public void deleteById(Long id) {
-        entityManager.remove(entityManager.find(Kweet.class,id));
+        Kweet kweet = entityManager.find(Kweet.class, id );
+        entityManager.remove(kweet);
     }
 
 

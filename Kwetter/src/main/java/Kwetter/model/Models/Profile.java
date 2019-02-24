@@ -27,7 +27,7 @@ public class Profile implements Serializable {
     private Details details;
     @JsonBackReference
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "owner")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "owner")
     private List<Kweet> kweets;
 
     public Profile() {

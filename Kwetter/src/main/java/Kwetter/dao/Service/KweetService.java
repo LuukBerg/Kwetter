@@ -48,9 +48,9 @@ public class KweetService {
     public void delete(long id, Profile profile) {
         Kweet kweet = kweetContext.findKweetById(id);
         if(kweet != null){
-            if(profile.getId() == kweet.getOwner().getId()){
-                kweetContext.findKweetById(id);
-            }
+
+                kweetContext.deleteById(id);
+
         }
         //TODO throw not foudn error
     }

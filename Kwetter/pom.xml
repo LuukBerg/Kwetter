@@ -198,7 +198,7 @@
             <artifactId>hibernate-core</artifactId>
             <version>4.3.7.Final</version>
         </dependency>
-<!-- java ee depenency-->
+    <!-- java ee depenency-->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
