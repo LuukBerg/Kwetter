@@ -12,6 +12,7 @@ public abstract class User_ {
 	public static volatile SingularAttribute<User, Role> role;
 	public static volatile SingularAttribute<User, Profile> profile;
 	public static volatile SingularAttribute<User, Long> id;
+	public static volatile SingularAttribute<User, String> email;
 	public static volatile SingularAttribute<User, String> username;
 
 }

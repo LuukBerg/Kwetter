@@ -22,6 +22,7 @@ public class UserController {
     @Inject
     private UserService userService;
 
+
     @PUT
     @Path("/{id}")
     public void updateRole(@QueryParam("role") Role role, @PathParam("id") long id){

@@ -3,6 +3,7 @@ package kwetter.model.models;
 import kwetter.model.commands.Hearth;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,6 +14,7 @@ public class Kweet implements Comparable<Kweet>, Serializable {
     @Id
     @GeneratedValue
     private long id;
+    @Size(max=140 ,message = "kweet cannot be longer then 140 characters")
     private String content;
     private Date date;
     @ManyToOne

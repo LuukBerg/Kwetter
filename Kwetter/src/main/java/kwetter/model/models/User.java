@@ -3,6 +3,8 @@ package kwetter.model.models;
 import kwetter.model.enums.Role;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
@@ -11,10 +13,16 @@ public class User implements Serializable {
     @GeneratedValue
     private long id;
     @Column(nullable = false, unique = true)
+    @NotNull(message = "Username cannot be null")
     private String username;
     private Role role;
     @OneToOne
     private Profile profile;
+
+
+    //TODO implement jpa and constr
+    @NotNull(message = "Email should be valid")
+    private String email;
 
     public long getId() {
         return id;

@@ -50,7 +50,7 @@ public class UserAPITest {
     //@InSequence(2)
     public void createUserTest2(){
         ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(baseUrl + "/USER/?username=testuser2");
+        WebTarget target = client.target(baseUrl + "/USER/?username=");
         Invocation.Builder builder = target.request();
         Response response = builder.post(Entity.json(""));
         Assert.assertEquals(200, response.getStatus());
@@ -90,4 +90,5 @@ public class UserAPITest {
         System.out.println(response.readEntity(String.class));
         Assert.assertEquals(200, response.getStatus());
     }
+
 }
