@@ -37,9 +37,11 @@ public class KweetServiceTest {
     @Test
     public void createUserTest(){
         ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(baseUrl + "/user/?username=");
+        WebTarget target = client.target(baseUrl + "/user");
         Invocation.Builder builder = target.request();
-        Response response = builder.post(Entity.json(""));
+        User user = new User("username",new Profile(),"email");
+        Response response = builder.post(Entity.json(user));
+
         System.out.println(response.toString());
         Assert.assertEquals(200, response.getStatus());
     }

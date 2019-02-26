@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
 
 @Stateless
 @Path("/user")
@@ -32,8 +33,11 @@ public class UserController {
         }
     }
     @POST
-    public User post(@QueryParam("username") String username){
-        User user = userService.registerUser(new User(username, Role.USER));
+    @Consumes({MediaType.APPLICATION_JSON})
+    public User post(//@QueryParam("username") String username
+                      User user){
+
+        user = userService.registerUser(new User(user.getUsername(), null, user.getEmail()));
         if(user != null){
             return user;
         }

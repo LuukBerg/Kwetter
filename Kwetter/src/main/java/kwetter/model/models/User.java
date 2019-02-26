@@ -36,6 +36,11 @@ public class User implements Serializable {
         this.role = role;
     }
 
+    public User(String username, Profile profile, String email) {
+        this.username = username;
+        this.profile = profile;
+        this.email = email;
+    }
 
     public String getUsername() {
         return username;
@@ -64,6 +69,15 @@ public class User implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
+
 
 
