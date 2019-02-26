@@ -3,7 +3,7 @@ package kwetter.test.ServiceTests;
 
 import kwetter.dao.icontext.IProfileContext;
 import kwetter.dao.mysqlcontext.MySQLProfileContext;
-import kwetter.dao.service.ProfileService;
+import kwetter.service.ProfileService;
 import kwetter.model.enums.Role;
 import kwetter.model.models.Details;
 import kwetter.model.models.Profile;
@@ -73,6 +73,7 @@ public class ProfileServiceTest {
         transaction.commit();
         Assert.assertEquals(1, profile.getId());
         Assert.assertEquals("test", profile.getDetails().getName());
+        Profile found1 = profileService.findbyId(1);
         transaction.begin();
         profileService.deleteById(1);
         transaction.commit();

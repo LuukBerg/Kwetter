@@ -1,7 +1,11 @@
-D:\Dev\Kwetter\src\test\java\Kwetter\test\DAOTests\ProfileDALTest.java
-D:\Dev\Kwetter\src\test\java\Kwetter\test\DAOTests\UserDALTest.java
-D:\Dev\Kwetter\src\test\java\Kwetter\test\APITests\UserAPITest.java
-D:\Dev\Kwetter\src\test\java\Kwetter\test\ModelTests\KweetTest.java
-D:\Dev\Kwetter\src\test\java\Kwetter\test\ModelTests\UserTest.java
-D:\Dev\Kwetter\src\test\java\Kwetter\test\DAOTests\KweetDALTest.java
-D:\Dev\Kwetter\src\test\java\Kwetter\test\ModelTests\ProfileTest.java
+D:\Dev\2019jea - kopie\Kwetter\src\test\java\kwetter\test\APITests\UserAPITest.java
+D:\Dev\2019jea - kopie\Kwetter\src\test\java\kwetter\test\ServiceTests\ProfileServiceTest.java
+D:\Dev\2019jea - kopie\Kwetter\src\test\java\kwetter\test\MemoryContextTests\KweetMemoryTest.java
+D:\Dev\2019jea - kopie\Kwetter\src\test\java\kwetter\test\ModelTests\KweetTest.java
+D:\Dev\2019jea - kopie\Kwetter\src\test\java\kwetter\test\MemoryContextTests\ProfileMemoryTest.java
+D:\Dev\2019jea - kopie\Kwetter\src\test\java\kwetter\test\ModelTests\UserTest.java
+D:\Dev\2019jea - kopie\Kwetter\src\test\java\kwetter\test\ServiceTests\KweetServiceTest.java
+D:\Dev\2019jea - kopie\Kwetter\src\test\java\kwetter\test\ServiceTests\UserServiceContextTest.java
+D:\Dev\2019jea - kopie\Kwetter\src\test\java\kwetter\test\SQLContextTests\KweetSQLContextTest.java
+D:\Dev\2019jea - kopie\Kwetter\src\test\java\kwetter\test\ModelTests\ProfileTest.java
+D:\Dev\2019jea - kopie\Kwetter\src\test\java\kwetter\test\MemoryContextTests\UserMemoryTest.java

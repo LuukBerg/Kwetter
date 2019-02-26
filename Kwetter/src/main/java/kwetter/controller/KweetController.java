@@ -1,8 +1,8 @@
 package kwetter.controller;
 
-import kwetter.dao.service.KweetService;
-import kwetter.dao.service.ProfileService;
-import kwetter.dao.service.UserService;
+import kwetter.service.KweetService;
+import kwetter.service.ProfileService;
+import kwetter.service.UserService;
 import kwetter.model.models.Profile;
 import kwetter.model.models.Kweet;
 
@@ -52,7 +52,7 @@ public class KweetController {
             kweetService.delete(id);
         }
         else{
-            //throw error
+            //TODO throw error
         }
 
 

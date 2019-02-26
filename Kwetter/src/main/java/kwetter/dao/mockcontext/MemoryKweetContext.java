@@ -1,7 +1,7 @@
 package kwetter.dao.mockcontext;
 
 import kwetter.dao.icontext.IKweetContext;
-import kwetter.dao.service.Mock;
+import kwetter.service.Mock;
 import kwetter.model.models.Profile;
 import kwetter.model.models.Kweet;
 

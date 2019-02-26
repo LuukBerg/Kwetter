@@ -1,32 +1,27 @@
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\MySqlContext\MySQLDatabase.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\Repo\KweetService.java
-D:\Dev\Kwetter\src\main\java\Kwetter\model\Models\KweetComparator.java
-D:\Dev\Kwetter\src\main\java\Kwetter\model\Models\Kweet.java
-D:\Dev\Kwetter\src\main\java\Kwetter\Controller\ProfileController.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\MySqlContext\MySQLKweetContext.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\Repo\Mock.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\MockContext\MemoryUserContext.java
-D:\Dev\Kwetter\src\main\java\Kwetter\model\Commands\React.java
-D:\Dev\Kwetter\src\main\java\Kwetter\model\Models\User.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\KwetterFacade.java
-D:\Dev\Kwetter\src\main\java\Kwetter\model\Models\Profile.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\Repo\JPA.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\IContext\IAdminContext.java
-D:\Dev\Kwetter\src\main\java\Kwetter\model\Enums\Role.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\Repo\UserService.java
-D:\Dev\Kwetter\src\main\java\Kwetter\Controller\KweetController.java
-D:\Dev\Kwetter\src\main\java\Kwetter\model\Models\Group.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\MockContext\MemoryProfileContext.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\MySqlContext\MySQLUserContext.java
-D:\Dev\Kwetter\src\main\java\Kwetter\model\Models\Role.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\MockContext\MemoryKweetContext.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\IContext\IUserContext.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\IContext\IKweetContext.java
-D:\Dev\Kwetter\src\main\java\Kwetter\model\Models\Details.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\MySqlContext\MySQLProfileContext.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\Repo\ProfileService.java
-D:\Dev\Kwetter\src\main\java\Kwetter\Controller\JAXRSApplication.java
-D:\Dev\Kwetter\src\main\java\Kwetter\dao\IContext\IProfileContext.java
-D:\Dev\Kwetter\src\main\java\Kwetter\model\Commands\Command.java
-D:\Dev\Kwetter\src\main\java\Kwetter\model\Commands\Hearth.java
-D:\Dev\Kwetter\src\main\java\Kwetter\Controller\UserController.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\model\models\Details.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\model\commands\Hearth.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\model\models\Profile.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\controller\UserController.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\dao\icontext\IKweetContext.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\service\KweetService.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\dao\icontext\IUserContext.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\controller\JAXRSApplication.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\dao\mockcontext\MemoryUserContext.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\model\models\User.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\controller\ProfileController.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\service\JPA.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\dao\KwetterFacade.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\dao\mysqlcontext\MySQLProfileContext.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\dao\icontext\IProfileContext.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\controller\KweetController.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\dao\icontext\IAdminContext.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\dao\mysqlcontext\MySQLUserContext.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\service\UserService.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\dao\mockcontext\MemoryProfileContext.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\service\Mock.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\service\ProfileService.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\model\enums\Role.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\model\models\Kweet.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\dao\mysqlcontext\MySQLKweetContext.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\dao\mysqlcontext\MySQLDatabase.java
+D:\Dev\2019jea - kopie\Kwetter\src\main\java\kwetter\dao\mockcontext\MemoryKweetContext.java

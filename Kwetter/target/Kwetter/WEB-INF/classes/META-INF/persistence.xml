@@ -23,13 +23,14 @@
    <persistence-unit name="KwetterPU">
       <!-- If you are running in a production environment, add a managed 
          data source, this example data source is just for development and testing! -->
-      <!-- The datasource is deployed as WEB-INF/webapp Kwetter-ds.xml, you
-         can find it in the source at src/main/webapp/WEB-INF/webapp Kwetter-ds.xml -->
+      <!-- The datasource is deployed as WEB-INF/webapp kwetter-ds.xml, you
+         can find it in the source at src/main/webapp/WEB-INF/webapp kwetter-ds.xml -->
       <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-      <class>Kwetter.model.Models.Profile</class>
-      <class>Kwetter.model.Models.Kweet</class>
-      <class>Kwetter.model.Models.User</class>
-      <class>Kwetter.model.Models.Details</class>
+     <jta-data-source>java:/jboss/datasources/KwetterDS</jta-data-source>
+      <class>kwetter.model.models.Profile</class>
+      <class>kwetter.model.models.Kweet</class>
+      <class>kwetter.model.models.User</class>
+      <class>kwetter.model.models.Details</class>
       <exclude-unlisted-classes>false</exclude-unlisted-classes>
       <properties>
          <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />

@@ -26,6 +26,7 @@
       <!-- The datasource is deployed as WEB-INF/webapp kwetter-ds.xml, you
          can find it in the source at src/main/webapp/WEB-INF/webapp kwetter-ds.xml -->
       <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+     <jta-data-source>java:/jboss/datasources/KwetterDS</jta-data-source>
       <class>kwetter.model.models.Profile</class>
       <class>kwetter.model.models.Kweet</class>
       <class>kwetter.model.models.User</class>

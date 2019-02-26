@@ -3,7 +3,7 @@ package kwetter.dao.mockcontext;
 
 import kwetter.model.models.User;
 import kwetter.dao.icontext.IUserContext;
-import kwetter.dao.service.Mock;
+import kwetter.service.Mock;
 
 import javax.ejb.Stateful;
 import javax.enterprise.inject.Default;

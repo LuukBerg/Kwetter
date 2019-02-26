@@ -26,11 +26,11 @@
     <datasource jndi-name="java:jboss/datasources/KwetterDS"
         pool-name="kwetter" enabled="true"
         use-java-context="true">
-        <connection-url>jdbc:h2:mem:kwetter;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</connection-url>
-        <driver>h2</driver>
+        <connection-url>jdbc:mysql://localhost:3306/kwetter</connection-url>
+        <driver>mysql-connector-java-5.1.47.jar_com.mysql.jdbc.Driver_5_1</driver>
         <security>
-            <user-name>sa</user-name>
-            <password>sa</password>
+            <user-name>root</user-name>
+            <password>root</password>
         </security>
     </datasource>
 </datasources>

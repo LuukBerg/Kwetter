@@ -2,7 +2,7 @@ package kwetter.dao.mysqlcontext;
 
 import kwetter.model.models.User;
 import kwetter.dao.icontext.IUserContext;
-import kwetter.dao.service.JPA;
+import kwetter.service.JPA;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

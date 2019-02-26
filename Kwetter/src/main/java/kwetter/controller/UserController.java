@@ -3,7 +3,7 @@ package kwetter.controller;
 
 import kwetter.model.enums.Role;
 import kwetter.model.models.User;
-import kwetter.dao.service.UserService;
+import kwetter.service.UserService;
 
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;

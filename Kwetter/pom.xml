@@ -164,6 +164,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.47</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Now we declare any tools needed -->
@@ -198,6 +199,17 @@
             <artifactId>hibernate-core</artifactId>
             <version>4.3.7.Final</version>
         </dependency>
+        <dependency>
+
+            <groupId>dom4j</groupId>
+
+            <artifactId>dom4j</artifactId>
+
+            <version>1.6.1</version>
+
+            <scope>provided</scope>
+
+        </dependency>
     <!-- java ee depenency-->
         <dependency>
             <groupId>javax.xml.bind</groupId>
@@ -228,6 +240,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
+            <version>5.4.0-RC1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -284,6 +297,8 @@
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${version.wildfly.maven.plugin}</version>
+
+
             </plugin>
         </plugins>
     </build>

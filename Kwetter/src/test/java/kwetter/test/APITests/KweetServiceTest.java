@@ -1,14 +1,17 @@
-package kwetter.test.ServiceTests;
+package kwetter.test.APITests;
 
 import kwetter.dao.icontext.IKweetContext;
 import kwetter.dao.mysqlcontext.MySQLKweetContext;
 import kwetter.dao.mysqlcontext.MySQLProfileContext;
-import kwetter.service.KweetService;
 import kwetter.model.enums.Role;
 import kwetter.model.models.Details;
 import kwetter.model.models.Kweet;
 import kwetter.model.models.Profile;
 import kwetter.model.models.User;
+import kwetter.service.KweetService;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,95 +21,36 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 public class KweetServiceTest {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("kwetterTestPU");
-    private EntityManager entityManager;
-    private EntityTransaction transaction;
-    private KweetService kweetService;
-    private Profile profile;
-    private User user;
-    @Before
-    public void beforeEach() throws IOException {
-
-        entityManager = emf.createEntityManager();
-        transaction = entityManager.getTransaction();
-        IKweetContext context = new MySQLKweetContext(entityManager);
-        kweetService = new KweetService(context, new MySQLProfileContext(entityManager));
-        transaction.begin();
-        user = new User("testuser", Role.USER);
-        profile = new Profile(user, new Details("test","test","test", "test"));
-        entityManager.persist(user);
-        entityManager.persist(profile);
-        transaction.commit();
-    }
-    @After
-    public void after(){
-
+    private static String baseUrl = "http://localhost:8080/Kwetter/api";
+    @Test
+    public void createUserTest(){
+        ResteasyClient client = new ResteasyClientBuilder().build();
+        WebTarget target = client.target(baseUrl + "/USER/?username=testuser");
+        Invocation.Builder builder = target.request();
+        Response response = builder.post(Entity.json(""));
+        System.out.println(response.toString());
+        Assert.assertEquals(200, response.getStatus());
     }
     @Test
-    public void create() {
-        Kweet kweet = new Kweet("test", profile);
-        kweetService.create(kweet);
-        Assert.assertNotNull(kweet.getId());
-    }
-
-    @Test
-    public void findByProfile() {
-        transaction.begin();
-        for(int i=0; i < 10; i++){
-            kweetService.create(new Kweet("test" + i, profile));
-        }
-        transaction.commit();
-        transaction.begin();
-        List<Kweet> result = kweetService.findByProfile(profile.getId());
-        transaction.commit();
-        Assert.assertEquals(10,result.size());
-    }
-
-    @Test
-    public void getAllOrderedByDate() {
-        transaction.begin();
-        Random r = new Random();
-        for(int i=0; i < 10; i++){
-            Kweet kweet = new Kweet("test" + i, profile);
-            kweet.setDate(new Date(r.nextInt()));
-            kweetService.create(kweet);
-        }
-        transaction.commit();
-        transaction.begin();
-        List<Kweet> kweets = kweetService.getAllOrderedByDate();
-        transaction.commit();
-        Assert.assertEquals(1,kweets.get(0).getDate().compareTo(kweets.get(1).getDate()));
-
-    }
-
-    @Test
-    public void delete() {
-        transaction.begin();
-        Kweet kweet = new Kweet("test", profile);
-        kweetService.create(kweet);
-        Assert.assertNotNull(kweet.getId());
-        transaction.commit();
-        transaction.begin();
-        kweetService.delete(kweet.getId());
-        transaction.commit();
-        transaction.begin();
-        Kweet found = kweetService.findById(1);
-        transaction.commit();
-        Assert.assertNull(found);
-        transaction.begin();
-        Profile foundProfile = entityManager.find(Profile.class, profile.getId());
-        transaction.commit();
-        Assert.assertNotNull(foundProfile);
-
-    }
-    @Test
-    public void addHearth() {
+    //@InSequence(4)
+    public void findUserById(){
+        ResteasyClient client = new ResteasyClientBuilder().build();
+        WebTarget target = client.target(baseUrl + "/USER/id/?id=1");
+        Response response = target.request().get();
+        System.out.println(response.getEntity());
+        System.out.println(response.readEntity(String.class));
+        Assert.assertEquals(200, response.getStatus());
     }
 }

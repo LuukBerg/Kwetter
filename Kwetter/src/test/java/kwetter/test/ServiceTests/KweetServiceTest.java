@@ -3,7 +3,7 @@ package kwetter.test.ServiceTests;
 import kwetter.dao.icontext.IKweetContext;
 import kwetter.dao.mysqlcontext.MySQLKweetContext;
 import kwetter.dao.mysqlcontext.MySQLProfileContext;
-import kwetter.dao.service.KweetService;
+import kwetter.service.KweetService;
 import kwetter.model.enums.Role;
 import kwetter.model.models.Details;
 import kwetter.model.models.Kweet;

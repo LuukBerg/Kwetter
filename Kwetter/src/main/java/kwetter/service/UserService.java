@@ -1,4 +1,4 @@
-package kwetter.dao.service;
+package kwetter.service;
 
 import kwetter.dao.icontext.IUserContext;
 import kwetter.model.enums.Role;

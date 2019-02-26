@@ -7,7 +7,7 @@ package kwetter.test.ServiceTests;
 
 import kwetter.dao.icontext.IUserContext;
 import kwetter.dao.mysqlcontext.MySQLUserContext;
-import kwetter.dao.service.UserService;
+import kwetter.service.UserService;
 import kwetter.model.enums.Role;
 import kwetter.model.models.User;
 import org.junit.Assert;

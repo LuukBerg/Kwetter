@@ -1,4 +1,4 @@
-package kwetter.dao.service;
+package kwetter.service;
 
 import kwetter.model.commands.Hearth;
 import kwetter.model.models.Profile;
@@ -7,6 +7,7 @@ import kwetter.dao.icontext.IProfileContext;
 
 import kwetter.model.models.Kweet;
 
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
