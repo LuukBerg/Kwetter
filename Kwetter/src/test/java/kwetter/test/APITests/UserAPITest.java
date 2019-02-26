@@ -41,7 +41,7 @@ public class UserAPITest {
     @Test
     public void createUserTest(@ArquillianResource URL url){
         ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(url.toString() + "api/USER/?username=testuser");
+        WebTarget target = client.target(url.toString() + "api/user/?username=testuser");
         Invocation.Builder builder = target.request();
         Response response = builder.post(Entity.json(""));
         Assert.assertEquals(200, response.getStatus());
@@ -50,7 +50,7 @@ public class UserAPITest {
     //@InSequence(2)
     public void createUserTest2(){
         ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(baseUrl + "/USER/?username=");
+        WebTarget target = client.target(baseUrl + "/user/?username=");
         Invocation.Builder builder = target.request();
         Response response = builder.post(Entity.json(""));
         Assert.assertEquals(200, response.getStatus());
@@ -59,7 +59,7 @@ public class UserAPITest {
     //@InSequence(3)
     public void findUserByUsername(){
         ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(baseUrl + "/USER/username/?username=testuser");
+        WebTarget target = client.target(baseUrl + "/user/username/?username=testuser");
         Response response = target.request().get();
         System.out.println(response.getEntity());
         System.out.println(response.readEntity(String.class));
@@ -69,7 +69,7 @@ public class UserAPITest {
     //@InSequence(4)
     public void findUserById(){
         ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(baseUrl + "/USER/id/?id=1");
+        WebTarget target = client.target(baseUrl + "/user/id/?id=1");
         Response response = target.request().get();
         System.out.println(response.getEntity());
         System.out.println(response.readEntity(String.class));
@@ -79,12 +79,12 @@ public class UserAPITest {
     //@InSequence(5)
     public void updateRole(){
         ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(baseUrl + "/USER/1?role=MOD");
+        WebTarget target = client.target(baseUrl + "/user/1?role=MOD");
         Invocation.Builder builder = target.request();
         Response response = builder.put(Entity.json(""));
         Assert.assertEquals(204, response.getStatus());
 
-        target = client.target(baseUrl + "/USER/username/?username=testuser");
+        target = client.target(baseUrl + "/user/username/?username=testuser");
         response = target.request().get();
         System.out.println(response.getEntity());
         System.out.println(response.readEntity(String.class));

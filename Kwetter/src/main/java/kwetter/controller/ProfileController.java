@@ -14,7 +14,7 @@ import javax.ws.rs.*;
 import java.util.List;
 
 @Stateless
-@Path("/Profile")
+@Path("/profile")
 public class ProfileController {
     @Inject
     private ProfileService profileService;

@@ -13,7 +13,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Stateless
-@Path("/USER")
+@Path("/user")
 @Produces({MediaType.APPLICATION_JSON})
 public class UserController {
     @Resource

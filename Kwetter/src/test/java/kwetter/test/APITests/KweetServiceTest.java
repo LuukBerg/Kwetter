@@ -37,7 +37,7 @@ public class KweetServiceTest {
     @Test
     public void createUserTest(){
         ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(baseUrl + "/USER/?username=");
+        WebTarget target = client.target(baseUrl + "/user/?username=");
         Invocation.Builder builder = target.request();
         Response response = builder.post(Entity.json(""));
         System.out.println(response.toString());
@@ -47,7 +47,7 @@ public class KweetServiceTest {
     //@InSequence(4)
     public void findUserById(){
         ResteasyClient client = new ResteasyClientBuilder().build();
-        WebTarget target = client.target(baseUrl + "/USER/id/?id=1");
+        WebTarget target = client.target(baseUrl + "/user/id/?id=1");
         Response response = target.request().get();
         System.out.println(response.getEntity());
         System.out.println(response.readEntity(String.class));
