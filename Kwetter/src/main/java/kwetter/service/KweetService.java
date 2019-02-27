@@ -28,12 +28,7 @@ public class KweetService {
     }
 
     public Kweet create(Kweet kweet){
-        Profile profile = profileContext.findbyId(kweet.getOwner().getId());
         kweetContext.create(kweet);
-        profile.addKweet(kweet);
-
-        //TODO check
-        profileContext.update(profile);
         return kweet;
     }
     public List<Kweet> findByProfile(long id){

@@ -11,10 +11,12 @@ import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Stateless
 @Path("/kweet")
+@Produces({MediaType.APPLICATION_JSON})
 public class KweetController {
 
     @Resource
@@ -35,13 +37,17 @@ public class KweetController {
     }
 
     @POST
-    public Kweet post(@QueryParam("message") String message){
-        Profile profile = userService.findByUsername(sessionContext.getCallerPrincipal().getName()).getProfile();
-        if(profile != null){
-            return kweetService.create(new Kweet(message, profile));
-        }
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Kweet post(Kweet kweet){
+        //TODO add sessioncontext
+        //Profile profile = userService.findByUsername(sessionContext.getCallerPrincipal().getName()).getProfile();
+        //if(profile != null){
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++");
+            System.out.println(kweet.getOwner());
+            return kweetService.create(kweet);
+        //}
         //TODO throw error
-        return null;
+        //return null;
     }
 
     @DELETE

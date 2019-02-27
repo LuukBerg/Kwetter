@@ -9,6 +9,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlList;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,14 +23,17 @@ public class Profile implements Serializable {
     @JsonBackReference
     private User owner;
     @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Profile> following;
     @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "following")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List <Profile> followers;
     @Embedded
     private Details details;
     @JsonManagedReference
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "owner")
+    @XmlList
     private List<Kweet> kweets;
 
     public Profile() {

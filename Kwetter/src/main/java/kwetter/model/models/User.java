@@ -23,8 +23,6 @@ public class User implements Serializable {
     @JsonManagedReference
     private Profile profile;
 
-
-    @JsonIgnore
     private String password;
 
     //TODO implement jpa and constr

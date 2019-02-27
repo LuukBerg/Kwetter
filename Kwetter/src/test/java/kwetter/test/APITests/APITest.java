@@ -62,16 +62,27 @@ public class APITest {
         WebTarget target = client.target(baseUrl + "/user");
         Invocation.Builder builder = target.request();
         User user = new User("username","email", "password");
-        Profile profile = new Profile(user,new Details("test", "test", "test", "test"));
+        Profile profile1 = new Profile(user,new Details("test", "test", "test", "test"));
         Entity json = Entity.json(user);
         Response response = builder.post(json);
         System.out.println(response.toString());
         Assert.assertEquals(200, response.getStatus());
 
+        client = new ResteasyClientBuilder().build();
+        target = client.target(baseUrl + "/profile/username/?username=username");
+        response = target.request().get();
+        Assert.assertEquals(200, response.getStatus());
+        Profile profile = response.readEntity(User.class).getProfile();
         //TODO send kweets
-        target = client.target(baseUrl + "/kweet");
-        builder = target.request();
+        for (int i = 0 ; i <10 ; i++) {
 
 
+            target = client.target(baseUrl + "/kweet");
+            builder = target.request();
+            json = Entity.json(new Kweet("testcontent" + i, profile));
+            response = builder.post(json);
+            System.out.println(response.toString());
+            Assert.assertEquals(200, response.getStatus());
+        }
     }
 }

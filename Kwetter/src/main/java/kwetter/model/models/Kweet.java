@@ -1,11 +1,15 @@
 package kwetter.model.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import kwetter.model.commands.Hearth;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlList;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +28,7 @@ public class Kweet implements Comparable<Kweet>, Serializable {
     private Profile owner;
     //TODO add hearths to jpa
     @Transient
+    @XmlTransient
     private List<Hearth> hearths;
 
     public Kweet() {
@@ -34,6 +39,7 @@ public class Kweet implements Comparable<Kweet>, Serializable {
         this.date = new Date();
         hearths = new ArrayList<>();
         this.owner = owner;
+        owner.addKweet(this);
     }
 
 

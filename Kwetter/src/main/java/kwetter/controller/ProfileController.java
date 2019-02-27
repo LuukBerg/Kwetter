@@ -11,10 +11,13 @@ import kwetter.model.models.Kweet;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Stateless
 @Path("/profile")
+@Produces({MediaType.APPLICATION_JSON})
 public class ProfileController {
     @Inject
     private ProfileService profileService;
@@ -39,9 +42,9 @@ public class ProfileController {
 
     @GET
     @Path("/username")
-    public Profile getProfileByUsername(@QueryParam("username") String username){
+    public User getProfileByUsername(@QueryParam("username") String username){
         User user = userService.findByUsername(username);
-        return user.getProfile();
+        return user;
     }
     @PUT
     @Path("/{id}/follow/{followingId}")
