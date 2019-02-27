@@ -9,6 +9,7 @@ import kwetter.model.enums.Role;
 @StaticMetamodel(User.class)
 public abstract class User_ {
 
+	public static volatile SingularAttribute<User, String> password;
 	public static volatile SingularAttribute<User, Role> role;
 	public static volatile SingularAttribute<User, Profile> profile;
 	public static volatile SingularAttribute<User, Long> id;

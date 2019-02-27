@@ -1,5 +1,7 @@
 package kwetter.model.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import kwetter.model.commands.Hearth;
 
 import javax.persistence.*;
@@ -18,6 +20,7 @@ public class Kweet implements Comparable<Kweet>, Serializable {
     private String content;
     private Date date;
     @ManyToOne
+    @JsonBackReference
     private Profile owner;
     //TODO add hearths to jpa
     @Transient

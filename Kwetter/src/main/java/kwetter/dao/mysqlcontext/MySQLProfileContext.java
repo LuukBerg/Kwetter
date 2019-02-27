@@ -49,6 +49,8 @@ public class MySQLProfileContext implements IProfileContext {
     @Override
     public void deleteById(long id) {
         Profile profile = entityManager.find(Profile.class, id);
+        profile.getOwner().setProfile(null);
+        entityManager.persist(profile);
         entityManager.remove(profile);
     }
 }

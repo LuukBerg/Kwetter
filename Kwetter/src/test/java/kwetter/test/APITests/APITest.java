@@ -31,7 +31,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-public class KweetServiceTest {
+public class APITest {
 
     private static String baseUrl = "http://localhost:8080/Kwetter/api";
     @Test
@@ -39,7 +39,7 @@ public class KweetServiceTest {
         ResteasyClient client = new ResteasyClientBuilder().build();
         WebTarget target = client.target(baseUrl + "/user");
         Invocation.Builder builder = target.request();
-        User user = new User("username",new Profile(),"email");
+        User user = new User("username","email", "password");
         Response response = builder.post(Entity.json(user));
 
         System.out.println(response.toString());
@@ -54,5 +54,24 @@ public class KweetServiceTest {
         System.out.println(response.getEntity());
         System.out.println(response.readEntity(String.class));
         Assert.assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    public void createTestEnv(){
+        ResteasyClient client = new ResteasyClientBuilder().build();
+        WebTarget target = client.target(baseUrl + "/user");
+        Invocation.Builder builder = target.request();
+        User user = new User("username","email", "password");
+        Profile profile = new Profile(user,new Details("test", "test", "test", "test"));
+        Entity json = Entity.json(user);
+        Response response = builder.post(json);
+        System.out.println(response.toString());
+        Assert.assertEquals(200, response.getStatus());
+
+        //TODO send kweets
+        target = client.target(baseUrl + "/kweet");
+        builder = target.request();
+
+
     }
 }

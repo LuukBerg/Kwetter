@@ -10,6 +10,7 @@ import kwetter.model.models.Details;
 import kwetter.model.models.Kweet;
 import kwetter.model.models.Profile;
 import kwetter.model.models.User;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,6 +48,10 @@ public class KweetSQLContextTest {
         profile = new Profile(user, new Details("test","test","test", "test"));
         entityManager.persist(profile);
         transaction.commit();
+    }
+    @After
+    public void after(){
+        entityManager.close();
     }
     @Test
     public void createKweet(){

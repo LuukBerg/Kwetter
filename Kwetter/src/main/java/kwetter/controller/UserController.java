@@ -37,7 +37,7 @@ public class UserController {
     public User post(//@QueryParam("username") String username
                       User user){
 
-        user = userService.registerUser(new User(user.getUsername(), null, user.getEmail()));
+        user = userService.registerUser(user);
         if(user != null){
             return user;
         }

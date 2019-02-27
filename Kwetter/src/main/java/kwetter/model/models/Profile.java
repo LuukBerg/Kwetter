@@ -4,6 +4,7 @@ package kwetter.model.models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -17,7 +18,8 @@ public class Profile implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JsonBackReference
     private User owner;
     @ManyToMany
     private List<Profile> following;
@@ -25,7 +27,7 @@ public class Profile implements Serializable {
     private List <Profile> followers;
     @Embedded
     private Details details;
-    @JsonBackReference
+    @JsonManagedReference
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "owner")
     private List<Kweet> kweets;
@@ -40,6 +42,7 @@ public class Profile implements Serializable {
         this.followers = new LinkedList<>();
         this.details = details;
         this.kweets = new LinkedList<>();
+        owner.setProfile(this);
     }
 
     public void addFollower(Profile profile){
@@ -75,12 +78,12 @@ public class Profile implements Serializable {
     }
     public List<Kweet> getTimeline(){
         List<Kweet> timeline = null;
-        if(kweets != null) {
+         if(kweets != null) {
             timeline = new LinkedList<>();
 
-            for (int i = kweets.size() - 1; i >= kweets.size() - 10; i--) {
+          /*  for (int i = kweets.size() - 1; i >= kweets.size() - 10; i--) {
                 if (kweets.get(i) != null) timeline.add(kweets.get(i));
-            }
+            }*/
         }
         return timeline;
 
@@ -110,5 +113,13 @@ public class Profile implements Serializable {
     public void removeFollower(Profile profile) {
         //TODO try catch?
         followers.remove(profile);
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }

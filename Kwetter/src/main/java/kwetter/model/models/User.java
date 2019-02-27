@@ -1,5 +1,8 @@
 package kwetter.model.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import kwetter.model.enums.Role;
 
 import javax.persistence.*;
@@ -16,12 +19,16 @@ public class User implements Serializable {
     @NotNull(message = "Username cannot be null")
     private String username;
     private Role role;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Profile profile;
 
 
+    @JsonIgnore
+    private String password;
+
     //TODO implement jpa and constr
-    @NotNull(message = "Email should be valid")
+    //@NotNull(message = "Email should be valid")
     private String email;
 
     public long getId() {
@@ -36,10 +43,11 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public User(String username, Profile profile, String email) {
+    public User(String username, String email, String password) {
         this.username = username;
-        this.profile = profile;
         this.email = email;
+        this.password = password;
+        this.role = Role.USER;
     }
 
     public String getUsername() {
@@ -76,6 +84,14 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 
