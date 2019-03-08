@@ -3,8 +3,7 @@ package kwetter.model.models;
 
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -15,6 +14,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Profile implements Serializable {
     @Id
     @GeneratedValue
@@ -30,10 +31,9 @@ public class Profile implements Serializable {
     private List <Profile> followers;
     @Embedded
     private Details details;
-    @JsonManagedReference
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "owner")
-    @XmlList
+    @JsonIdentityReference
     private List<Kweet> kweets;
 
     public Profile() {

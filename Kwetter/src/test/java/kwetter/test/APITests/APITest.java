@@ -1,5 +1,7 @@
 package kwetter.test.APITests;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import kwetter.dao.icontext.IKweetContext;
 import kwetter.dao.mysqlcontext.MySQLKweetContext;
 import kwetter.dao.mysqlcontext.MySQLProfileContext;
@@ -64,6 +66,7 @@ public class APITest {
         User user = new User("username","email", "password");
         Profile profile1 = new Profile(user,new Details("test", "test", "test", "test"));
         Entity json = Entity.json(user);
+        System.out.println(json.toString());
         Response response = builder.post(json);
         System.out.println(response.toString());
         Assert.assertEquals(200, response.getStatus());
@@ -80,6 +83,13 @@ public class APITest {
             target = client.target(baseUrl + "/kweet");
             builder = target.request();
             json = Entity.json(new Kweet("testcontent" + i, profile));
+            System.out.println(json);
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(json));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
             response = builder.post(json);
             System.out.println(response.toString());
             Assert.assertEquals(200, response.getStatus());
