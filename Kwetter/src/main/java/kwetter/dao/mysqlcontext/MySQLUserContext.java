@@ -1,5 +1,6 @@
 package kwetter.dao.mysqlcontext;
 
+import kwetter.model.models.Profile;
 import kwetter.model.models.User;
 import kwetter.dao.icontext.IUserContext;
 import kwetter.service.JPA;
@@ -41,7 +42,19 @@ public class MySQLUserContext implements IUserContext {
 
     @Override
     public void deleteById(long id) {
-        entityManager.remove(entityManager.find(User.class, id));
+        User user = entityManager.find(User.class, id);
+
+        for (Profile follower : user.getProfile().getFollowers()) {
+            user.getProfile().removeFollower(follower);
+            follower.removeFollowing(user.getProfile());
+            entityManager.persist(follower);
+        }
+        for(Profile following : user.getProfile().getFollowing()){
+            user.getProfile().removeFollowing(following);
+            following.removeFollower(user.getProfile());
+            entityManager.persist(following);
+        }
+        entityManager.remove(user);
     }
     @Override
     public User findByUsername(String username) {

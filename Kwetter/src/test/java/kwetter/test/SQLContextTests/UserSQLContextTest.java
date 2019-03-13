@@ -87,27 +87,45 @@ public class UserSQLContextTest {
     public void deleteById() {
         User user = new User("username", "email", "pass");
         Profile profile = new Profile(user, new Details("test","test","test", "test" ));
+        User followUser = new User("follow", "email", "pass");
+        Profile followProfile = new Profile(followUser, new Details("test","test","test", "test" ));
         transaction.begin();
         userContext.create(user);
+        userContext.create(followUser);
+        transaction.commit();
+        transaction.begin();
+        profile.addFollower(followProfile);
+        followProfile.addFollowing(profile);
+        profileContext.update(profile);
+        profileContext.update(followProfile);
         transaction.commit();
         transaction.begin();
         User found = userContext.findbyId(2);
         Profile foundProfile = profileContext.findbyId(2);
+        User followFound = userContext.findbyId(3);
+        Profile followFoundProfile = profileContext.findbyId(3);
         transaction.commit();
         Assert.assertNotNull(found);
         Assert.assertNotNull(foundProfile);
         Assert.assertEquals(found.getProfile(), foundProfile);
+        Assert.assertNotNull(followFound);
+        Assert.assertNotNull(followFoundProfile);
+        Assert.assertEquals(foundProfile.getFollowers().get(0), followFoundProfile);
+        Assert.assertEquals(followFoundProfile.getFollowing().get(0), foundProfile);
         transaction.begin();
         userContext.deleteById(2);
         transaction.commit();
         transaction.begin();
         found = userContext.findbyId(2);
         foundProfile = profileContext.findbyId(2);
+        followFound = userContext.findbyId(3);
+        followFoundProfile = profileContext.findbyId(3);
         transaction.commit();
         Assert.assertNull(found);
         Assert.assertNull(foundProfile);
-
-
+        Assert.assertNotNull(followFound);
+        Assert.assertNotNull(followFoundProfile);
+        Assert.assertEquals(followFoundProfile.getFollowing().size(), 0);
     }
 
     @Test

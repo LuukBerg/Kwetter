@@ -1,5 +1,6 @@
 package kwetter.service;
 
+import kwetter.dao.icontext.IProfileContext;
 import kwetter.dao.icontext.IUserContext;
 import kwetter.model.enums.Role;
 import kwetter.model.models.User;

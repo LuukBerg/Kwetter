@@ -50,6 +50,16 @@ public class MySQLProfileContext implements IProfileContext {
     public void deleteById(long id) {
         Profile profile = entityManager.find(Profile.class, id);
         profile.getOwner().setProfile(null);
+        for (Profile follower : profile.getFollowers()) {
+            profile.removeFollower(follower);
+            follower.removeFollowing(profile);
+            entityManager.persist(follower);
+        }
+        for(Profile following : profile.getFollowing()){
+            profile.removeFollowing(following);
+            following.removeFollower(profile);
+            entityManager.persist(following);
+        }
         entityManager.persist(profile);
         entityManager.remove(profile);
     }
