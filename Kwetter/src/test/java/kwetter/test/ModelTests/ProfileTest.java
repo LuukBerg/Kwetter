@@ -64,8 +64,6 @@ public class ProfileTest {
         followingProfile.addFollowing(profile);
         Assert.assertEquals(profile.getFollowers().get(0), followingProfile);
         Assert.assertEquals(followingProfile.getFollowing().get(0), profile);
-
-
         profile.removeFollower(followingProfile);
         followingProfile.removeFollower(profile);
         Assert.assertEquals(0, profile.getFollowers().size());
@@ -73,22 +71,10 @@ public class ProfileTest {
     }
 
     @Test
-    public void getTimeLine(){
-        Profile testProfile = profileList.get(0);
-        List<Kweet> timeline = testProfile.getTimeline();
-        Assert.assertEquals(timeline.size(), 10);
-        Assert.assertEquals(timeline.get(0).getContent(), "profile 0 kweet 9");
-        testProfile.postKweet("profile 0 kweet 10");
-        timeline = testProfile.getTimeline();
-        Assert.assertEquals(timeline.size(), 10);
-        Assert.assertEquals(timeline.get(0).getContent(), "profile 0 kweet 10");
-    }
-
-    @Test
     public void postKweet() {
         String content = "test";
         Profile testProfile = profileList.get(0);
-        Assert.assertEquals(testProfile.getKweets().size(), 10);
+        Assert.assertEquals(10, testProfile.getKweets().size());
         Date date = new Date();
         Kweet testKweet = testProfile.postKweet(content);
         Assert.assertEquals(date, testKweet.getDate());
@@ -119,7 +105,6 @@ public class ProfileTest {
         Assert.assertNull(profile.getFollowers());
         Assert.assertNull(profile.getFollowing());
         Assert.assertNull(profile.getKweets());
-        Assert.assertNull(profile.getTimeline());
     }
     @Test
     public void hearthTest(){

@@ -12,6 +12,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Stateless
@@ -32,8 +33,10 @@ public class KweetController {
     private UserService userService;
 
     @GET
-    public List<Kweet> get(){
-        return kweetService.getAllOrderedByDate();
+    public Response get(){
+
+        List<Kweet> kweets = kweetService.getAllOrderedByDate();
+        return Response.ok(kweets).header("count", kweets.size()).build();
     }
 
     @POST
@@ -62,6 +65,18 @@ public class KweetController {
         }
 
 
+    }
+    @GET
+    @Path("/{id}")
+    public Kweet getKweetById(@PathParam("id") long id){
+        Kweet kweet = kweetService.findById(id);
+        if(kweet!=null){
+            return kweet;
+        }
+        else{
+            //todo trhow error
+            return null;
+        }
     }
 
 }

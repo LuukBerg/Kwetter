@@ -5,8 +5,6 @@ import kwetter.model.commands.Hearth;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlList;
-import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,6 +27,7 @@ public class Kweet implements Comparable<Kweet>, Serializable {
     private List<Hearth> hearths;
 
     public Kweet() {
+
     }
 
     public Kweet(String content, Profile owner) {

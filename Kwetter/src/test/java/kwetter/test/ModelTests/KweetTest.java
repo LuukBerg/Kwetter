@@ -1,8 +1,10 @@
 package kwetter.test.ModelTests;
 
 
+import kwetter.model.models.Details;
 import kwetter.model.models.Kweet;
 import kwetter.model.models.Profile;
+import kwetter.model.models.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +20,7 @@ public class KweetTest {
     @Before
     public void beforeEach() throws IOException { ;
         date = new Date();
-        testKweet = new Kweet("test kweet", new Profile());
+        testKweet = new Kweet("test kweet", new Profile(new User("username", "email", "password"), new Details("test","test", "test", "test")));
     }
 
     @Test

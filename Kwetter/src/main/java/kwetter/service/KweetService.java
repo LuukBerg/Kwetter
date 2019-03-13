@@ -10,10 +10,11 @@ import kwetter.model.models.Kweet;
 import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.List;
 
 @Stateless
-public class KweetService {
+public class KweetService implements Serializable {
     @Inject @JPA
     private IKweetContext kweetContext;
 

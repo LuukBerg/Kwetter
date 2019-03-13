@@ -62,12 +62,11 @@ public class Profile implements Serializable {
     public List<Profile> getFollowers() {
         return followers;
     }
+
     public Kweet postKweet(String content){
         Kweet kweet = null;
         if(content != null){
             kweet = new Kweet(content, this);
-            kweets.add(kweet);
-
         }
         return kweet;
 
@@ -79,18 +78,6 @@ public class Profile implements Serializable {
 
     public List<Kweet> getKweets() {
         return kweets;
-    }
-    public List<Kweet> getTimeline(){
-        List<Kweet> timeline = null;
-         if(kweets != null) {
-            timeline = new LinkedList<>();
-
-          /*  for (int i = kweets.size() - 1; i >= kweets.size() - 10; i--) {
-                if (kweets.get(i) != null) timeline.add(kweets.get(i));
-            }*/
-        }
-        return timeline;
-
     }
 
     public long getId() {
