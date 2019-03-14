@@ -97,8 +97,8 @@ public class ProfileServiceTest {
         Profile found = profileService.findbyId(profile.getId());
         Profile followFound = profileService.findbyId(followProfile.getId());
         //Profile found1 = profileService.findbyId(4);
-        Assert.assertEquals(1, found.getFollowers().size());
-        Assert.assertEquals(1, followFound.getFollowing().size());
+        Assert.assertEquals(1, found.getFollowing().size());
+        Assert.assertEquals(1, followFound.getFollowers().size());
     }
     @Test
     public void unfollow(){
@@ -113,13 +113,13 @@ public class ProfileServiceTest {
         transaction.commit();
         Profile found = profileService.findbyId(profile.getId());
         Profile followFound = profileService.findbyId(followProfile.getId());
-        Assert.assertEquals(1, found.getFollowers().size());
-        Assert.assertEquals(1, followFound.getFollowing().size());
+        Assert.assertEquals(1, found.getFollowing().size());
+        Assert.assertEquals(1, followFound.getFollowers().size());
 
         transaction.begin();
         profileService.unFollow(profile.getId(),followProfile.getId());
         transaction.commit();
-        Assert.assertEquals(0, found.getFollowers().size());
-        Assert.assertEquals(0, followFound.getFollowing().size());
+        Assert.assertEquals(0, found.getFollowing().size());
+        Assert.assertEquals(0, followFound.getFollowers().size());
     }
 }

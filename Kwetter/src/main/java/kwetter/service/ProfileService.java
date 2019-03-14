@@ -40,13 +40,13 @@ public class ProfileService {
 
     public void addFollow(long id, long followingId) {
         if(followingId != id){
-            Profile followingProfile = context.findbyId(followingId);
-            Profile profile = context.findbyId(id);
-            if(profile != null && followingProfile != null){
-                profile.addFollower(followingProfile);
-                followingProfile.addFollowing(profile);
+            Profile followerProfile = context.findbyId(id);
+            Profile profile = context.findbyId(followingId);
+            if(profile != null && followerProfile != null){
+                profile.addFollower(followerProfile);
+                followerProfile.addFollowing(profile);
                 context.update(profile);
-                context.update(followingProfile);
+                context.update(followerProfile);
             }
 
         }
@@ -54,8 +54,8 @@ public class ProfileService {
     }
     public void unFollow(long id, long followingId){
         if(followingId != id){
-            Profile followingProfile = context.findbyId(followingId);
-            Profile profile = context.findbyId(id);
+            Profile followingProfile = context.findbyId(id);
+            Profile profile = context.findbyId(followingId);
             if(profile != null && followingProfile != null){
                 followingProfile.removeFollowing(profile);
                 profile.removeFollower(followingProfile);

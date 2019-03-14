@@ -17,7 +17,8 @@ import java.util.List;
 
 @Stateless
 @Path("/profile")
-@Produces({MediaType.APPLICATION_JSON})
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class ProfileController {
     @Inject
     private ProfileService profileService;
@@ -47,8 +48,8 @@ public class ProfileController {
         return user;
     }
     @PUT
-    @Path("/{id}/follow/{followingId}")
-    public void updateFollowing(@PathParam("id") long id, @PathParam("followingId") long followingId){
+    @Path("/{id}/follow/{followingid}")
+    public void Follow(@PathParam("id") long id, @PathParam("followingid") long followingId){
         profileService.addFollow(id ,followingId);
     }
     @PUT
