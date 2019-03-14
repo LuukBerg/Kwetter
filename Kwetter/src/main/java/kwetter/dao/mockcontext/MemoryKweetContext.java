@@ -43,7 +43,7 @@ public class MemoryKweetContext implements IKweetContext {
     }
 
     @Override
-    public List<Kweet> getTimeLine(Profile profile) {
+    public List<Kweet> getTimeLine(Profile profile, int offset) {
         List<Kweet> result = new ArrayList<>();
         for(Kweet kweet : kweets){
             if(result.size() != 10){

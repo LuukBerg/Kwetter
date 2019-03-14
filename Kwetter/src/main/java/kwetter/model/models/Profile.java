@@ -8,14 +8,13 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import javax.xml.bind.annotation.XmlList;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
 public class Profile implements Serializable {
     @Id
     @GeneratedValue
@@ -23,10 +22,11 @@ public class Profile implements Serializable {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JsonBackReference
     private User owner;
-    @ManyToMany
+    @ManyToMany(mappedBy = "followers")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Profile> following;
-    @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "following")
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "following_followers", joinColumns = @JoinColumn(name = "following_id"), inverseJoinColumns = @JoinColumn(name = "followers_id"))
     @LazyCollection(LazyCollectionOption.FALSE)
     private List <Profile> followers;
     @Embedded
@@ -53,12 +53,12 @@ public class Profile implements Serializable {
         followers.add(profile);
     }
 
-
+    @Transactional
     public List<Profile> getFollowing() {
         return following;
     }
 
-
+    @Transactional
     public List<Profile> getFollowers() {
         return followers;
     }

@@ -1,12 +1,14 @@
 package kwetter.dao.mysqlcontext;
 
 import kwetter.dao.icontext.IProfileContext;
+import kwetter.model.models.Kweet;
 import kwetter.model.models.Profile;
 import kwetter.service.JPA;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @JPA
 @Stateless
@@ -63,4 +65,6 @@ public class MySQLProfileContext implements IProfileContext {
         entityManager.persist(profile);
         entityManager.remove(profile);
     }
+
+
 }

@@ -49,6 +49,25 @@ public class APITest {
             Assert.assertEquals(200, response.getStatus());
         }
 
+        //Het volgen van een gebruiker via de REST api wordt correct bewaard, waarbij als A een volger is van B, beide een referentie naar elkaar hebben: A heeft B in following, en B heeft A in follower.”
+
+        //create users
+        User userFollower = new User("usernameFollower","email", "password");
+        Profile profileFollower = new Profile(userFollower,new Details("test", "test", "test", "test"));
+        Entity jsonFollower = Entity.json(userFollower);
+        Response responsefollower = builder.post(jsonFollower);
+        Assert.assertEquals(200, responsefollower.getStatus());
+
+        User userFollowing = new User("usernameFollowing","email", "password")
+        Profile profileFollowing = new Profile(userFollowing,new Details("test", "test", "test", "test"));
+        Entity jsonFollowing = Entity.json(userFollowing);
+        Response responsefollowing = builder.post(jsonFollower);
+        Assert.assertEquals(200, responsefollowing.getStatus());
+
+        //follow profile
+
+
+
        /* target = client.target(baseUrl + "/profile/username/?username=username");
         Response kweets = target.request().get();
         List<Kweet> kweetlist = kweets.readEntity(new GenericType<List<Kweet>>() {});

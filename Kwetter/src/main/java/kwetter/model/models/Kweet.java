@@ -19,7 +19,7 @@ public class Kweet implements Comparable<Kweet>, Serializable {
     private String content;
     private Date date;
     @ManyToOne
-    @JsonIdentityReference
+    @JsonBackReference
     private Profile owner;
     //TODO add hearths to jpa
     @Transient

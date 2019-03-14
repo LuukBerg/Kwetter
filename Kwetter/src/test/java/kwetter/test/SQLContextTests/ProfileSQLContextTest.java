@@ -21,6 +21,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import java.util.Calendar;
+import java.util.List;
+import java.util.Random;
+
 import static org.junit.Assert.*;
 
 public class ProfileSQLContextTest {
@@ -128,14 +132,76 @@ public class ProfileSQLContextTest {
         foundProfile = context.findbyId(2);
         followFound = userContext.findbyId(3);
         followFoundProfile = context.findbyId(3);
+        Kweet foundKweet = kweetContext.findKweetById(kweet.getId());
         transaction.commit();
         Assert.assertNotNull(found);
         Assert.assertNull(foundProfile);
-        Assert.assertNull(kweetContext.findKweetById(kweet.getId()));
+        Assert.assertNull(foundKweet);
         Assert.assertNotNull(followFound);
         Assert.assertNotNull(followFoundProfile);
         Assert.assertEquals(followFoundProfile.getFollowing().size(), 0);
+    }
+
+
+    @Test
+    public void getTimeline(){
+        transaction.begin();
+        for(int i = 0; i < 3; i++){
+            Profile profile = new Profile(new User("user" + i, "email", "password"),new Details("test", "test","test","test"));
+            context.create(profile);
+        }
+        transaction.commit();
+        transaction.begin();
+        Kweet kweet = new Kweet("testkweet0 main profile", profile);
+        kweetContext.create(kweet);
+        transaction.commit();
+        //post 20 kweets per profile
+        transaction.begin();
+        int minusdate = 0;
+        for(int i = 0; i < 3 ; i++){
+            for(int j = 0; j < 20 ; j++){
+                int max = 2;
+                Random r = new Random();
+                Profile postProfile = userContext.findByUsername("user" + i).getProfile();
+                kweet = new Kweet("testkweet " + j + "profile " + i, postProfile);
+                final Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, - minusdate++ );
+                kweet.setDate(cal.getTime());
+                kweetContext.create(kweet);
+            }
+        }
+        transaction.commit();
+        transaction.begin();
+        Profile followingProfile1 = userContext.findByUsername("user" + 0).getProfile();
+        Profile followingProfile2 = userContext.findByUsername("user" + 1).getProfile();
+        Profile followingProfile3 = userContext.findByUsername("user" + 2).getProfile();
+        profile.addFollowing(followingProfile1);
+        profile.addFollowing(followingProfile2);
+        profile.addFollowing(followingProfile3);
+        followingProfile1.addFollower(profile);
+        followingProfile2.addFollower(profile);
+        followingProfile3.addFollower(profile);
+        transaction.commit();
+        transaction.begin();
+        List<Kweet> timeline = kweetContext.getTimeLine(profile, 0);
+        transaction.commit();
+
+        Assert.assertEquals(10, timeline.size());
+        for(int i = 0; i < 9; i++){
+            Assert.assertEquals(1,timeline.get(i).compareTo(timeline.get(i + 1)));
+        }
+        transaction.begin();
+        timeline.addAll(kweetContext.getTimeLine(profile, 10));
+        transaction.commit();
+        Assert.assertEquals(20, timeline.size());
+        for(int i = 0; i < 19; i++){
+            Assert.assertEquals(1,timeline.get(i).compareTo(timeline.get(i + 1)));
+        }
+
+
 
 
     }
+
+
 }

@@ -102,10 +102,11 @@
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-ehcache</artifactId>
+            <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -150,7 +151,6 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
@@ -189,6 +189,7 @@
                 </plugins>
             </build>
         </profile>
+
         <profile>
             <id>openshift</id>
             <build>
@@ -204,6 +205,5 @@
                 </plugins>
             </build>
         </profile>
-
     </profiles>
 </project>

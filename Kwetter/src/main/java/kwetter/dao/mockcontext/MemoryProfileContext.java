@@ -1,5 +1,6 @@
 package kwetter.dao.mockcontext;
 
+import kwetter.model.models.Kweet;
 import kwetter.model.models.Profile;
 import kwetter.dao.icontext.IProfileContext;
 import kwetter.service.Mock;
@@ -55,4 +56,5 @@ public class MemoryProfileContext implements IProfileContext {
         }
         profiles.remove(profileToRemove);
     }
+
 }

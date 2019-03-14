@@ -9,7 +9,7 @@ public interface IKweetContext {
     public Kweet create(Kweet kweet);
     public Kweet findKweetById(long id);
     public List<Kweet> findByProfile(long id);
-    public List<Kweet> getTimeLine(Profile profile);
+    public List<Kweet> getTimeLine(Profile profile, int offset);
 
     List<Kweet> getAllOrderedByDate();
 
