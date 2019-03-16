@@ -8,6 +8,7 @@ import kwetter.service.JPA;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 @JPA
@@ -64,6 +65,18 @@ public class MySQLProfileContext implements IProfileContext {
         }
         entityManager.persist(profile);
         entityManager.remove(profile);
+    }
+
+    @Override
+    public List<Profile> getFollowing(long id) {
+        Query query = entityManager.createQuery("SELECT p FROM Profile p join p.followers f where f.id = :id").setParameter("id", id);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Profile> getFollowers(long id) {
+        Query query = entityManager.createQuery("SELECT p FROM Profile p join p.following f where f.id = :id").setParameter("id", id);
+        return query.getResultList();
     }
 
 

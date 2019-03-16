@@ -6,6 +6,7 @@ import kwetter.model.models.Profile;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.List;
 
 @Stateless
 public class ProfileService {
@@ -64,5 +65,13 @@ public class ProfileService {
             }
 
         }
+    }
+
+    public List<Profile> getFollowing(long id) {
+        return context.getFollowing(id);
+    }
+
+    public List<Profile> getFollowers(long id) {
+        return context.getFollowers(id);
     }
 }

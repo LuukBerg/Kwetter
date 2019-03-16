@@ -24,10 +24,12 @@ public class Profile implements Serializable {
     private User owner;
     @ManyToMany(mappedBy = "followers")
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonIgnore
     private List<Profile> following;
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "following_followers", joinColumns = @JoinColumn(name = "following_id"), inverseJoinColumns = @JoinColumn(name = "followers_id"))
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonIgnore
     private List <Profile> followers;
     @Embedded
     private Details details;
@@ -36,6 +38,13 @@ public class Profile implements Serializable {
     @JsonIdentityReference
     private List<Kweet> kweets;
 
+    @JsonCreator
+    public Profile(@JsonProperty("id") long id, @JsonProperty("owner") User owner, @JsonProperty("details") Details details,@JsonProperty("kweets") List<Kweet> kweets){
+        this.id = id;
+        this.owner = owner;
+        this.details = details;
+        this.kweets = kweets;
+    }
     public Profile() {
     }
 
@@ -110,7 +119,25 @@ public class Profile implements Serializable {
         return owner;
     }
 
+    public void setFollowing(List<Profile> following) {
+        this.following = following;
+    }
+
+    public void setFollowers(List<Profile> followers) {
+        this.followers = followers;
+    }
+
     public void setOwner(User owner) {
         this.owner = owner;
     }
+
+    public void setDetails(Details details) {
+        this.details = details;
+    }
+
+    public void setKweets(List<Kweet> kweets) {
+        this.kweets = kweets;
+    }
+
 }
+

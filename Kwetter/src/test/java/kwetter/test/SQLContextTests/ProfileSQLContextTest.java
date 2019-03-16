@@ -197,9 +197,38 @@ public class ProfileSQLContextTest {
         for(int i = 0; i < 19; i++){
             Assert.assertEquals(1,timeline.get(i).compareTo(timeline.get(i + 1)));
         }
+    }
+    @Test
+    public void getFollowing(){
+        transaction.begin();
+        User userFollowing = new User("userFollowing", "email", "password");
+        User userFollowed = new User("userFollowed", "email", "password");
+        Profile profileFollowing = new Profile(userFollowing,new Details("test", "test","test","test"));
+        Profile profileFollowed = new Profile(userFollowed, new Details("test", "test","test","test"));
+        context.create(profileFollowing);
+        context.create(profileFollowed);
+        transaction.commit();
+        Assert.assertNotNull(profileFollowing.getId());
+        Assert.assertNotNull(profileFollowed.getId());
+        transaction.begin();
+        profileFollowed.addFollower(profileFollowing);
+        profileFollowing.addFollowing(profileFollowed);
+        context.update(profileFollowing);
+        transaction.commit();
 
+        transaction.begin();
+        profileFollowed = context.findbyId(profileFollowed.getId());
+        profileFollowing = context.findbyId(profileFollowing.getId());
 
+        profileFollowed.setFollowers(context.getFollowers(profileFollowed.getId()));
+        profileFollowing.setFollowing(context.getFollowing(profileFollowing.getId()));
 
+        transaction.commit();
+        Assert.assertEquals(1, profileFollowing.getFollowing().size());
+        Assert.assertEquals(1, profileFollowed.getFollowers().size());
+    }
+    @Test
+    public void getFollowers(){
 
     }
 

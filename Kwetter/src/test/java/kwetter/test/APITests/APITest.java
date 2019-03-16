@@ -13,7 +13,9 @@ import org.junit.Test;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 public class APITest {
 
@@ -78,6 +80,21 @@ public class APITest {
         Assert.assertEquals(200, response.getStatus());
         profileFollowing = response.readEntity(User.class).getProfile();
 
+        //get followers and following
+        client = new ResteasyClientBuilder().build();
+        target = client.target(baseUrl + "/profile/"+ profileFollowing.getId() + "/followers");
+        response = target.request().get();
+        Assert.assertEquals(200, response.getStatus());
+        profileFollowing.setFollowers(response.readEntity(new GenericType<List<Profile>>() {}));
+
+        client = new ResteasyClientBuilder().build();
+        target = client.target(baseUrl + "/profile/"+ profileFollower.getId() + "/following");
+        response = target.request().get();
+        Assert.assertEquals(200, response.getStatus());
+        profileFollower.setFollowing(response.readEntity(new GenericType<List<Profile>>() {}));
+
+
+
         Assert.assertEquals(0, profileFollowing.getFollowers().size());
         Assert.assertEquals(0, profileFollower.getFollowing().size());
 
@@ -99,6 +116,19 @@ public class APITest {
         response = target.request().get();
         Assert.assertEquals(200, response.getStatus());
         profileFollowing = response.readEntity(User.class).getProfile();
+
+        //get followers and following
+        client = new ResteasyClientBuilder().build();
+        target = client.target(baseUrl + "/profile/"+ profileFollowing.getId() + "/followers");
+        response = target.request().get();
+        Assert.assertEquals(200, response.getStatus());
+        profileFollowing.setFollowers(response.readEntity(new GenericType<List<Profile>>() {}));
+
+        client = new ResteasyClientBuilder().build();
+        target = client.target(baseUrl + "/profile/"+ profileFollower.getId() + "/following");
+        response = target.request().get();
+        Assert.assertEquals(200, response.getStatus());
+        profileFollower.setFollowing(response.readEntity(new GenericType<List<Profile>>() {}));
 
         Assert.assertEquals(1, profileFollower.getFollowing().size());
         Assert.assertEquals(1, profileFollowing.getFollowers().size());

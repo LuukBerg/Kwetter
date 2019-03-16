@@ -57,4 +57,32 @@ public class MemoryProfileContext implements IProfileContext {
         profiles.remove(profileToRemove);
     }
 
+    @Override
+    public List<Profile> getFollowing(long id) {
+        Profile foundProfile = null;
+        for (Profile profile : profiles){
+            if(profile.getId() == id){
+                foundProfile = profile;
+            }
+        }
+        if(foundProfile !=null){
+            return foundProfile.getFollowing();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Profile> getFollowers(long id) {
+        Profile foundProfile = null;
+        for (Profile profile : profiles){
+            if(profile.getId() == id){
+                foundProfile = profile;
+            }
+        }
+        if(foundProfile !=null){
+            return foundProfile.getFollowers();
+        }
+        return null;
+    }
+
 }

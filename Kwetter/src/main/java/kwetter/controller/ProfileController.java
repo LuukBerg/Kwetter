@@ -47,6 +47,16 @@ public class ProfileController {
         User user = userService.findByUsername(username);
         return user;
     }
+    @GET
+    @Path("/{id}/followers")
+    public List<Profile> getFollowers(@PathParam("id") long id){
+        return profileService.getFollowers(id);
+    }
+    @GET
+    @Path("/{id}/following")
+    public List<Profile> getFollowing(@PathParam("id") long id){
+        return profileService.getFollowing(id);
+    }
     @PUT
     @Path("/{id}/follow/{followingid}")
     public void Follow(@PathParam("id") long id, @PathParam("followingid") long followingId){
