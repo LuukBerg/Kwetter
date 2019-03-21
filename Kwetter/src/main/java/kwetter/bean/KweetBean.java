@@ -3,6 +3,7 @@ package kwetter.bean;
 import kwetter.model.models.Kweet;
 import kwetter.service.KweetService;
 
+import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -18,14 +19,13 @@ public class KweetBean implements Serializable {
 
     public List<Kweet> getKweets(){
         System.out.println("---------------------------------------------------------------------------");
-        List<Kweet> keets = kweetService.getAllOrderedByDate();
-        keets.get(0).getOwner();
-        return keets;
+        List<Kweet> kweets = kweetService.getAllOrderedByDate();
+        return kweets;
     }
 
-    public void deleteKweet() {
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        kweetService.delete(5);
+    public void deleteKweet(long id) throws Exception{
+        System.out.println(id + "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        kweetService.delete(id);
     }
     public void Test(){
         System.out.println("****************************************");

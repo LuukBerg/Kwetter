@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Kwetter</title>
 </h:head>
@@ -24,8 +23,8 @@
                                         <b:dataTableColumn value="#{kweet.owner.owner.username}"/>
                                         <b:dataTableColumn value="#{kweet.owner.owner.id}"/>
                                         <b:column>
-                                            <h:commandButton class="btn btn-warning" value="remove5" action="#{kweetBean.deletekweet()}"> </h:commandButton>
-                                            <b:commandButton class="btn btn-warning" value ="test" action="#{kweetBean.Test}"></b:commandButton>
+                                            <b:commandButton class="btn btn-warning" value='remove #{kweet.id}'  onclick="#{kweetBean.deleteKweet(kweet.id)}" ajax="false">
+                                            </b:commandButton>
                                         </b:column>
                                     </b:dataTable>
                                 </h:form>
