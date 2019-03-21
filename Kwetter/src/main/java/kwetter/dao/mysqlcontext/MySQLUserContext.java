@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 @JPA
 @Stateless
@@ -65,5 +66,11 @@ public class MySQLUserContext implements IUserContext {
         else{
             return null;
         }
+    }
+
+    @Override
+    public List<User> getAll() {
+        Query query = entityManager.createQuery("SELECT u FROM User u");
+        return query.getResultList();
     }
 }

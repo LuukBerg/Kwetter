@@ -2,6 +2,7 @@ package kwetter.controller;
 
 
 import kwetter.model.enums.Role;
+import kwetter.model.models.Profile;
 import kwetter.model.models.User;
 import kwetter.service.UserService;
 
@@ -11,7 +12,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Request;
 
 @Stateless
 @Path("/user")
@@ -35,8 +35,9 @@ public class UserController {
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
     public User post(//@QueryParam("username") String username
-                      User user){
-
+                      Profile profile){
+        User user = profile.getOwner();
+        user.setProfile(profile);
         user = userService.registerUser(user);
         if(user != null){
             return user;

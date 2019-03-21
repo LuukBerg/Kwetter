@@ -2,5 +2,5 @@ projectKey=jea:Kwetter
 serverUrl=http://localhost:9000
 serverVersion=6.7.0.33306
 dashboardUrl=http://localhost:9000/dashboard/index/jea:Kwetter
-ceTaskId=AWkfl_ziECS_OtPmLnK5
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWkfl_ziECS_OtPmLnK5
+ceTaskId=AWmQEYvbo0W8By8aZ8SI
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWmQEYvbo0W8By8aZ8SI

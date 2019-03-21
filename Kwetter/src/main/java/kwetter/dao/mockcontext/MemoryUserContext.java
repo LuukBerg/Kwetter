@@ -61,4 +61,9 @@ public class MemoryUserContext implements IUserContext {
         }
         return null;
     }
+
+    @Override
+    public List<User> getAll() {
+        return users;
+    }
 }

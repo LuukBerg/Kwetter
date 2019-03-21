@@ -1,13 +1,9 @@
 package kwetter.service;
 
 import kwetter.model.commands.Hearth;
-import kwetter.model.models.Profile;
 import kwetter.dao.icontext.IKweetContext;
 import kwetter.dao.icontext.IProfileContext;
-
 import kwetter.model.models.Kweet;
-
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.io.Serializable;
@@ -46,9 +42,7 @@ public class KweetService implements Serializable {
     public void delete(long id) {
         Kweet kweet = kweetContext.findKweetById(id);
         if(kweet != null){
-
                 kweetContext.deleteById(id);
-
         }
         //TODO throw not foudn error
     }

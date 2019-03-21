@@ -1,7 +1,6 @@
 package kwetter.dao.mysqlcontext;
 
 import kwetter.dao.icontext.IProfileContext;
-import kwetter.model.models.Kweet;
 import kwetter.model.models.Profile;
 import kwetter.service.JPA;
 

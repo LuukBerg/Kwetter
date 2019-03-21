@@ -1,7 +1,8 @@
 package kwetter.model.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import kwetter.model.enums.Role;
 
@@ -17,15 +18,15 @@ public class User implements Serializable {
     @Column(nullable = false, unique = true)
     @NotNull(message = "Username cannot be null")
     private String username;
+    @Enumerated(EnumType.STRING)
     private Role role;
     @OneToOne(cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonIgnore
     private Profile profile;
 
     private String password;
 
     //TODO implement jpa and constr
-    //@NotNull(message = "Email should be valid")
     private String email;
 
     public long getId() {

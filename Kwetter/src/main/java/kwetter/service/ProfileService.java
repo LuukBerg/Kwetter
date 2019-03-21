@@ -6,10 +6,11 @@ import kwetter.model.models.Profile;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.List;
 
 @Stateless
-public class ProfileService {
+public class ProfileService implements Serializable {
     @Inject @JPA
     private IProfileContext context;
     public ProfileService(IProfileContext context) {

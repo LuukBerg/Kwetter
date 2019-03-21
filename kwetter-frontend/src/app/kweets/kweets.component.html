@@ -1,0 +1,29 @@
+
+<div *ngIf="kweets">
+
+
+<form [formGroup]="postKweetForm">
+    <label for="input-content">Content:</label>
+    <input id="input-content" formControlName="content">
+  </form>
+<!--{"id":22,"content":"testcontent19","date":1553175753563,
+  "owner":{"id":2,"owner":{"id":1,"username":"username","role":"USER","password":"password","email":"email"},
+  "details":{"name":"test","location":"test","web":"test","bio":"test"},"kweets":null}}-->
+<h2>Kweets</h2>
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>content</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let kweet of kweets">
+      <td>{{kweet.owner.owner.username}}</td>
+      <td>{{kweet.content}}</td>
+      <td>{{kweet.date | timeAgo}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

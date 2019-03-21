@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Kweet implements Comparable<Kweet>, Serializable {
+public class Kweet implements Serializable {
     @Id
     @GeneratedValue
     private long id;
@@ -19,7 +19,6 @@ public class Kweet implements Comparable<Kweet>, Serializable {
     private String content;
     private Date date;
     @ManyToOne
-    @JsonBackReference
     private Profile owner;
     //TODO add hearths to jpa
     @Transient
@@ -79,8 +78,4 @@ public class Kweet implements Comparable<Kweet>, Serializable {
         this.content = content;
     }
 
-    @Override
-    public int compareTo(Kweet kweet) {
-        return date.compareTo(kweet.getDate());
     }
-}

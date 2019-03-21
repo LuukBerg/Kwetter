@@ -9,7 +9,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
-import javax.xml.bind.annotation.XmlList;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +19,6 @@ public class Profile implements Serializable {
     @GeneratedValue
     private long id;
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JsonBackReference
     private User owner;
     @ManyToMany(mappedBy = "followers")
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -34,8 +32,9 @@ public class Profile implements Serializable {
     @Embedded
     private Details details;
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "owner")
-    @JsonIdentityReference
+    //@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "owner")
+    @Transient
+    @JsonIgnore
     private List<Kweet> kweets;
 
     @JsonCreator
@@ -94,7 +93,7 @@ public class Profile implements Serializable {
     }
 
     public void addKweet(Kweet kweet) {
-        kweets.add(kweet);
+        //kweets.add(kweet);
     }
 
     public void setId(long id) {

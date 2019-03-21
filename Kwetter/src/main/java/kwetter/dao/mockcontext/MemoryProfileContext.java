@@ -1,6 +1,5 @@
 package kwetter.dao.mockcontext;
 
-import kwetter.model.models.Kweet;
 import kwetter.model.models.Profile;
 import kwetter.dao.icontext.IProfileContext;
 import kwetter.service.Mock;
@@ -8,6 +7,7 @@ import kwetter.service.Mock;
 import javax.ejb.Stateful;
 import javax.enterprise.inject.Default;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Default
@@ -68,7 +68,7 @@ public class MemoryProfileContext implements IProfileContext {
         if(foundProfile !=null){
             return foundProfile.getFollowing();
         }
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
@@ -82,7 +82,7 @@ public class MemoryProfileContext implements IProfileContext {
         if(foundProfile !=null){
             return foundProfile.getFollowers();
         }
-        return null;
+        return Collections.emptyList();
     }
 
 }

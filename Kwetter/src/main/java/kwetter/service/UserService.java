@@ -1,17 +1,19 @@
 package kwetter.service;
 
-import kwetter.dao.icontext.IProfileContext;
 import kwetter.dao.icontext.IUserContext;
 import kwetter.model.enums.Role;
 import kwetter.model.models.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.Serializable;
+import java.util.List;
 
 @Stateless
-public class UserService {
+public class UserService implements Serializable {
     @Inject @JPA
     private IUserContext context;
+
 
     public UserService() {
     }
@@ -49,4 +51,7 @@ public class UserService {
         context.deleteById(id);
     }
 
+    public List<User> getAllUsers(){
+       return context.getAll();
+    }
 }

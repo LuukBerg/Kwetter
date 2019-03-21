@@ -43,26 +43,15 @@ public class KweetController {
     @Consumes({MediaType.APPLICATION_JSON})
     public Kweet post(Kweet kweet){
         //TODO add sessioncontext
-        //Profile profile = userService.findByUsername(sessionContext.getCallerPrincipal().getName()).getProfile();
-        //if(profile != null){
-            System.out.println("+++++++++++++++++++++++++++++++++++++++++");
-            System.out.println(kweet.getOwner());
             return kweetService.create(kweet);
-        //}
         //TODO throw error
-        //return null;
     }
 
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") long id){
-        Profile profile = userService.findByUsername(sessionContext.getCallerPrincipal().getName()).getProfile();
-        if(profile != null){
+
             kweetService.delete(id);
-        }
-        else{
-            //TODO throw error
-        }
 
 
     }

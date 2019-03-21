@@ -7,6 +7,8 @@ package kwetter.test.ServiceTests;
 
 import kwetter.dao.icontext.IUserContext;
 import kwetter.dao.mysqlcontext.MySQLUserContext;
+import kwetter.model.models.Details;
+import kwetter.model.models.Profile;
 import kwetter.service.UserService;
 import kwetter.model.enums.Role;
 import kwetter.model.models.User;
@@ -62,5 +64,40 @@ public class UserServiceContextTest {
         transaction.commit();
     }
 
+    @Test
+    public void removeUser(){
+        transaction.begin();
+        User user = new User("testuser", "email", "password");
+        Profile profile = new Profile(user, new Details("test","test","test","test"));
+        repo.registerUser(user);
+        transaction.commit();
+        transaction.begin();
+        User found = repo.findByUsername("testuser");
+        transaction.commit();
+        Assert.assertNotNull(found);
+        transaction.begin();
+        repo.deleteById(user.getId());
+        transaction.commit();
+        transaction.begin();
+        user = repo.findByUsername("testuser");
+        transaction.commit();
+        Assert.assertNull(user);
+    }
+    @Test
+    public void updateRole(){
+        transaction.begin();
+        User user = new User("testuser", "email", "password");
+        Profile profile = new Profile(user, new Details("test","test","test","test"));
+        repo.registerUser(user);
+        transaction.commit();
+        transaction.begin();
+        repo.updateRole(Role.MOD,user);
+        transaction.commit();
+        transaction.begin();
+        User found = repo.findByUsername("testuser");
+        transaction.commit();
+        Assert.assertNotNull(found);
+        Assert.assertEquals(Role.MOD, found.getRole());
+    }
 
 }

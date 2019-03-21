@@ -16,7 +16,18 @@ public class KweetBean implements Serializable {
     @Inject
     private KweetService kweetService;
 
-    public List<Kweet> getKweets(){ return kweetService.getAllOrderedByDate();}
+    public List<Kweet> getKweets(){
+        System.out.println("---------------------------------------------------------------------------");
+        List<Kweet> keets = kweetService.getAllOrderedByDate();
+        keets.get(0).getOwner();
+        return keets;
+    }
 
-    public void deleteKweet(long id){kweetService.delete(id);}
+    public void deleteKweet() {
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        kweetService.delete(5);
+    }
+    public void Test(){
+        System.out.println("****************************************");
+    }
 }

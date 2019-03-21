@@ -188,14 +188,14 @@ public class ProfileSQLContextTest {
 
         Assert.assertEquals(10, timeline.size());
         for(int i = 0; i < 9; i++){
-            Assert.assertEquals(1,timeline.get(i).compareTo(timeline.get(i + 1)));
+            Assert.assertEquals(1,timeline.get(i).getDate().compareTo(timeline.get(i + 1).getDate()));
         }
         transaction.begin();
         timeline.addAll(kweetContext.getTimeLine(profile, 10));
         transaction.commit();
         Assert.assertEquals(20, timeline.size());
         for(int i = 0; i < 19; i++){
-            Assert.assertEquals(1,timeline.get(i).compareTo(timeline.get(i + 1)));
+            Assert.assertEquals(1,timeline.get(i).getDate().compareTo(timeline.get(i + 1).getDate()));
         }
     }
     @Test

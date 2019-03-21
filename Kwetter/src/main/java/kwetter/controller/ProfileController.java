@@ -11,7 +11,6 @@ import kwetter.model.models.Kweet;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -43,9 +42,11 @@ public class ProfileController {
 
     @GET
     @Path("/username")
-    public User getProfileByUsername(@QueryParam("username") String username){
+    public Profile getProfileByUsername(@QueryParam("username") String username){
         User user = userService.findByUsername(username);
-        return user;
+        System.out.println(user);
+        System.out.println(user.getProfile());
+        return user.getProfile();
     }
     @GET
     @Path("/{id}/followers")
@@ -59,7 +60,7 @@ public class ProfileController {
     }
     @PUT
     @Path("/{id}/follow/{followingid}")
-    public void Follow(@PathParam("id") long id, @PathParam("followingid") long followingId){
+    public void follow(@PathParam("id") long id, @PathParam("followingid") long followingId){
         profileService.addFollow(id ,followingId);
     }
     @PUT

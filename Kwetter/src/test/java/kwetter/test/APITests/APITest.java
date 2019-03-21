@@ -27,7 +27,7 @@ public class APITest {
         Invocation.Builder builder = target.request();
         User user = new User("username","email", "password");
         Profile profile1 = new Profile(user,new Details("test", "test", "test", "test"));
-        Entity json = Entity.json(user);
+        Entity json = Entity.json(profile1);
         Response response = builder.post(json);
         Assert.assertEquals(200, response.getStatus());
 
@@ -35,9 +35,9 @@ public class APITest {
         target = client.target(baseUrl + "/profile/username/?username=username");
         response = target.request().get();
         Assert.assertEquals(200, response.getStatus());
-        Profile profile = response.readEntity(User.class).getProfile();
+        Profile profile = response.readEntity(Profile.class);
         //TODO send kweets
-        for (int i = 0 ; i <10 ; i++) {
+        for (int i = 0 ; i <20 ; i++) {
 
 
             target = client.target(baseUrl + "/kweet");
@@ -54,7 +54,7 @@ public class APITest {
         builder = target.request();
         User userFollower = new User("usernameFollower","email", "password");
         Profile profileFollower = new Profile(userFollower,new Details("test", "test", "test", "test"));
-        Entity jsonFollower = Entity.json(userFollower);
+        Entity jsonFollower = Entity.json(profileFollower);
         Response responsefollower = builder.post(jsonFollower);
         Assert.assertEquals(200, responsefollower.getStatus());
 
@@ -62,7 +62,7 @@ public class APITest {
         builder = target.request();
         User userFollowing = new User("usernameFollowing","email", "password");
         Profile profileFollowing = new Profile(userFollowing,new Details("test", "test", "test", "test"));
-        Entity jsonFollowing = Entity.json(userFollowing);
+        Entity jsonFollowing = Entity.json(profileFollowing);
         Response responsefollowing = builder.post(jsonFollowing);
         Assert.assertEquals(200, responsefollowing.getStatus());
 
@@ -72,13 +72,13 @@ public class APITest {
         target = client.target(baseUrl + "/profile/username/?username=usernameFollower");
         response = target.request().get();
         Assert.assertEquals(200, response.getStatus());
-        profileFollower = response.readEntity(User.class).getProfile();
+        profileFollower = response.readEntity(Profile.class);
 
         client = new ResteasyClientBuilder().build();
         target = client.target(baseUrl + "/profile/username/?username=usernameFollowing");
         response = target.request().get();
         Assert.assertEquals(200, response.getStatus());
-        profileFollowing = response.readEntity(User.class).getProfile();
+        profileFollowing = response.readEntity(Profile.class);
 
         //get followers and following
         client = new ResteasyClientBuilder().build();
@@ -109,13 +109,13 @@ public class APITest {
         target = client.target(baseUrl + "/profile/username/?username=usernameFollower");
         response = target.request().get();
         Assert.assertEquals(200, response.getStatus());
-        profileFollower = response.readEntity(User.class).getProfile();
+        profileFollower = response.readEntity(Profile.class);
 
         client = new ResteasyClientBuilder().build();
         target = client.target(baseUrl + "/profile/username/?username=usernameFollowing");
         response = target.request().get();
         Assert.assertEquals(200, response.getStatus());
-        profileFollowing = response.readEntity(User.class).getProfile();
+        profileFollowing = response.readEntity(Profile.class);
 
         //get followers and following
         client = new ResteasyClientBuilder().build();
