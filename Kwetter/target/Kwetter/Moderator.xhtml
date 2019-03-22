@@ -13,7 +13,7 @@
             <p:column span="12" id = "all">
                     <p:tabView>
                         <p:tab title="kweets">
-                            <h:panelGrid id="kweets">
+                            <h:panelGroup id="kweets">
                                 <h:form>
                                     <p:dataTable value="#{kweetBean.kweets}" var="kweet" id="kweettable">
                                         <p:column headerText="Id">
@@ -39,7 +39,7 @@
                                         </p:column>
                                     </p:dataTable>
                                 </h:form>
-                            </h:panelGrid>
+                            </h:panelGroup>
                         </p:tab>
                         <p:tab title="users">
                             <h:panelGrid id="users">
@@ -59,16 +59,15 @@
                                         </p:column>
                                         <p:column>
                                                 <p:commandButton class="btn btn-warning"
-                                                                 update="usertable"
                                                                  value="Remove"
+                                                                 ajax="false"
                                                                  action="#{usersBean.deleteUser(user.id)}"/>
                                         </p:column>
                                         <p:column>
                                                 <p:commandButton class="btn btn-warming"
                                                                  value="Update role"
                                                                  update="usertable"
-                                                                 action="#{usersBean.setRole('MOD', user.id)}">
-                                                </p:commandButton>
+                                                                 action="#{usersBean.setRole('MOD', user.id)}"/>
                                         </p:column>
                                     </p:dataTable>
                                 </h:form>
