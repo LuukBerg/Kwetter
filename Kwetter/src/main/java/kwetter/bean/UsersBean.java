@@ -21,13 +21,11 @@ public class UsersBean implements Serializable {
         return userService.getAllUsers();
     }
     public void deleteUser(long id){
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("deletebyId: " + id);
-        System.out.println(userService);
         userService.deleteById(id);
     }
-    public void setRole(Role role, long id){
+    public void setRole(String role, long id){
+        Role r = Role.valueOf(role);
         User user = userService.findById(id);
-        userService.updateRole(role, user);
+        userService.updateRole(r, user);
     }
 }

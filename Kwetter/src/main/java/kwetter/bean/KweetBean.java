@@ -18,16 +18,11 @@ public class KweetBean implements Serializable {
     private KweetService kweetService;
 
     public List<Kweet> getKweets(){
-        System.out.println("---------------------------------------------------------------------------");
         List<Kweet> kweets = kweetService.getAllOrderedByDate();
         return kweets;
     }
 
-    public void deleteKweet(long id) throws Exception{
-        System.out.println(id + "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+    public void deleteKweet(long id){
         kweetService.delete(id);
-    }
-    public void Test(){
-        System.out.println("****************************************");
     }
 }

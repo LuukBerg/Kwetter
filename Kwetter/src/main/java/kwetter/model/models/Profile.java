@@ -18,32 +18,30 @@ public class Profile implements Serializable {
     @Id
     @GeneratedValue
     private long id;
+
     @OneToOne(cascade = CascadeType.PERSIST)
     private User owner;
-    @ManyToMany(mappedBy = "followers")
+
+    @ManyToMany(mappedBy = "followers", cascade = CascadeType.PERSIST)
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIgnore
     private List<Profile> following;
+
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "following_followers", joinColumns = @JoinColumn(name = "following_id"), inverseJoinColumns = @JoinColumn(name = "followers_id"))
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIgnore
     private List <Profile> followers;
+
     @Embedded
     private Details details;
+
     @LazyCollection(LazyCollectionOption.FALSE)
-    //@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "owner")
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     @JsonIgnore
     private List<Kweet> kweets;
 
-    @JsonCreator
-    public Profile(@JsonProperty("id") long id, @JsonProperty("owner") User owner, @JsonProperty("details") Details details,@JsonProperty("kweets") List<Kweet> kweets){
-        this.id = id;
-        this.owner = owner;
-        this.details = details;
-        this.kweets = kweets;
-    }
+
     public Profile() {
     }
 
@@ -71,14 +69,6 @@ public class Profile implements Serializable {
         return followers;
     }
 
-    public Kweet postKweet(String content){
-        Kweet kweet = null;
-        if(content != null){
-            kweet = new Kweet(content, this);
-        }
-        return kweet;
-
-    }
 
     public Details getDetails() {
         return details;
@@ -93,7 +83,7 @@ public class Profile implements Serializable {
     }
 
     public void addKweet(Kweet kweet) {
-        //kweets.add(kweet);
+        kweets.add(kweet);
     }
 
     public void setId(long id) {

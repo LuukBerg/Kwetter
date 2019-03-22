@@ -29,16 +29,16 @@ public class ProfileTest {
     public void beforeEach() throws IOException {
         profileList = new LinkedList<>();
 
-        for (int i = 0; i < 10 ; i++){
-            Profile profile = new Profile(new User("test" + i , Role.USER),  new Details("testName" + i, "testLocation" + i,"testWeb" + i, "testBio" + i));
+        for (int i = 0; i < 10; i++) {
+            Profile profile = new Profile(new User("test" + i, Role.USER), new Details("testName" + i, "testLocation" + i, "testWeb" + i, "testBio" + i));
             profileList.add(profile);
         }
-        for (int i = 0; i < 10 ; i++){
-            for (int j = 0; j < 10 ; j++){
-                    profileList.get(i).postKweet("profile " + i + " kweet " + j);
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                new Kweet("profile " + i + " kweet " + j, profileList.get(i));
             }
-        }
 
+        }
     }
 
 
@@ -76,7 +76,7 @@ public class ProfileTest {
         Profile testProfile = profileList.get(0);
         Assert.assertEquals(10, testProfile.getKweets().size());
         Date date = new Date();
-        Kweet testKweet = testProfile.postKweet(content);
+        Kweet testKweet = new Kweet("content", testProfile);
         Assert.assertEquals(date, testKweet.getDate());
         date.setTime(10);
         Assert.assertNotEquals(date, testKweet.getDate());

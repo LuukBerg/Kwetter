@@ -36,6 +36,14 @@ public class APITest {
         response = target.request().get();
         Assert.assertEquals(200, response.getStatus());
         Profile profile = response.readEntity(Profile.class);
+
+        client = new ResteasyClientBuilder().build();
+        target = client.target(baseUrl + "/profile/"+ profile.getId()+ "/kweet");
+        response = target.request().get();
+        Assert.assertEquals(200, response.getStatus());
+        List<Kweet> kweets = response.readEntity(new GenericType<List<Kweet>>() {});
+        profile.setKweets(kweets);
+
         //TODO send kweets
         for (int i = 0 ; i <20 ; i++) {
 

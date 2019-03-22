@@ -45,16 +45,19 @@ public class MySQLUserContext implements IUserContext {
     public void deleteById(long id) {
         User user = entityManager.find(User.class, id);
 
-        for (Profile follower : user.getProfile().getFollowers()) {
+        for (int i = user.getProfile().getFollowers().size() -1; i>=0 ; i--) {
+            Profile follower = user.getProfile().getFollowers().get(i);
             user.getProfile().removeFollower(follower);
             follower.removeFollowing(user.getProfile());
             entityManager.persist(follower);
         }
-        for(Profile following : user.getProfile().getFollowing()){
+        for(int i = user.getProfile().getFollowing().size() -1; i >= 0; i--){
+            Profile following = user.getProfile().getFollowing().get(i);
             user.getProfile().removeFollowing(following);
             following.removeFollower(user.getProfile());
             entityManager.persist(following);
         }
+
         entityManager.remove(user);
     }
     @Override

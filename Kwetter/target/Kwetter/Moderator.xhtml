@@ -2,66 +2,80 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Kwetter</title>
 </h:head>
 <h:body>
-    <b:container>
-        <b:row>
-            <b:column span="12">
-                    <b:tabView>
-                        <b:tab title="kweets">
-                            <h:panelGroup id="kweets">
+        <p:row>
+            <p:column span="12" id = "all">
+                    <p:tabView>
+                        <p:tab title="kweets">
+                            <h:panelGrid id="kweets">
                                 <h:form>
-                                    <b:dataTable value="#{kweetBean.kweets}" var="kweet">
-                                        <b:dataTableColumn value="#{kweet.id}"/>
-                                        <b:dataTableColumn value="#{kweet.date}"/>
-                                        <b:dataTableColumn value="#{kweet.content}"/>
-                                        <b:dataTableColumn value="#{kweet.owner.owner.username}"/>
-                                        <b:dataTableColumn value="#{kweet.owner.owner.id}"/>
-                                        <b:column>
-                                            <b:commandButton class="btn btn-warning" value='remove #{kweet.id}'  click="#{kweetBean.deleteKweet(kweet.id)}" ajax="false">
-                                            </b:commandButton>
-                                        </b:column>
-                                    </b:dataTable>
+                                    <p:dataTable value="#{kweetBean.kweets}" var="kweet" id="kweettable">
+                                        <p:column headerText="Id">
+                                            <h:outputText value="#{kweet.id}"/>
+                                        </p:column>
+                                        <p:column headerText="Date">
+                                            <h:outputText value="#{kweet.date}"/>
+                                        </p:column>
+                                        <p:column headerText="content">
+                                            <h:outputText value="#{kweet.content}"/>
+                                        </p:column>
+                                        <p:column headerText="username">
+                                            <h:outputText value="#{kweet.owner.owner.username}"/>
+                                        </p:column>
+                                        <p:column value="#{kweet.owner.owner.id}">
+                                            <h:outputText value="#{kweet.owner.owner.id}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <p:commandButton class="btn btn-warning"
+                                                             value='remove'
+                                                             update="kweettable"
+                                                             action="#{kweetBean.deleteKweet(kweet.id)}" />
+                                        </p:column>
+                                    </p:dataTable>
                                 </h:form>
-                            </h:panelGroup>
-                        </b:tab>
-                        <b:tab title="users">
-                            <h:panelGroup id="users">
-                                <b:form>
-                                    <b:dataTable value="#{usersBean.users}" var="user">
-                                        <b:dataTableColumn value="#{user.id}"/>
-                                        <b:dataTableColumn value="#{user.username}"/>
-                                        <b:dataTableColumn value="#{user.email}"/>
-                                        <b:dataTableColumn value="#{user.role}"/>
-                                        <b:column>
-                                            <h:form>
-                                                <h:commandButton class="btn btn-warning" type="submit" value="Remove"
-                                                                 action="#{usersBean.deleteUser(user.id)}" ajax="true">
-                                                    <f:ajax event ="action" render="users"/>
-                                                </h:commandButton>
-                                            </h:form>
-                                        </b:column>
-                                        <b:column>
-                                            <h:form>
-                                                <h:commandButton class="btn btn-warming" type="submit"
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="users">
+                            <h:panelGrid id="users">
+                                <h:form>
+                                    <p:dataTable value="#{usersBean.users}" var="user" id="usertable">
+                                        <p:column headerText="id">
+                                            <h:outputText value="#{user.id}"/>
+                                        </p:column>
+                                        <p:column headerText="username">
+                                            <h:outputText value="#{user.username}"/>
+                                        </p:column>
+                                        <p:column headerText="email">
+                                            <h:outputText value="#{user.email}"/>
+                                        </p:column>
+                                        <p:column headerText="role">
+                                            <h:outputText value="#{user.role}"/>
+                                        </p:column>
+                                        <p:column>
+                                                <p:commandButton class="btn btn-warning"
+                                                                 update="all"
+                                                                 value="Remove"
+                                                                 action="#{usersBean.deleteUser(user.id)}"/>
+                                        </p:column>
+                                        <p:column>
+                                                <p:commandButton class="btn btn-warming"
                                                                  value="Update role"
+                                                                 update="usertable"
                                                                  action="#{usersBean.setRole('MOD', user.id)}">
-                                                    <f:ajax event="action" render="users"/>
-                                                </h:commandButton>
-                                            </h:form>
-                                        </b:column>
-                                    </b:dataTable>
-                                </b:form>
-                            </h:panelGroup>
-                        </b:tab>
-                    </b:tabView>
-            </b:column>
-        </b:row>
-    </b:container>
+                                                </p:commandButton>
+                                        </p:column>
+                                    </p:dataTable>
+                                </h:form>
+                            </h:panelGrid>
+                        </p:tab>
+                    </p:tabView>
+            </p:column>
+        </p:row>
 </h:body>
 </html>

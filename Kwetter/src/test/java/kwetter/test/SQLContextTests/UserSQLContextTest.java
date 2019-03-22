@@ -1,7 +1,9 @@
 package kwetter.test.SQLContextTests;
 
+import kwetter.dao.icontext.IKweetContext;
 import kwetter.dao.icontext.IProfileContext;
 import kwetter.dao.icontext.IUserContext;
+import kwetter.dao.mysqlcontext.MySQLKweetContext;
 import kwetter.dao.mysqlcontext.MySQLProfileContext;
 import kwetter.dao.mysqlcontext.MySQLUserContext;
 import kwetter.model.enums.Role;
@@ -29,6 +31,7 @@ public class UserSQLContextTest {
 
     private IProfileContext profileContext;
     private IUserContext userContext;
+    private IKweetContext kweetContext;
     private Profile profile;
 
     @Before
@@ -37,6 +40,7 @@ public class UserSQLContextTest {
         transaction = entityManager.getTransaction();
         profileContext = new MySQLProfileContext(entityManager);
         userContext = new MySQLUserContext(entityManager);
+        kweetContext = new MySQLKweetContext(entityManager);
         transaction.begin();
         User user = new User("testUser", Role.USER);
         profile = new Profile(user, new Details("test","test","test", "test"));
@@ -102,6 +106,7 @@ public class UserSQLContextTest {
         transaction.begin();
         User found = userContext.findbyId(2);
         Profile foundProfile = profileContext.findbyId(2);
+        followProfile.setKweets(kweetContext.findByProfile(foundProfile.getId()));
         User followFound = userContext.findbyId(3);
         Profile followFoundProfile = profileContext.findbyId(3);
         transaction.commit();

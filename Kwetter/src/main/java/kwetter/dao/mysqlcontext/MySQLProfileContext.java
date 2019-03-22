@@ -51,7 +51,7 @@ public class MySQLProfileContext implements IProfileContext {
     @Override
     public void deleteById(long id) {
         Profile profile = entityManager.find(Profile.class, id);
-        profile.getOwner().setProfile(null);
+     /*   profile.getOwner().setProfile(null);
         for (Profile follower : profile.getFollowers()) {
             profile.removeFollower(follower);
             follower.removeFollowing(profile);
@@ -61,7 +61,21 @@ public class MySQLProfileContext implements IProfileContext {
             profile.removeFollowing(following);
             following.removeFollower(profile);
             entityManager.persist(following);
+        }*/
+        for (int i =  profile.getFollowers().size() -1; i>=0 ; i--) {
+            Profile follower = profile.getFollowers().get(i);
+            profile.removeFollower(follower);
+            follower.removeFollowing(profile);
+            entityManager.persist(follower);
         }
+        for(int i = profile.getFollowing().size() -1; i >= 0; i--){
+            Profile following = profile.getFollowing().get(i);
+            profile.removeFollowing(following);
+            following.removeFollower(profile);
+            entityManager.persist(following);
+        }
+        //entityManager.persist(profile);
+        profile.getOwner().setProfile(null);
         entityManager.persist(profile);
         entityManager.remove(profile);
     }
