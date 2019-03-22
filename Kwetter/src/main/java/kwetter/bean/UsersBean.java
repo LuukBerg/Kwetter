@@ -26,6 +26,6 @@ public class UsersBean implements Serializable {
     public void setRole(String role, long id){
         Role r = Role.valueOf(role);
         User user = userService.findById(id);
-        userService.updateRole(r, user);
+        userService.updateRole(r, id);
     }
 }

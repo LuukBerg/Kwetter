@@ -43,7 +43,8 @@ public class UserService implements Serializable {
             context.update(user);
         }
     }
-    public void updateRole(Role role, User user) {
+    public void updateRole(Role role, long id) {
+        User user = context.findbyId(id);
         user.setRole(role);
         context.update(user);
     }

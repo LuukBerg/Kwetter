@@ -18,15 +18,13 @@ public class MemoryUserContext implements IUserContext {
 
 
     @Override
-    public User update(User entity) {
+    public void update(User entity) {
         for(User user : users){
             if(user.getId() == entity.getId()){
                  users.remove(user);
                  users.add(entity);
-                 return entity;
             }
         }
-        return null;
     }
 
     @Override

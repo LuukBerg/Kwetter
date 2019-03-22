@@ -5,7 +5,7 @@ import kwetter.model.models.User;
 import java.util.List;
 
 public interface IUserContext {
-    User update(User entity);
+    void update(User entity);
     User create(User entity);
     User findbyId(long id);
     void deleteById(long id);

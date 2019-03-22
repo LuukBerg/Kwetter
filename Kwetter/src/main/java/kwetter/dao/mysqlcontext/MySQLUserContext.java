@@ -26,8 +26,8 @@ public class MySQLUserContext implements IUserContext {
     }
 
     @Override
-    public User update(User entity) {
-        return null;
+    public void update(User entity) {
+        entityManager.persist(entity);
     }
 
     @Override

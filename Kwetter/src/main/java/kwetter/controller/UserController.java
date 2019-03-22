@@ -29,7 +29,7 @@ public class UserController {
     public void updateRole(@QueryParam("role") Role role, @PathParam("id") long id){
         User user = userService.findById(id);
         if(user != null){
-            userService.updateRole(role, user);
+            userService.updateRole(role, id);
         }
     }
     @POST

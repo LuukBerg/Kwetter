@@ -18,7 +18,7 @@ public class Kweet implements Serializable {
     @Size(max=140 ,message = "kweet cannot be longer then 140 characters")
     private String content;
     private Date date;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Profile owner;
     //TODO add hearths to jpa
     @Transient
@@ -78,4 +78,7 @@ public class Kweet implements Serializable {
         this.content = content;
     }
 
+    public void setOwner(Profile owner) {
+        this.owner = owner;
     }
+}

@@ -29,6 +29,7 @@ public class MySQLKweetContext implements IKweetContext {
     @Override
     public Kweet create(Kweet kweet) {
         if(!kweet.getContent().isEmpty() && kweet.getContent().length() < 141){
+                kweet.setOwner(entityManager.find(Profile.class, kweet.getOwner().getId()));
                 entityManager.persist(kweet);
                 return kweet;
 
@@ -63,6 +64,7 @@ public class MySQLKweetContext implements IKweetContext {
     @Override
     public void deleteById(Long id) {
         Kweet kweet = entityManager.find(Kweet.class, id );
+        kweet.getOwner().getKweets().remove(kweet);
         entityManager.remove(kweet);
     }
 

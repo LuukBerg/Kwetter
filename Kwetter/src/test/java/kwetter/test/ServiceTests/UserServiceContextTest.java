@@ -91,7 +91,7 @@ public class UserServiceContextTest {
         repo.registerUser(user);
         transaction.commit();
         transaction.begin();
-        repo.updateRole(Role.MOD,user);
+        repo.updateRole(Role.MOD,user.getId());
         transaction.commit();
         transaction.begin();
         User found = repo.findByUsername("testuser");
