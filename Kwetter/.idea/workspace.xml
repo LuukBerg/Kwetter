@@ -7,11 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8bf2d6df-6742-4452-bed2-65243e10477c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Moderator.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Moderator.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Kwetter.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/Kwetter.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Kwetter/Moderator.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/Kwetter/Moderator.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kwetter-frontend/src/app/kweets/kweets.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../kwetter-frontend/src/app/kweets/kweets.component.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -121,16 +117,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+            <state relative-caret-position="80">
+              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
           <provider selected="true" editor-type-id="text-editor">
@@ -302,8 +298,8 @@
         <option value="$PROJECT_DIR$/src/main/java/kwetter/dao/mysqlcontext/MySQLKweetContext.java" />
         <option value="$PROJECT_DIR$/src/main/java/kwetter/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/Moderator.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
       </list>
     </option>
   </component>
@@ -330,7 +326,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
     <option name="width" value="974" />
     <option name="height" value="1045" />
@@ -536,7 +532,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553257929208" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553258106973" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
@@ -748,8 +744,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.APITest.createTestEnv" />
         <item itemvalue="JUnit.kwetter.test in Kwetter" />
+        <item itemvalue="JUnit.APITest.createTestEnv" />
         <item itemvalue="JUnit.KweetServiceTest.delete" />
         <item itemvalue="JUnit.APITest" />
         <item itemvalue="JUnit.UserServiceContextTest.updateRole" />
@@ -795,7 +791,7 @@
       <workItem from="1553172964172" duration="265000" />
       <workItem from="1553173430145" duration="16134000" />
       <workItem from="1553241607310" duration="6560000" />
-      <workItem from="1553251404979" duration="6549000" />
+      <workItem from="1553251404979" duration="6667000" />
     </task>
     <servers />
   </component>
@@ -832,7 +828,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170381000" />
+    <option name="totallyTimeSpent" value="170499000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -844,10 +840,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1753" height="954" extended-state="6" />
+    <frame x="-6" y="0" width="882" height="946" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4988864" visible="true" weight="0.13215339" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4988864" visible="true" weight="0.27184466" />
       <window_info id="Designer" order="1" />
       <window_info id="Structure" order="2" sideWeight="0.5011136" side_tool="true" weight="0.13451327" />
       <window_info id="Persistence" order="3" side_tool="true" />
@@ -857,7 +853,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Application Servers" order="0" weight="0.32883435" />
-      <window_info anchor="bottom" id="Terminal" order="1" weight="0.2748466" />
+      <window_info anchor="bottom" id="Terminal" order="1" weight="0.2746051" />
       <window_info anchor="bottom" id="Docker" order="2" show_stripe_button="false" weight="0.32883435" />
       <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.5079646" side_tool="true" weight="0.38274604" />
       <window_info anchor="bottom" id="Database Changes" order="4" show_stripe_button="false" />
@@ -866,10 +862,10 @@
       <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49393204" weight="0.32320777" />
       <window_info anchor="bottom" id="Message" order="8" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.32883435" />
-      <window_info anchor="bottom" id="Run" order="10" sideWeight="0.4920354" weight="0.45153373" />
+      <window_info anchor="bottom" id="Run" order="10" sideWeight="0.4920354" visible="true" weight="0.4552147" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
-      <window_info anchor="bottom" id="Debug" order="13" sideWeight="0.4961652" visible="true" weight="0.39368165" />
+      <window_info anchor="bottom" id="Debug" order="13" sideWeight="0.4961652" weight="0.39368165" />
       <window_info anchor="bottom" id="TODO" order="14" weight="0.32806805" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1322,14 +1318,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.jsf.yfilesGraph.editor.FacesNavigationFileEditorProvider" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/kwetter/test/ServiceTests/KweetServiceTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -1344,6 +1332,14 @@
           <caret line="156" column="21" selection-start-line="156" selection-start-column="21" selection-end-line="156" selection-end-column="21" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.jsf.yfilesGraph.editor.FacesNavigationFileEditorProvider" />
     </entry>
   </component>
   <component name="masterDetails">
