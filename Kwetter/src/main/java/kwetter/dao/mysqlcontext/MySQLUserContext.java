@@ -76,4 +76,13 @@ public class MySQLUserContext implements IUserContext {
         Query query = entityManager.createQuery("SELECT u FROM User u");
         return query.getResultList();
     }
+
+    @Override
+    public User login(String username, byte[] hashed) {
+        Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username AND u.hashedPassword = :hashed").setParameter("username", username).setParameter("hashed",hashed);
+        if(!query.getResultList().isEmpty()){
+            return (User) query.getSingleResult();
+        }
+        return null;
+    }
 }

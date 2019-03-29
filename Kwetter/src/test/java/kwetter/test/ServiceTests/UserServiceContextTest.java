@@ -59,7 +59,7 @@ public class UserServiceContextTest {
         User user = repo.registerUser(new User("testuser", Role.USER));
         transaction.commit();
         transaction.begin();
-        User loginUser = repo.loginUser("testuser");
+        User loginUser = repo.loginUser("testuser", "");
         Assert.assertEquals(user, loginUser);
         transaction.commit();
     }

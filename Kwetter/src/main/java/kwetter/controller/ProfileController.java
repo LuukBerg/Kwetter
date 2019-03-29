@@ -8,17 +8,20 @@ import kwetter.model.models.Profile;
 import kwetter.model.models.User;
 import kwetter.model.models.Kweet;
 
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.SecurityContext;
 import java.util.List;
 
 @Stateless
 @Path("/profile")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@SecureAuth
 public class ProfileController {
     @Inject
     private ProfileService profileService;
@@ -43,6 +46,7 @@ public class ProfileController {
 
     @GET
     @Path("/username")
+
     public Profile getProfileByUsername(@QueryParam("username") String username){
         User user = userService.findByUsername(username);
         System.out.println(user);

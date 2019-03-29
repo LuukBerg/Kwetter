@@ -1,4 +1,4 @@
-package kwetter.controller;
+package kwetter.JWT;
 
 public class Jwt {
     private String token;

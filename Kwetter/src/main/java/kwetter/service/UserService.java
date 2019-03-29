@@ -44,8 +44,17 @@ public class UserService implements Serializable {
         return null;
     }
 
-    public User loginUser(String username){
-        return context.findByUsername(username);
+    public User loginUser(String username, String password){
+        byte[] hashed = null;
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            hashed = digest.digest(
+                    password.getBytes(StandardCharsets.UTF_8));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return context.login(username, hashed);
     }
     public User findByUsername(String username){return context.findByUsername(username);}
 

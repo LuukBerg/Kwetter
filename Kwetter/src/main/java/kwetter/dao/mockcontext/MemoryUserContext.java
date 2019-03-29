@@ -64,4 +64,9 @@ public class MemoryUserContext implements IUserContext {
     public List<User> getAll() {
         return users;
     }
+
+    @Override
+    public User login(String username, byte[] hashed) {
+        return null;
+    }
 }

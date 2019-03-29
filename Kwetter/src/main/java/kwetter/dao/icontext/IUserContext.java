@@ -12,4 +12,6 @@ public interface IUserContext {
     User findByUsername(String username);
 
     List<User> getAll();
+
+    User login(String username, byte[] hashed);
 }

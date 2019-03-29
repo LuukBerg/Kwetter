@@ -37,11 +37,9 @@
         <filter-name>CORS</filter-name>
         <url-pattern>*</url-pattern>
     </filter-mapping>
-
     <filter>
         <filter-name>CORS</filter-name>
         <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
-
         <init-param>
             <param-name>cors.allowOrigin</param-name>
             <param-value>*</param-value>
@@ -59,19 +57,19 @@
             <param-value>GET, POST, HEAD, OPTIONS</param-value>
         </init-param>
     </filter>
-
     <security-role>
         <role-name>ADMIN</role-name>
     </security-role>
-
     <security-role>
         <role-name>USER</role-name>
     </security-role>
-
     <security-role>
         <role-name>MOD</role-name>
     </security-role>
-
+    <context-param>
+        <param-name>resteasy.role.based.security</param-name>
+        <param-value>true</param-value>
+    </context-param>
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Secure Pages</web-resource-name>
@@ -81,13 +79,28 @@
             <role-name>MOD</role-name>
         </auth-constraint>
     </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>get profile by username</web-resource-name>
+            <url-pattern>/api/profile/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER</role-name>
+        </auth-constraint>
+    </security-constraint>
+
     <login-config>
+        <auth-method>BEARER_TOKEN</auth-method>
+        <realm-name>qsRealm</realm-name>
+    </login-config>
+<!--    <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>jdbcApplicationDomain</realm-name>
         <form-login-config>
             <form-login-page>/login.xhtml</form-login-page>
             <form-error-page>/login.xhtml</form-error-page>
         </form-login-config>
-    </login-config>
+    </login-config>-->
+
 </web-app>
 

@@ -8,6 +8,7 @@ import kwetter.model.models.Profile;
 import kwetter.model.models.Kweet;
 
 import javax.annotation.Resource;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -42,6 +43,7 @@ public class KweetController {
 
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
+
     public Kweet post(KweetDTO kweetDTO){
         Kweet kweet = new Kweet(kweetDTO.getContent(), profileService.findbyId(kweetDTO.getOwnerId()));
         return kweetService.create(kweet);
