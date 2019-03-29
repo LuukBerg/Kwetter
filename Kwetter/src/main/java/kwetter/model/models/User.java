@@ -23,8 +23,11 @@ public class User implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JsonIgnore
     private Profile profile;
-
+    @Transient
     private String password;
+
+    @Column(name = "password")
+    private byte[] hashedPassword;
 
     //TODO implement jpa and constr
     private String email;
@@ -91,7 +94,16 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public byte[] getHashedPassword() {
+        return hashedPassword;
+    }
+
+    public void setHashedPassword(byte[] hashedPassword) {
+        this.hashedPassword = hashedPassword;
+    }
 }
+
 
 
 

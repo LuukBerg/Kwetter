@@ -18,6 +18,7 @@ import java.util.List;
 @Path("/profile")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@SecureAuth
 public class ProfileController {
     @Inject
     private ProfileService profileService;

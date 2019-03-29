@@ -32,7 +32,7 @@ public class UserService implements Serializable {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             hashed = digest.digest(
                     unhashed.getBytes(StandardCharsets.UTF_8));
-            user.setPassword(hashed.toString());
+            user.setHashedPassword(hashed);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
