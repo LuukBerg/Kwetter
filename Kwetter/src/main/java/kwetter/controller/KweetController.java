@@ -1,5 +1,6 @@
 package kwetter.controller;
 
+import kwetter.model.DTO.KweetDTO;
 import kwetter.service.KweetService;
 import kwetter.service.ProfileService;
 import kwetter.service.UserService;
@@ -41,9 +42,9 @@ public class KweetController {
 
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public Kweet post(Kweet kweet){
-        //TODO add sessioncontext
-            return kweetService.create(kweet);
+    public Kweet post(KweetDTO kweetDTO){
+        Kweet kweet = new Kweet(kweetDTO.getContent(), profileService.findbyId(kweetDTO.getOwnerId()));
+        return kweetService.create(kweet);
         //TODO throw error
     }
 

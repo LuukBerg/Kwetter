@@ -7,6 +7,9 @@ import kwetter.model.models.User;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @Stateless
@@ -22,6 +25,19 @@ public class UserService implements Serializable {
     }
 
     public User registerUser(User user){
+
+        String unhashed = user.getPassword();
+        byte[] hashed = null;
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            hashed = digest.digest(
+                    unhashed.getBytes(StandardCharsets.UTF_8));
+            user.setPassword(hashed.toString());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+
         if(context.findByUsername(user.getUsername()) == null){
             return context.create(user);
         }

@@ -5,6 +5,9 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
+    <welcome-file-list>
+        <welcome-file>faces/login.xhtml</welcome-file>
+    </welcome-file-list>
     <!-- JSF -->
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
@@ -56,5 +59,35 @@
             <param-value>GET, POST, HEAD, OPTIONS</param-value>
         </init-param>
     </filter>
+
+    <security-role>
+        <role-name>ADMIN</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>USER</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>MOD</role-name>
+    </security-role>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Secure Pages</web-resource-name>
+            <url-pattern>/faces/Moderator/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>MOD</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>jdbcApplicationDomain</realm-name>
+        <form-login-config>
+            <form-login-page>/login.xhtml</form-login-page>
+            <form-error-page>/login.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
 </web-app>
 
