@@ -1,6 +1,8 @@
 package kwetter.test.APITests;
 
 
+import kwetter.model.DTO.KweetDTO;
+import kwetter.model.enums.Role;
 import kwetter.model.models.Details;
 import kwetter.model.models.Kweet;
 import kwetter.model.models.Profile;
@@ -22,11 +24,13 @@ public class APITest {
     private static String baseUrl = "http://localhost:8080/Kwetter/api";
     @Test
     public void createTestEnv(){
+
         ResteasyClient client = new ResteasyClientBuilder().build();
         WebTarget target = client.target(baseUrl + "/user");
         Invocation.Builder builder = target.request();
         User user = new User("username","email", "password");
         Profile profile1 = new Profile(user,new Details("test", "test", "test", "test"));
+        user.setRole(Role.MOD);
         Entity json = Entity.json(profile1);
         Response response = builder.post(json);
         Assert.assertEquals(200, response.getStatus());
@@ -50,7 +54,8 @@ public class APITest {
 
             target = client.target(baseUrl + "/kweet");
             builder = target.request();
-            json = Entity.json(new Kweet("testcontent" + i, profile));
+            KweetDTO kweetDTO = new KweetDTO(0,profile.getId(), "content" + 1);
+            json = Entity.json(kweetDTO);
             response = builder.post(json);
             Assert.assertEquals(200, response.getStatus());
         }

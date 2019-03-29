@@ -24,7 +24,7 @@ public class UserController {
     private UserService userService;
 
 
-    @PUT
+    @POST
     @Path("/{id}")
     public void updateRole(@QueryParam("role") Role role, @PathParam("id") long id){
         User user = userService.findById(id);
