@@ -535,7 +535,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553963957413" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553963976803" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
@@ -812,7 +812,7 @@
       <workItem from="1553866507309" duration="9009000" />
       <workItem from="1553876840391" duration="7263000" />
       <workItem from="1553942373177" duration="22000" />
-      <workItem from="1553942530921" duration="12930000" />
+      <workItem from="1553942530921" duration="13457000" />
     </task>
     <servers />
   </component>
@@ -849,7 +849,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232260000" />
+    <option name="totallyTimeSpent" value="232787000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -862,7 +862,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="875" y="0" width="870" height="946" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4988864" visible="true" weight="0.43103448" />
       <window_info id="Designer" order="1" />
@@ -874,7 +873,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Application Servers" order="0" weight="0.32883435" />
-      <window_info anchor="bottom" id="Terminal" order="1" weight="0.2797546" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.2797546" />
       <window_info anchor="bottom" id="Docker" order="2" show_stripe_button="false" weight="0.32883435" />
       <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.5079646" side_tool="true" weight="0.38274604" />
       <window_info anchor="bottom" id="Database Changes" order="4" show_stripe_button="false" />
@@ -887,7 +886,7 @@
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="Debug" order="12" sideWeight="0.4961652" weight="0.39368165" />
       <window_info anchor="bottom" id="TODO" order="13" weight="0.32760736" />
-      <window_info active="true" anchor="bottom" id="Run" order="14" sideWeight="0.4920354" visible="true" weight="0.4417178" />
+      <window_info anchor="bottom" id="Run" order="14" sideWeight="0.4920354" weight="0.4417178" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25485438" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
