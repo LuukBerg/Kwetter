@@ -29,8 +29,10 @@ public class MySQLKweetContext implements IKweetContext {
     @Override
     public Kweet create(Kweet kweet) {
         if(!kweet.getContent().isEmpty() && kweet.getContent().length() < 141){
-                kweet.setOwner(entityManager.find(Profile.class, kweet.getOwner().getId()));
+            System.out.println("before");
+            kweet.setOwner(entityManager.find(Profile.class, kweet.getOwner().getId()));
                 entityManager.persist(kweet);
+                System.out.println("persisted");
                 return kweet;
 
         }
@@ -51,7 +53,7 @@ public class MySQLKweetContext implements IKweetContext {
     @Override
     public List<Kweet> getTimeLine(long profileId, int offset) {
         //TODO find query that works. selects all kweets from all profiles caller follows
-        Query query = entityManager.createQuery("SELECT k from Kweet k inner join k.owner p where p.id in (SELECT p.id FROM Profile p join p.followers f where f.id = :id) order by k.date desc").setParameter("id", profileId).setFirstResult(offset).setMaxResults(10);
+        Query query = entityManager.createQuery("SELECT k from Kweet k inner join k.owner p where p.id in (SELECT p.id FROM Profile p join p.followers f where f.id = :id) or p.id = :id order by k.date desc").setParameter("id", profileId).setFirstResult(offset).setMaxResults(10);
         return query.getResultList();
     }
 

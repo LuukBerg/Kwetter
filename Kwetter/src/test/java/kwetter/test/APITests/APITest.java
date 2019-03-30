@@ -93,7 +93,7 @@ public class APITest {
         jsonString = tokenResponse.readEntity(String.class);
         jsonObject = (JSONObject) parser.parse(jsonString);
         userFollowingToken = jsonObject.getAsString("token");
-         Assert.assertNotNull(userFollowingToken);
+        Assert.assertNotNull(userFollowingToken);
 
         client = new ResteasyClientBuilder().build();
         target = client.target(baseUrl + "/profile/username/?username=username");
@@ -108,11 +108,44 @@ public class APITest {
         List<Kweet> kweets = response.readEntity(new GenericType<List<Kweet>>() {});
         profile.setKweets(kweets);
 
-        //TODO send kweets
+        client = new ResteasyClientBuilder().build();
+        target = client.target(baseUrl + "/profile/username/?username=usernameFollower");
+        response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowerToken).get();
+        Assert.assertEquals(200, response.getStatus());
+        profileFollower = response.readEntity(Profile.class);
+
+        client = new ResteasyClientBuilder().build();
+        target = client.target(baseUrl + "/profile/username/?username=usernameFollowing");
+        response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowingToken).get();
+        Assert.assertEquals(200, response.getStatus());
+        profileFollowing = response.readEntity(Profile.class);
+
+        //sends tweets for user
         for (int i = 0 ; i <20 ; i++) {
+            client = new ResteasyClientBuilder().build();
             target = client.target(baseUrl + "/kweet");
             builder = target.request();
-            KweetDTO kweetDTO = new KweetDTO(0,profile.getId(), "content" + 1,profile.getOwner().getUsername(),null);
+            KweetDTO kweetDTO = new KweetDTO(0,profile.getId(), "content: " + i + "profile: " + profile.getId(),profile.getOwner().getUsername(),null);
+            json = Entity.json(kweetDTO);
+            response = builder.post(json);
+            Assert.assertEquals(200, response.getStatus());
+        }
+        //sends tweets for follower
+        for (int i = 0 ; i <20 ; i++) {
+            client = new ResteasyClientBuilder().build();
+            target = client.target(baseUrl + "/kweet");
+            builder = target.request();
+            KweetDTO kweetDTO = new KweetDTO(0,profileFollower.getId(), "content:  " + i + "profile: " + profileFollower.getId(),profileFollower.getOwner().getUsername(),null);
+            json = Entity.json(kweetDTO);
+            response = builder.post(json);
+            Assert.assertEquals(200, response.getStatus());
+        }
+        //send tweets for following
+        for (int i = 0 ; i <20 ; i++) {
+            client = new ResteasyClientBuilder().build();
+            target = client.target(baseUrl + "/kweet");
+            builder = target.request();
+            KweetDTO kweetDTO = new KweetDTO(0,profileFollowing.getId(), "content: " + i + "profile: " + profileFollowing.getId(),profileFollowing.getOwner().getUsername(),null);
             json = Entity.json(kweetDTO);
             response = builder.post(json);
             Assert.assertEquals(200, response.getStatus());

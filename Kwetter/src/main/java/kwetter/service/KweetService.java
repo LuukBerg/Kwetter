@@ -31,7 +31,7 @@ public class KweetService implements Serializable {
     }
 
     public Kweet create(Kweet kweet){
-
+        System.out.println("in service");
         kweetContext.create(kweet);
         return kweet;
     }

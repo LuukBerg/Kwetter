@@ -51,7 +51,9 @@ public class KweetController {
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
     public Kweet post(KweetDTO kweetDTO){
+        System.out.println("got post");
         Kweet kweet = new Kweet(kweetDTO.getContent(), profileService.findbyId(kweetDTO.getOwnerId()));
+        System.out.println("created kweet");
         return kweetService.create(kweet);
         //TODO throw error
     }
