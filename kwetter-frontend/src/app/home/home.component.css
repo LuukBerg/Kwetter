@@ -1,0 +1,36 @@
+#kweet{
+    padding: 1%;
+    background-color: white;
+    margin-bottom: 2%;
+    float: none;
+}
+#profilepic{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    float: left;
+    
+}
+#picture{
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    position: center;
+    float: left;
+    margin: 2%;
+}
+#owner{
+    font-weight: bold;
+    margin-top: 5%;
+    margin-bottom: 7%; 
+    margin-left: 20%;  
+}
+#content{
+    font-size: 26px;
+    margin-left: 3%;
+
+}
+#date{
+    margin-left: 3%;
+    margin-bottom: 2%;
+}
