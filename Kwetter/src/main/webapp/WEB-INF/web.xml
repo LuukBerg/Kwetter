@@ -66,6 +66,7 @@
     <security-role>
         <role-name>MOD</role-name>
     </security-role>
+    <!-- all secure pages and api;s  -->
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Secure Pages</web-resource-name>
@@ -84,7 +85,15 @@
             <role-name>USER</role-name>
         </auth-constraint>
     </security-constraint>
-
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>kweets</web-resource-name>
+            <url-pattern>/api/kweet/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER</role-name>
+        </auth-constraint>
+    </security-constraint>
     <login-config>
         <auth-method>BEARER_TOKEN</auth-method>
         <realm-name>qsRealm</realm-name>

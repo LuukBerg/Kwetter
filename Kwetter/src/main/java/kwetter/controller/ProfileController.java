@@ -53,21 +53,26 @@ public class ProfileController {
         System.out.println(user.getProfile());
         return user.getProfile();
     }
+
     @GET
     @Path("/{id}/followers")
+
     public List<Profile> getFollowers(@PathParam("id") long id){
         return profileService.getFollowers(id);
     }
+
     @GET
     @Path("/{id}/following")
     public List<Profile> getFollowing(@PathParam("id") long id){
         return profileService.getFollowing(id);
     }
+
     @PUT
     @Path("/{id}/follow/{followingid}")
     public void follow(@PathParam("id") long id, @PathParam("followingid") long followingId){
         profileService.addFollow(id ,followingId);
     }
+
     @PUT
     @Path("/{id}/unfollow/{followingId}")
     public void unFollow(@PathParam("id") long id, @PathParam("followingId") long followingId){

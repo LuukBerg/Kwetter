@@ -124,8 +124,8 @@ public class APITest {
         for (int i = 0 ; i <20 ; i++) {
             client = new ResteasyClientBuilder().build();
             target = client.target(baseUrl + "/kweet");
-            builder = target.request();
-            KweetDTO kweetDTO = new KweetDTO(0,profile.getId(), "content: " + i + "profile: " + profile.getId(),profile.getOwner().getUsername(),null);
+            builder = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userToken);
+            KweetDTO kweetDTO = new KweetDTO("content: " + i + "profile: " + profile.getId());
             json = Entity.json(kweetDTO);
             response = builder.post(json);
             Assert.assertEquals(200, response.getStatus());
@@ -134,8 +134,8 @@ public class APITest {
         for (int i = 0 ; i <20 ; i++) {
             client = new ResteasyClientBuilder().build();
             target = client.target(baseUrl + "/kweet");
-            builder = target.request();
-            KweetDTO kweetDTO = new KweetDTO(0,profileFollower.getId(), "content:  " + i + "profile: " + profileFollower.getId(),profileFollower.getOwner().getUsername(),null);
+            builder = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowerToken);
+            KweetDTO kweetDTO = new KweetDTO("content:  " + i + "profile: ");
             json = Entity.json(kweetDTO);
             response = builder.post(json);
             Assert.assertEquals(200, response.getStatus());
@@ -144,12 +144,22 @@ public class APITest {
         for (int i = 0 ; i <20 ; i++) {
             client = new ResteasyClientBuilder().build();
             target = client.target(baseUrl + "/kweet");
-            builder = target.request();
-            KweetDTO kweetDTO = new KweetDTO(0,profileFollowing.getId(), "content: " + i + "profile: " + profileFollowing.getId(),profileFollowing.getOwner().getUsername(),null);
+            builder = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowingToken);
+            KweetDTO kweetDTO = new KweetDTO("content: " + i + "profile: " + profileFollowing.getId());
             json = Entity.json(kweetDTO);
             response = builder.post(json);
             Assert.assertEquals(200, response.getStatus());
         }
+
+        //trying wrong token
+
+        client = new ResteasyClientBuilder().build();
+        target = client.target(baseUrl + "/kweet");
+        builder = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer 1234" + userToken);
+        KweetDTO kweetDTO = new KweetDTO("content: " + "profile: " + profileFollowing.getId());
+        json = Entity.json(kweetDTO);
+        response = builder.post(json);
+        Assert.assertEquals(403, response.getStatus());
 
         //Het volgen van een gebruiker via de REST api wordt correct bewaard, waarbij als A een volger is van B, beide een referentie naar elkaar hebben: A heeft B in following, en B heeft A in follower.”
 

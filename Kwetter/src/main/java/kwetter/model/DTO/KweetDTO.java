@@ -16,6 +16,10 @@ public class KweetDTO implements Serializable {
     public KweetDTO() {
     }
 
+    public KweetDTO(String content) {
+        this.content = content;
+    }
+
     public KweetDTO(long id, long ownerId, String content, String owner, Date date) {
         this.id = id;
         this.ownerId = ownerId;

@@ -2,6 +2,7 @@ package kwetter.controller;
 
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTParser;
+import kwetter.JWT.JwtManager;
 import kwetter.model.enums.Role;
 import kwetter.model.models.User;
 import net.minidev.json.JSONArray;
@@ -48,9 +49,9 @@ public class SecurityFilter  implements ContainerRequestFilter {
                 JSONArray groups = (JSONArray) jwt.getJWTClaimsSet().getClaims().get("groups");
                 System.out.println("uname: "+ username);
                 System.out.println("groups: " + groups.get(0).toString());
-                Authorizer authorizer = new Authorizer(groups.get(0).toString(),
-                        username,
-                        containerRequestContext.getSecurityContext().isSecure());
+
+                final SecurityContext securityContext = containerRequestContext.getSecurityContext();
+                Authorizer authorizer = new Authorizer(groups.get(0).toString(),username,securityContext.isSecure());
                 containerRequestContext.setSecurityContext(authorizer);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -61,6 +62,9 @@ public class SecurityFilter  implements ContainerRequestFilter {
         }
 
     }
+
+
+    @Provider
     public static class Authorizer implements SecurityContext{
 
         private String role;

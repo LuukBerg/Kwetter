@@ -1,6 +1,8 @@
 package kwetter.controller;
 
+import kwetter.JWT.JwtManager;
 import kwetter.model.DTO.KweetDTO;
+import kwetter.model.models.User;
 import kwetter.service.KweetService;
 import kwetter.service.ProfileService;
 import kwetter.service.UserService;
@@ -13,17 +15,22 @@ import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import java.util.List;
+
+import static javax.ws.rs.core.HttpHeaders.AUTHORIZATION;
 
 @Stateless
 @Path("/kweet")
 @Produces({MediaType.APPLICATION_JSON})
+@SecureAuth
 public class KweetController {
 
-    @Resource
-    private SessionContext sessionContext;
+    @Context
+    private SecurityContext securityContext;
 
     @Inject
     private KweetService kweetService;
@@ -51,10 +58,13 @@ public class KweetController {
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
     public Kweet post(KweetDTO kweetDTO){
-        System.out.println("got post");
-        Kweet kweet = new Kweet(kweetDTO.getContent(), profileService.findbyId(kweetDTO.getOwnerId()));
-        System.out.println("created kweet");
-        return kweetService.create(kweet);
+            User user = userService.findByUsername(securityContext.getUserPrincipal().getName());
+            if(user == null){
+                throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+            }
+            System.out.println(securityContext.getUserPrincipal().getName());
+            Kweet kweet = new Kweet(kweetDTO.getContent(), user.getProfile());
+            return kweetService.create(kweet);
         //TODO throw error
     }
 
