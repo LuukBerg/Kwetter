@@ -4,10 +4,11 @@ import {AuthService} from '../_services/authentication.service';
 import { UserService } from '../_services/user-service.service';
 import { User, Kweet } from '../_models';
 import { Subscription } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { KweetsComponent } from '../kweets/kweets.component';
 import { Globals } from '../Globals/globals';
 import { map } from 'rxjs/operators';
+import { userInfo } from 'os';
 
 @Component({
   selector: 'app-home',
@@ -42,8 +43,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   getTimeline(){
-    console.log("gettime")
-      this.httpClient.get<any>(this.globals.baseurl +'kweet/'+ this.currentUser.profileId + '/' + this.offset).subscribe(kweets =>{
+    console.log("gettime");
+      this.httpClient.get<Kweet[]>(this.globals.baseurl +'kweet/'+ this.currentUser.profileId + '/' + this.offset).subscribe(kweets =>{
         this.kweets = kweets;
       });
       this.offset += 10;
