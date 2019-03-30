@@ -45,23 +45,24 @@ public class UserServiceContextTest {
     @Test
     public void registerUser(){
         transaction.begin();
-        User user = repo.registerUser(new User("testuser", Role.USER));
+        User user = repo.registerUser(new User("testuser", "email", "password"));
         transaction.commit();
         Assert.assertEquals(1,user.getId());
         transaction.begin();
-        User user2 = repo.registerUser(new User("testuser2", Role.USER));
+        User user2 = repo.registerUser(new User("testuser2", "email2", "password2"));
         transaction.commit();
         Assert.assertEquals(2,user2.getId());
     }
     @Test
     public void loginUser() {
         transaction.begin();
-        User user = repo.registerUser(new User("testuser", Role.USER));
+        User user = repo.registerUser(new User("testuser", "email", "password"));
         transaction.commit();
         transaction.begin();
-        User loginUser = repo.loginUser("testuser", "");
-        Assert.assertEquals(user, loginUser);
+        User loginUser = repo.loginUser("testuser", "password");
         transaction.commit();
+        Assert.assertEquals(user, loginUser);
+
     }
 
     @Test

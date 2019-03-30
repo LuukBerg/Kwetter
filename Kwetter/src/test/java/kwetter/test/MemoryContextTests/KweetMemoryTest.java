@@ -94,9 +94,9 @@ public class KweetMemoryTest {
             Kweet kweet = new Kweet("testkweet" + i, profile);
             kweetContext.create(kweet);
         }
-        List<Kweet> timeline = kweetContext.getTimeLine(profile, 0);
+        List<Kweet> timeline = kweetContext.getTimeLine(profile.getId(), 0);
         Assert.assertEquals(10, timeline.size());
-        timeline.addAll(kweetContext.getTimeLine(profile, 10));
+        timeline.addAll(kweetContext.getTimeLine(profile.getId(), 10));
         Assert.assertEquals(20, timeline.size());
     }
 

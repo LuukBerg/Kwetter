@@ -112,7 +112,7 @@ public class APITest {
         for (int i = 0 ; i <20 ; i++) {
             target = client.target(baseUrl + "/kweet");
             builder = target.request();
-            KweetDTO kweetDTO = new KweetDTO(0,profile.getId(), "content" + 1);
+            KweetDTO kweetDTO = new KweetDTO(0,profile.getId(), "content" + 1,profile.getOwner().getUsername(),null);
             json = Entity.json(kweetDTO);
             response = builder.post(json);
             Assert.assertEquals(200, response.getStatus());

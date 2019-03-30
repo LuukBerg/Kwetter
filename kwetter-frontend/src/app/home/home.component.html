@@ -1,0 +1,19 @@
+<h1>Hi {{currentUser.username}} !</h1>
+<h2>Kweets</h2>
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>content</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let kweet of kweets">
+      <td>{{kweet.owner.owner.username}}</td>
+      <td>{{kweet.content}}</td>
+      <td>{{kweet.date | timeAgo}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

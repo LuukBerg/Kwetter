@@ -183,7 +183,7 @@ public class ProfileSQLContextTest {
         followingProfile3.addFollower(profile);
         transaction.commit();
         transaction.begin();
-        List<Kweet> timeline = kweetContext.getTimeLine(profile, 0);
+        List<Kweet> timeline = kweetContext.getTimeLine(profile.getId(), 0);
         transaction.commit();
 
         Assert.assertEquals(10, timeline.size());
@@ -191,7 +191,7 @@ public class ProfileSQLContextTest {
             Assert.assertEquals(1,timeline.get(i).getDate().compareTo(timeline.get(i + 1).getDate()));
         }
         transaction.begin();
-        timeline.addAll(kweetContext.getTimeLine(profile, 10));
+        timeline.addAll(kweetContext.getTimeLine(profile.getId(), 10));
         transaction.commit();
         Assert.assertEquals(20, timeline.size());
         for(int i = 0; i < 19; i++){

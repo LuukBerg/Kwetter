@@ -5,6 +5,7 @@ import com.nimbusds.jwt.JWTParser;
 import kwetter.JWT.Jwt;
 import kwetter.JWT.JwtManager;
 import kwetter.bean.UserServiceBean;
+import kwetter.model.DTO.UserDTO;
 import kwetter.model.models.User;
 import kwetter.service.UserService;
 
@@ -59,7 +60,9 @@ public class AuthController {
                 log.info("Generating JWT for user: " + user.getUsername());
             }
             String token = jwtManager.createJwt(user.getUsername(), user.getRole().toString());
-            return Response.ok(new Jwt(token)).build();
+            //long id, String username, long profileId, Jwt token
+            UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(),user.getProfile().getId(), token);
+            return Response.ok(userDTO).build();
         } catch (Exception e) {
             log.info(e.getMessage());
         }

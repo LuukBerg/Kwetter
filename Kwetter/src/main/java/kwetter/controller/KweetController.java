@@ -36,14 +36,20 @@ public class KweetController {
 
     @GET
     public Response get(){
-
         List<Kweet> kweets = kweetService.getAllOrderedByDate();
         return Response.ok(kweets).header("count", kweets.size()).build();
     }
 
+    @GET
+    @Path("/{id}/{offset}")
+    public List<KweetDTO> getTimeline(@PathParam("id") long profileId, @PathParam("offset") int offset){
+        return KweetDTO.transform(kweetService.getTimeline(profileId, offset));
+    }
+
+
+
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-
     public Kweet post(KweetDTO kweetDTO){
         Kweet kweet = new Kweet(kweetDTO.getContent(), profileService.findbyId(kweetDTO.getOwnerId()));
         return kweetService.create(kweet);

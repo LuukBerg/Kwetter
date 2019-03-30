@@ -4,6 +4,8 @@ import kwetter.model.commands.Hearth;
 import kwetter.dao.icontext.IKweetContext;
 import kwetter.dao.icontext.IProfileContext;
 import kwetter.model.models.Kweet;
+import kwetter.model.models.Profile;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.io.Serializable;
@@ -22,6 +24,10 @@ public class KweetService implements Serializable {
     public KweetService(IKweetContext kweetContext, IProfileContext profileContext){
         this.kweetContext = kweetContext;
         this.profileContext = profileContext;
+    }
+
+    public List<Kweet> getTimeline(long profileId, int offset){
+        return kweetContext.getTimeLine(profileId,offset);
     }
 
     public Kweet create(Kweet kweet){

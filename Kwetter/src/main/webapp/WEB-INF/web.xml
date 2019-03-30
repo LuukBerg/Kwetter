@@ -66,10 +66,6 @@
     <security-role>
         <role-name>MOD</role-name>
     </security-role>
-    <context-param>
-        <param-name>resteasy.role.based.security</param-name>
-        <param-value>true</param-value>
-    </context-param>
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Secure Pages</web-resource-name>
