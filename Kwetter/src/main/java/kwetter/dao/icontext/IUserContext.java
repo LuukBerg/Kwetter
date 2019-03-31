@@ -14,4 +14,6 @@ public interface IUserContext {
     List<User> getAll();
 
     User login(String username, byte[] hashed);
+
+    List<User> findPartialUsername(String partialName);
 }

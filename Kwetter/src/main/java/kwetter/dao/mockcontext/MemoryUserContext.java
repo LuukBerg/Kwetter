@@ -69,4 +69,9 @@ public class MemoryUserContext implements IUserContext {
     public User login(String username, byte[] hashed) {
         return null;
     }
+
+    @Override
+    public List<User> findPartialUsername(String partialName) {
+        return null;
+    }
 }

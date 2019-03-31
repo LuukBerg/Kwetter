@@ -5,7 +5,10 @@ import com.nimbusds.jwt.JWTParser;
 import kwetter.JWT.Jwt;
 import kwetter.JWT.JwtManager;
 import kwetter.bean.UserServiceBean;
+import kwetter.model.DTO.RegisterDTO;
 import kwetter.model.DTO.UserDTO;
+import kwetter.model.models.Details;
+import kwetter.model.models.Profile;
 import kwetter.model.models.User;
 import kwetter.service.UserService;
 
@@ -49,6 +52,18 @@ public class AuthController {
         return Response.status(204).build(); //no jwt means no claims to extract
     }
 
+    @POST
+    @Path("/register")
+    public UserDTO register(RegisterDTO registerDTO){
+            User user = new User(registerDTO.getUsername(),registerDTO.getEmail(),registerDTO.getPassword());
+            Profile profile = new Profile(user,new Details(registerDTO.getName(),registerDTO.getBio(),registerDTO.getWeb(),registerDTO.getLocation()));
+            user.setProfile(profile);
+            user = userService.registerUser(user);
+            if(user != null){
+                return UserDTO.transform(user);
+            }
+            return null;
+    }
     @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)

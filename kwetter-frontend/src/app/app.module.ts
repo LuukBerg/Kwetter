@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import {routing} from './app.routing'
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { KweetsComponent } from './kweets/kweets.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +14,9 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import {MatGridListModule} from '@angular/material';
+import { SearchComponent } from './search/search.component';
+import { SearchService } from './_services/search.service';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -22,7 +25,8 @@ import {MatGridListModule} from '@angular/material';
     HttpClientModule,
     ReactiveFormsModule,
     routing,
-    MatGridListModule
+    MatGridListModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,
@@ -30,12 +34,14 @@ import {MatGridListModule} from '@angular/material';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
+    SearchComponent,
+    ProfileComponent,
     
   ],
   
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    
+    SearchService,
     Globals],
   bootstrap: [AppComponent]
 })

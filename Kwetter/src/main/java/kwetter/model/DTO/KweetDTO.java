@@ -76,4 +76,8 @@ public class KweetDTO implements Serializable {
         }
         return kweetDTOS;
     }
+    public static KweetDTO transform(Kweet kweet){
+        return new KweetDTO(kweet.getId(),kweet.getOwner().getId(),kweet.getContent(),kweet.getOwner().getOwner().getUsername(),kweet.getDate());
+
+    }
 }

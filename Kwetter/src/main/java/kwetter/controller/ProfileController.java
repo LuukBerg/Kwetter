@@ -1,5 +1,7 @@
 package kwetter.controller;
 
+import kwetter.model.DTO.KweetDTO;
+import kwetter.model.DTO.ProfileDTO;
 import kwetter.service.KweetService;
 import kwetter.service.ProfileService;
 import kwetter.service.UserService;
@@ -40,13 +42,18 @@ public class ProfileController {
     }
     @GET
     @Path("/{id}/kweet")
-    public List<Kweet> getKweetByProfile(@PathParam("id") long id){
-        return kweetService.findByProfile(id);
+    public List<KweetDTO> getKweetByProfile(@PathParam("id") long id){
+
+        return KweetDTO.transform(kweetService.findByProfile(id));
     }
 
     @GET
+    @Path("/{id}")
+    public ProfileDTO getProfileById(@PathParam("id") long id){
+        return ProfileDTO.transform(profileService.findbyId(id));
+    }
+    @GET
     @Path("/username")
-
     public Profile getProfileByUsername(@QueryParam("username") String username){
         User user = userService.findByUsername(username);
         System.out.println(user);
@@ -57,14 +64,16 @@ public class ProfileController {
     @GET
     @Path("/{id}/followers")
 
-    public List<Profile> getFollowers(@PathParam("id") long id){
-        return profileService.getFollowers(id);
+    public List<ProfileDTO> getFollowers(@PathParam("id") long id){
+
+        return ProfileDTO.transform(profileService.getFollowers(id));
     }
 
     @GET
     @Path("/{id}/following")
-    public List<Profile> getFollowing(@PathParam("id") long id){
-        return profileService.getFollowing(id);
+    public List<ProfileDTO> getFollowing(@PathParam("id") long id){
+
+        return ProfileDTO.transform(profileService.getFollowing(id));
     }
 
     @PUT

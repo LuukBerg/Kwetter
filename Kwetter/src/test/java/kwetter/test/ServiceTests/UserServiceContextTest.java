@@ -20,6 +20,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 
 public class UserServiceContextTest {
@@ -99,6 +100,32 @@ public class UserServiceContextTest {
         transaction.commit();
         Assert.assertNotNull(found);
         Assert.assertEquals(Role.MOD, found.getRole());
+    }
+    @Test
+    public void findPartialUsername(){
+        transaction.begin();
+        User user = new User("testuser", "email", "password");
+        Profile profile = new Profile(user, new Details("test","test","test","test"));
+        repo.registerUser(user);
+        user = new User("tostuser", "email", "password");
+        profile = new Profile(user, new Details("test","test","test","test"));
+        repo.registerUser(user);
+        user = new User("finduser", "email", "password");
+        profile = new Profile(user, new Details("test","test","test","test"));
+        repo.registerUser(user);
+        transaction.commit();
+        transaction.begin();
+        List<User> usersFound = repo.findPartialUsername("stu");
+        transaction.commit();
+        Assert.assertEquals(2, usersFound.size());
+        transaction.begin();
+        usersFound = repo.findPartialUsername("ost");
+        transaction.commit();
+        Assert.assertEquals(1, usersFound.size());
+        transaction.begin();
+        usersFound = repo.findPartialUsername("user");
+        transaction.commit();
+        Assert.assertEquals(3, usersFound.size());
     }
 
 }

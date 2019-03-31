@@ -1,7 +1,10 @@
 package kwetter.controller;
 
 
+import kwetter.model.DTO.RegisterDTO;
+import kwetter.model.DTO.UserDTO;
 import kwetter.model.enums.Role;
+import kwetter.model.models.Details;
 import kwetter.model.models.Profile;
 import kwetter.model.models.User;
 import kwetter.service.UserService;
@@ -12,6 +15,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.Collections;
+import java.util.List;
 
 @Stateless
 @Path("/user")
@@ -34,9 +39,9 @@ public class UserController {
     }
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public User post(//@QueryParam("username") String username
-                      Profile profile){
-        User user = profile.getOwner();
+    public User post(RegisterDTO registerDTO){
+        User user = new User(registerDTO.getUsername(),registerDTO.getEmail(),registerDTO.getPassword());
+        Profile profile = new Profile(user,new Details(registerDTO.getName(),registerDTO.getBio(),registerDTO.getWeb(),registerDTO.getLocation()));
         user.setProfile(profile);
         user = userService.registerUser(user);
         if(user != null){
@@ -51,7 +56,13 @@ public class UserController {
         return userService.findByUsername(username);
 
     }
-
+    @GET
+    @Path("/search/{partialName}")
+    public List<UserDTO> search(@PathParam("partialName") String partialName){
+        List<User> users = userService.findPartialUsername(partialName);
+        if(!users.isEmpty())return UserDTO.transform(users);
+        else return Collections.emptyList();
+    }
     @GET
     @Path("/id")
     public User getUserById(@QueryParam("id") long id){

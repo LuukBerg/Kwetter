@@ -58,6 +58,9 @@ public class UserService implements Serializable {
     }
     public User findByUsername(String username){return context.findByUsername(username);}
 
+    public List<User> findPartialUsername(String partialName){
+        return context.findPartialUsername(partialName);
+    }
     public User findById(long id) {
         return context.findbyId(id);
     }

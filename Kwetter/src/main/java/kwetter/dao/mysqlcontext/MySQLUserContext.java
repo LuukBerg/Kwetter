@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.Collections;
 import java.util.List;
 
 @JPA
@@ -84,5 +85,14 @@ public class MySQLUserContext implements IUserContext {
             return (User) query.getSingleResult();
         }
         return null;
+    }
+
+    @Override
+    public List<User> findPartialUsername(String partialName) {
+        Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.username like :partialname").setParameter("partialname", "%" + partialName + "%");
+        if(!query.getResultList().isEmpty()){
+            return (List<User>) query.getResultList();
+        }
+        return Collections.emptyList();
     }
 }

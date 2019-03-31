@@ -57,14 +57,14 @@ public class KweetController {
 
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public Kweet post(KweetDTO kweetDTO){
+    public KweetDTO post(KweetDTO kweetDTO){
             User user = userService.findByUsername(securityContext.getUserPrincipal().getName());
             if(user == null){
                 throw new WebApplicationException(Response.Status.UNAUTHORIZED);
             }
             System.out.println(securityContext.getUserPrincipal().getName());
             Kweet kweet = new Kweet(kweetDTO.getContent(), user.getProfile());
-            return kweetService.create(kweet);
+            return KweetDTO.transform(kweetService.create(kweet));
         //TODO throw error
     }
 

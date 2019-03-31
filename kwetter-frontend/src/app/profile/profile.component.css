@@ -1,10 +1,5 @@
 #kweet{
     padding: 1%;
-    background-color: white;
-    margin-bottom: 2%;
-    margin-top: 2%;
-    margin-left: 2%;
-    margin-right: 4%;
     float: none;
 }
 #profilepic{
@@ -46,6 +41,24 @@
     min-width: 100%;
     min-height: 100px;
 }
-#left{
-    border-right: 1px;
+.name{
+    text-align: center;
+    min-height: 200px;
+    border-style: solid;
+    padding-top: 60px;
+    float: none;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+#kweets{
+    border-style: solid;
+    padding: 2%;
+    max-height: 500px;
+    overflow-y: auto;
+}
+.odd{
+    background-color: whitesmoke;
+}
+.even{
+    background-color: white;
 }

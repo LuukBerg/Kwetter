@@ -46,7 +46,7 @@ public class MySQLKweetContext implements IKweetContext {
 
     @Override
     public List<Kweet> findByProfile(long id) {
-        Query query = entityManager.createQuery("SELECT distinct k FROM Kweet k WHERE k.owner.id = :id").setParameter("id", id);
+        Query query = entityManager.createQuery("SELECT distinct k FROM Kweet k WHERE k.owner.id = :id order by k.date desc").setParameter("id", id);
         return query.getResultList();
     }
 

@@ -1,8 +1,11 @@
 package kwetter.model.DTO;
 
 import kwetter.JWT.Jwt;
+import kwetter.model.models.User;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDTO implements Serializable {
     long id;
@@ -48,5 +51,17 @@ public class UserDTO implements Serializable {
 
     public void setProfileId(long profileId) {
         this.profileId = profileId;
+    }
+
+    public static UserDTO transform(User user){
+        return new UserDTO(user.getId(),user.getUsername(), user.getProfile().getId(), null);
+    }
+    public static List<UserDTO> transform(List<User> users){
+        List<UserDTO> dtos = new ArrayList<>();
+        for (User user : users){
+            dtos.add(new UserDTO(user.getId(),user.getUsername(), user.getProfile().getId(), null));
+        }
+        return dtos;
+
     }
 }
