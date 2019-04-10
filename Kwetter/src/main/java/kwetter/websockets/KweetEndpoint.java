@@ -23,7 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ServerEndpoint(
-        value="/api/socket/{username}",
+        value="/api/socket/{token}",
         encoders = JsonEncoder.class,
         decoders = JsonDecoder.class,
         configurator =  HttpSessionProvider.class
@@ -32,7 +32,7 @@ public class KweetEndpoint {
 
     private static final Logger LOG = Logger.getLogger(KweetEndpoint.class.getName());
 
-    Map<Long, Session> sessions = new ConcurrentHashMap<Long, Session>();
+    Map<String, Long> sessions = new ConcurrentHashMap<String, Long>();
 
     @Inject
     private KweetService kweetService;
@@ -40,35 +40,33 @@ public class KweetEndpoint {
     @Inject
     private UserService userService;
 
-    private HttpSession httpSession;
-
-    private Session session;
 
     @OnOpen
     public void onOpen(@PathParam("token") String token, Session session){
-
+        System.out.println("onOpen");
         if(token == null || token == ""){
             sendError(session, "client not authenticated");
+            System.out.println("client not authenticated");
             closedConnection(session);
             return;
         }
-
+            System.out.println(token);
             String username = JwtManager.decodeToken(token);
             if(username == null){
+                System.out.println("invalid token");
                 sendError(session, "invalid token");
                 return;
             }
             User user = userService.findByUsername(username);
-            sessions.put(user.getId(), session);
-            System.out.println("Client connected, id: " + user.getId());
+            sessions.put(session.getId(), user.getId());
 
-
-        LOG.log(Level.INFO, "onOpen: username: {0}, session: {1}", new Object[]{username, session});
+            System.out.println("Client connected, id: " + user.getId() + " session: " + session.getId());
     }
 
     @OnMessage
     public void onMessage(Session session, String message){
-        System.out.println("Recieved websocket message: "+message);
+
+        System.out.println("Recieved websocket message: "+message + " from: " + sessions.get(session.getId()) + " sessionId: " + session.getId());
     }
 
     private void sendError(Session session, String message)

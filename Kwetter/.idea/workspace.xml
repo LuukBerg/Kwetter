@@ -7,19 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8bf2d6df-6742-4452-bed2-65243e10477c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Kwetter.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kwetter/JWT/CORSResponseFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kwetter/websockets/Encoders/JsonDecoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kwetter/websockets/Encoders/JsonEncoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kwetter/websockets/Encoders/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kwetter/websockets/HttpSessionProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kwetter/websockets/KweetEndpoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kwetter/JWT/JwtManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kwetter/JWT/JwtManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kwetter/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kwetter/controller/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/kwetter/test/APITests/APITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/kwetter/test/APITests/APITest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kwetter/websockets/KweetEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kwetter/websockets/KweetEndpoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kwetter-frontend/src/app/Globals/globals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kwetter-frontend/src/app/Globals/globals.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kwetter-frontend/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kwetter-frontend/src/app/home/home.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kwetter-frontend/src/app/profile/profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../kwetter-frontend/src/app/profile/profile.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kwetter-frontend/src/app/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kwetter-frontend/src/app/profile/profile.component.ts" afterDir="false" />
     </list>
@@ -103,11 +95,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/kwetter/websockets/KweetEndpoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="70" column="67" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
+            <state relative-caret-position="257">
+              <caret line="67" column="145" selection-start-line="67" selection-start-column="145" selection-end-line="67" selection-end-column="145" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1151#1166#0" expanded="true" />
+                <element signature="e#1096#1110#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,83 +108,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kwetter/JWT/JwtManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="97" column="6" lean-forward="true" selection-start-line="97" selection-start-column="6" selection-end-line="97" selection-end-column="6" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/kwetter/JWT/Jwt.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/kwetter/model/DTO/KweetDTO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="22" column="82" lean-forward="true" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="82" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/kwetter/websockets/Encoders/Message.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/kwetter/controller/KweetController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-160">
-              <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/kwetter/controller/SecureAuth.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/kwetter/controller/SecurityFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="55" column="19" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/kwetter/controller/MySession.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/kwetter/websockets/HttpSessionProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            <state relative-caret-position="375">
+              <caret line="95" column="52" selection-start-line="95" selection-start-column="52" selection-end-line="95" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -214,7 +131,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>arquillian.</find>
       <find>Assert.</find>
       <find>Assertions</find>
       <find>Assertions.</find>
@@ -244,6 +160,7 @@
       <find>**</find>
       <find>System</find>
       <find>allowed</find>
+      <find>on</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -330,8 +247,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="width" value="1117" />
+    <option name="x" value="952" />
+    <option name="width" value="974" />
     <option name="height" value="1045" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -765,44 +682,44 @@
       <workItem from="1554706778599" duration="5930000" />
       <workItem from="1554800169480" duration="599000" />
       <workItem from="1554879838128" duration="1470000" />
-      <workItem from="1554901029718" duration="4000000" />
+      <workItem from="1554901029718" duration="6861000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="APITest_createTestEnv - 2019.04.05 at 10h 38m 29s.xml">
-      <configuration name="APITest.createTestEnv" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="APITest_createTestEnv - 2019.04.05 at 10h 42m 54s.xml">
-      <configuration name="APITest.createTestEnv" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="APITest_createTestEnv - 2019.04.05 at 10h 44m 16s.xml">
-      <configuration name="APITest.createTestEnv" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="APITest - 2019.04.05 at 10h 46m 38s.xml">
-      <configuration name="APITest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="APITest_createTestEnv - 2019.04.05 at 10h 47m 36s.xml">
-      <configuration name="APITest.createTestEnv" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="kwetter_test_in_Kwetter - 2019.04.08 at 11h 07m 55s.xml">
-      <configuration name="kwetter.test in Kwetter" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="kwetter_test_in_Kwetter - 2019.04.08 at 11h 10m 07s.xml">
-      <configuration name="kwetter.test in Kwetter" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="kwetter_test_in_Kwetter - 2019.04.08 at 11h 16m 21s.xml">
-      <configuration name="kwetter.test in Kwetter" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="kwetter_test_in_Kwetter - 2019.04.08 at 11h 20m 23s.xml">
       <configuration name="kwetter.test in Kwetter" configurationId="JUnit" />
     </history-entry>
     <history-entry file="kwetter_test_APITests_in_Kwetter - 2019.04.10 at 15h 44m 34s.xml">
       <configuration name="kwetter.test.APITests in Kwetter" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="kwetter_test_APITests_in_Kwetter - 2019.04.10 at 16h 33m 49s.xml">
+      <configuration name="kwetter.test.APITests in Kwetter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="kwetter_test_APITests_in_Kwetter - 2019.04.10 at 16h 38m 52s.xml">
+      <configuration name="kwetter.test.APITests in Kwetter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="kwetter_test_APITests_in_Kwetter - 2019.04.10 at 16h 45m 17s.xml">
+      <configuration name="kwetter.test.APITests in Kwetter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="kwetter_test_APITests_in_Kwetter - 2019.04.10 at 16h 48m 33s.xml">
+      <configuration name="kwetter.test.APITests in Kwetter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="kwetter_test_APITests_in_Kwetter - 2019.04.10 at 16h 53m 51s.xml">
+      <configuration name="kwetter.test.APITests in Kwetter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="kwetter_test_APITests_in_Kwetter - 2019.04.10 at 16h 56m 03s.xml">
+      <configuration name="kwetter.test.APITests in Kwetter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="kwetter_test_APITests_in_Kwetter - 2019.04.10 at 17h 00m 46s.xml">
+      <configuration name="kwetter.test.APITests in Kwetter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="kwetter_test_APITests_in_Kwetter - 2019.04.10 at 17h 02m 19s.xml">
+      <configuration name="kwetter.test.APITests in Kwetter" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="267204000" />
+    <option name="totallyTimeSpent" value="270065000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -814,10 +731,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="0" width="1011" height="946" extended-state="0" />
+    <frame x="-7" y="-7" width="1753" height="954" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4988864" visible="true" weight="0.28856245" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4988864" visible="true" weight="0.16224189" />
       <window_info id="Designer" order="1" />
       <window_info id="Structure" order="2" sideWeight="0.5011136" side_tool="true" weight="0.13451327" />
       <window_info id="Persistence" order="3" side_tool="true" />
@@ -829,18 +746,18 @@
       <window_info anchor="bottom" id="Application Servers" order="0" weight="0.32883435" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.2822086" />
       <window_info anchor="bottom" id="Docker" order="2" show_stripe_button="false" weight="0.32883435" />
-      <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.510303" side_tool="true" weight="0.4387255" />
+      <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.5109223" side_tool="true" weight="0.4380368" />
       <window_info anchor="bottom" id="Database Changes" order="4" show_stripe_button="false" />
       <window_info anchor="bottom" id="Java Enterprise" order="5" weight="0.32883435" />
-      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49970502" weight="0.32320777" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.4920354" weight="0.29570553" />
+      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49970502" weight="0.3226994" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.4920354" weight="0.29325154" />
       <window_info anchor="bottom" id="Message" order="8" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.32883435" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="Debug" order="12" sideWeight="0.4961652" weight="0.39368165" />
       <window_info anchor="bottom" id="TODO" order="13" weight="0.32760736" />
-      <window_info anchor="bottom" id="Run" order="14" sideWeight="0.48969698" visible="true" weight="0.4380368" />
+      <window_info active="true" anchor="bottom" id="Run" order="14" sideWeight="0.48907766" visible="true" weight="0.43377885" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25485438" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1099,13 +1016,6 @@
       <provider editor-type-id="com.intellij.jsf.yfilesGraph.editor.FacesNavigationFileEditorProvider" />
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/kwetter/test/APITests/APISearchTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kwetter/dao/mysqlcontext/MySQLProfileContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-569">
@@ -1219,7 +1129,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kwetter/websockets/Encoders/Message.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
+        <state relative-caret-position="288">
           <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
@@ -1252,10 +1162,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/kwetter/test/APITests/APISearchTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kwetter/JWT/JwtManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="97" column="6" lean-forward="true" selection-start-line="97" selection-start-column="6" selection-end-line="97" selection-end-column="6" />
+        <state relative-caret-position="375">
+          <caret line="95" column="52" selection-start-line="95" selection-start-column="52" selection-end-line="95" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1264,11 +1181,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kwetter/websockets/KweetEndpoint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="70" column="67" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
+        <state relative-caret-position="257">
+          <caret line="67" column="145" selection-start-line="67" selection-start-column="145" selection-end-line="67" selection-end-column="145" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1151#1166#0" expanded="true" />
+            <element signature="e#1096#1110#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -93,10 +93,10 @@ public class JwtManager {
     public static final String BEARER = "Bearer";
 
     public static String decodeToken(String token) {
+        System.out.println("decode token: " + token);
         if (token != null && token.startsWith(BEARER)) {
             try {
                 JWT jwt = JWTParser.parse(token.substring(7));
-
                 System.out.println("_-----------------------------------------");
                 System.out.println(jwt.getJWTClaimsSet().getClaims());
                 String username = jwt.getJWTClaimsSet().getClaims().get("sub").toString();
