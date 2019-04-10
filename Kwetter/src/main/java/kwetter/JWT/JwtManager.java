@@ -5,10 +5,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.*;
 import java.security.cert.CertificateException;
+import java.text.ParseException;
 import javax.enterprise.context.ApplicationScoped;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
+import javax.ws.rs.core.SecurityContext;
 
 import com.nimbusds.jose.JOSEObjectType;
 import com.nimbusds.jose.JWSAlgorithm;
@@ -17,6 +19,10 @@ import com.nimbusds.jose.JWSObject;
 import com.nimbusds.jose.JWSSigner;
 import com.nimbusds.jose.Payload;
 import com.nimbusds.jose.crypto.RSASSASigner;
+import com.nimbusds.jwt.JWT;
+import com.nimbusds.jwt.JWTParser;
+import kwetter.controller.SecurityFilter;
+import net.minidev.json.JSONArray;
 
 
 @ApplicationScoped
@@ -83,5 +89,26 @@ public class JwtManager {
         jwsObject.sign(signer);
 
         return jwsObject.serialize();
+    }
+    public static final String BEARER = "Bearer";
+
+    public static String decodeToken(String token) {
+        if (token != null && token.startsWith(BEARER)) {
+            try {
+                JWT jwt = JWTParser.parse(token.substring(7));
+
+                System.out.println("_-----------------------------------------");
+                System.out.println(jwt.getJWTClaimsSet().getClaims());
+                String username = jwt.getJWTClaimsSet().getClaims().get("sub").toString();
+                JSONArray groups = (JSONArray) jwt.getJWTClaimsSet().getClaims().get("groups");
+                System.out.println("uname: " + username);
+                System.out.println("groups: " + groups.get(0).toString());
+                System.out.println("created token: " + jwt.toString());
+                return username;
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 }

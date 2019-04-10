@@ -24,6 +24,7 @@ import java.util.List;
 @Path("/profile")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@SecureAuth
 public class ProfileController {
     @Inject
     private ProfileService profileService;
@@ -33,6 +34,10 @@ public class ProfileController {
 
     @Inject
     private UserService userService;
+
+
+    @Context
+    private SecurityContext securityContext;
 
     @POST
     public Profile post(@QueryParam("userid") long userid){
@@ -77,14 +82,16 @@ public class ProfileController {
     }
 
     @PUT
-    @Path("/{id}/follow/{followingid}")
-    public void follow(@PathParam("id") long id, @PathParam("followingid") long followingId){
-        profileService.addFollow(id ,followingId);
+    @Path("/follow/{followingid}")
+    public void follow(@PathParam("followingid") long followingId){
+        User user = userService.findByUsername(securityContext.getUserPrincipal().getName());
+        profileService.addFollow(user.getProfile().getId() ,followingId);
     }
 
     @PUT
-    @Path("/{id}/unfollow/{followingId}")
-    public void unFollow(@PathParam("id") long id, @PathParam("followingId") long followingId){
-        profileService.unFollow(id, followingId);
+    @Path("/unfollow/{followingId}")
+    public void unFollow(@PathParam("followingId") long followingId){
+        User user = userService.findByUsername(securityContext.getUserPrincipal().getName());
+        profileService.unFollow(user.getProfile().getId(), followingId);
     }
 }

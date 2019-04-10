@@ -201,7 +201,7 @@ public class APITest {
 
         //"/{id}/follow/{followingid}")
         client = new ResteasyClientBuilder().build();
-        target = client.target(baseUrl + "/profile/"+ profileFollower.getId() +"/follow/" + profileFollowing.getId());
+        target = client.target(baseUrl + "/profile/follow/" + profileFollowing.getId());
         response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowerToken).put(json);
         Assert.assertEquals(204, response.getStatus());
 
