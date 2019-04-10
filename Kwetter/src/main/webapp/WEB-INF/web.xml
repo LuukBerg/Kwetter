@@ -45,6 +45,10 @@
             <param-value>*</param-value>
         </init-param>
         <init-param>
+            <param-name>cors.allowGenericHttpRequests</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
             <param-name>cors.supportsCredentials</param-name>
             <param-value>false</param-value>
         </init-param>

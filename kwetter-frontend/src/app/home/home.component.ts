@@ -12,6 +12,8 @@ import { userInfo } from 'os';
 import { Form, FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { WebsocketService } from '../_services/websocket.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -28,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private offset: number;
   submitted = false;
 
-  constructor(private router : Router,private formBuilder: FormBuilder, globals: Globals, private authService: AuthService, private userService: UserService, httpClient: HttpClient) {
+  constructor(private router : Router,private formBuilder: FormBuilder, globals: Globals, private authService: AuthService, private userService: UserService, httpClient: HttpClient, private webSocket : WebsocketService) {
     console.log("started")
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
       this.currentUser = user;
@@ -37,6 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.globals = globals;
     this.offset = 0;
     this.getTimeline();
+    this.webSocket.open;
   }
 
   ngOnInit() {
@@ -68,10 +71,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.kweet = new Kweet();
       this.kweet.content = this.f.content.value;
       //this.kweets.unshift(kweet);
-      await this.httpClient.post<any>(this.globals.baseurl + "kweet/", this.kweet).subscribe(kweet => {
+     /* await this.httpClient.post<any>(this.globals.baseurl + "kweet/", this.kweet).subscribe(kweet => {
         this.kweets.unshift(kweet);
         console.log(kweet);
       });
+      */
+      this.webSocket.send(this.kweet.content);
       this.postForm.reset();
       this.submitted=false;
       

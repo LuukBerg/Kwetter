@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Kweet, Profile } from '../_models';
+import { Kweet, Profile, User } from '../_models';
 import { Globals } from '../Globals/globals';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../_services/authentication.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,21 +14,26 @@ import { Globals } from '../Globals/globals';
 export class ProfileComponent implements OnInit {
   id: number;
   private sub: any;
+  currentUser: User;
+  currentUserSubscription: Subscription;
   kweets: Kweet[];
   private httpClient: HttpClient;
   followers: Profile[];
   following: Profile[];
   profile: Profile;
   username: string;
+  isFollowing: boolean;
 
-  constructor(httpClient: HttpClient, private route: ActivatedRoute, private globals: Globals) {
+  constructor(httpClient: HttpClient, private route: ActivatedRoute, private globals: Globals, private authService: AuthService) {
     this.httpClient = httpClient;
-
+    this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
+      this.currentUser = user;
+    });
 
   }
 
   ngOnInit() {
-  
+    this.isFollowing = false;
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
       this.getCurrentProfile();
@@ -51,12 +58,25 @@ export class ProfileComponent implements OnInit {
   getFollowers() {
     this.httpClient.get<Profile[]>(this.globals.baseurl + "profile/" + this.id + "/followers").subscribe(profiles => {
       this.followers = profiles;
+      this.followers.forEach(follower => {
+        if(this.currentUser.profileId == follower.id){
+          this.isFollowing = true;
+        }
+      });
     });
   }
   getFollowing() {
     this.httpClient.get<Profile[]>(this.globals.baseurl + "profile/" + this.id + "/following").subscribe(profiles => {
       this.following = profiles;
     });
+  }
+  followProfile(){
+    this.httpClient.put(this.globals.baseurl + "profile/follow/" + this.profile.id, null).subscribe(profile =>{
+      this.isFollowing = true;
+    });
+  }
+  unfollowProfile(){
+
   }
 
 
