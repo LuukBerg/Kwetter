@@ -7,15 +7,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfileDTO implements Serializable {
+public class ProfileDTO extends DTO implements Serializable {
     private long id;
     private String username;
     private Details details;
     private String email;
+
     public ProfileDTO() {
     }
 
     public ProfileDTO(long id, String username, Details details, String email) {
+        super();
         this.id = id;
         this.username = username;
         this.details = details;
@@ -64,4 +66,6 @@ public class ProfileDTO implements Serializable {
     public static ProfileDTO transform(Profile profile){
         return new ProfileDTO(profile.getId(),profile.getOwner().getUsername(),profile.getDetails(),profile.getOwner().getEmail());
     }
+
+
 }

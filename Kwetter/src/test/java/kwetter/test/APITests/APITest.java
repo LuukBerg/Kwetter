@@ -99,33 +99,34 @@ public class APITest {
         target = client.target(baseUrl + "/profile/username/?username=username");
         response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userToken).get();
         Assert.assertEquals(200, response.getStatus());
-        Profile profile = response.readEntity(Profile.class);
+        ProfileDTO profileDTO = response.readEntity(ProfileDTO.class);
+
 
         client = new ResteasyClientBuilder().build();
-        target = client.target(baseUrl + "/profile/"+ profile.getId()+ "/kweet");
+        target = client.target(baseUrl + "/profile/"+ profileDTO.getId()+ "/kweet");
         response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userToken).get();
         Assert.assertEquals(200, response.getStatus());
-        List<Kweet> kweets = response.readEntity(new GenericType<List<Kweet>>() {});
-        profile.setKweets(kweets);
+        List<Kweet> profileKweets = response.readEntity(new GenericType<List<Kweet>>() {});
+
 
         client = new ResteasyClientBuilder().build();
         target = client.target(baseUrl + "/profile/username/?username=usernameFollower");
         response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowerToken).get();
         Assert.assertEquals(200, response.getStatus());
-        Profile profileFollower = response.readEntity(Profile.class);
+        ProfileDTO profileFollowerDTO = response.readEntity(ProfileDTO.class);
 
         client = new ResteasyClientBuilder().build();
         target = client.target(baseUrl + "/profile/username/?username=usernameFollowing");
         response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowingToken).get();
         Assert.assertEquals(200, response.getStatus());
-        Profile profileFollowing = response.readEntity(Profile.class);
+        ProfileDTO profileFollowingDTO = response.readEntity(ProfileDTO.class);
 
         //sends tweets for user
         for (int i = 0 ; i <20 ; i++) {
             client = new ResteasyClientBuilder().build();
             target = client.target(baseUrl + "/kweet");
             builder = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userToken);
-            KweetDTO kweetDTO = new KweetDTO("content: " + i + "profile: " + profile.getId());
+            KweetDTO kweetDTO = new KweetDTO("content: " + i + "profile: " + profileDTO.getId());
             json = Entity.json(kweetDTO);
             response = builder.post(json);
             Assert.assertEquals(200, response.getStatus());
@@ -145,7 +146,7 @@ public class APITest {
             client = new ResteasyClientBuilder().build();
             target = client.target(baseUrl + "/kweet");
             builder = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowingToken);
-            KweetDTO kweetDTO = new KweetDTO("content: " + i + "profile: " + profileFollowing.getId());
+            KweetDTO kweetDTO = new KweetDTO("content: " + i + "profile: " + profileFollowingDTO.getId());
             json = Entity.json(kweetDTO);
             response = builder.post(json);
             Assert.assertEquals(200, response.getStatus());
@@ -156,7 +157,7 @@ public class APITest {
         client = new ResteasyClientBuilder().build();
         target = client.target(baseUrl + "/kweet");
         builder = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer 1234" + userToken);
-        KweetDTO kweetDTO = new KweetDTO("content: " + "profile: " + profileFollowing.getId());
+        KweetDTO kweetDTO = new KweetDTO("content: " + "profile: " + profileFollowingDTO.getId());
         json = Entity.json(kweetDTO);
         response = builder.post(json);
         Assert.assertEquals(403, response.getStatus());
@@ -171,17 +172,17 @@ public class APITest {
         target = client.target(baseUrl + "/profile/username/?username=usernameFollower");
         response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowerToken).get();
         Assert.assertEquals(200, response.getStatus());
-        profileFollower = response.readEntity(Profile.class);
+        profileFollowerDTO = response.readEntity(ProfileDTO.class);
 
         client = new ResteasyClientBuilder().build();
         target = client.target(baseUrl + "/profile/username/?username=usernameFollowing");
         response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowingToken).get();
         Assert.assertEquals(200, response.getStatus());
-        profileFollowing = response.readEntity(Profile.class);
+        profileFollowingDTO = response.readEntity(ProfileDTO.class);
 
         //get followers and following
         client = new ResteasyClientBuilder().build();
-        target = client.target(baseUrl + "/profile/"+ profileFollowing.getId() + "/followers");
+        target = client.target(baseUrl + "/profile/"+ profileFollowingDTO.getId() + "/followers");
         response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowingToken).get();
         Assert.assertEquals(200, response.getStatus());
         List<ProfileDTO> followingFollowersDTOs = response.readEntity(new GenericType<List<ProfileDTO>>() {});
@@ -189,7 +190,7 @@ public class APITest {
 
 
         client = new ResteasyClientBuilder().build();
-        target = client.target(baseUrl + "/profile/"+ profileFollower.getId() + "/following");
+        target = client.target(baseUrl + "/profile/"+ profileFollowerDTO.getId() + "/following");
         response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowerToken).get();
         Assert.assertEquals(200, response.getStatus());
         List<ProfileDTO> followerFollowingDTOs = response.readEntity(new GenericType<List<ProfileDTO>>() {});
@@ -201,7 +202,7 @@ public class APITest {
 
         //"/{id}/follow/{followingid}")
         client = new ResteasyClientBuilder().build();
-        target = client.target(baseUrl + "/profile/follow/" + profileFollowing.getId());
+        target = client.target(baseUrl + "/profile/follow/" + profileFollowingDTO.getId());
         response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowerToken).put(json);
         Assert.assertEquals(204, response.getStatus());
 
@@ -210,23 +211,23 @@ public class APITest {
         target = client.target(baseUrl + "/profile/username/?username=usernameFollower");
         response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowerToken).get();
         Assert.assertEquals(200, response.getStatus());
-        profileFollower = response.readEntity(Profile.class);
+        profileFollowerDTO = response.readEntity(ProfileDTO.class);
 
         client = new ResteasyClientBuilder().build();
         target = client.target(baseUrl + "/profile/username/?username=usernameFollowing");
         response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowerToken).get();
         Assert.assertEquals(200, response.getStatus());
-        profileFollowing = response.readEntity(Profile.class);
+        profileFollowingDTO = response.readEntity(ProfileDTO.class);
 
         //get followers and following
         client = new ResteasyClientBuilder().build();
-        target = client.target(baseUrl + "/profile/"+ profileFollowing.getId() + "/followers");
+        target = client.target(baseUrl + "/profile/"+ profileFollowingDTO.getId() + "/followers");
         response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowingToken).get();
         Assert.assertEquals(200, response.getStatus());
         followingFollowersDTOs = response.readEntity(new GenericType<List<ProfileDTO>>() {});
 
         client = new ResteasyClientBuilder().build();
-        target = client.target(baseUrl + "/profile/"+ profileFollower.getId() + "/following");
+        target = client.target(baseUrl + "/profile/"+ profileFollowerDTO.getId() + "/following");
         response = target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + userFollowerToken).get();
         Assert.assertEquals(200, response.getStatus());
         followerFollowingDTOs = response.readEntity(new GenericType<List<ProfileDTO>>() {});

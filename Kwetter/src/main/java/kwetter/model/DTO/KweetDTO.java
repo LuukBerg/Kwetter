@@ -13,6 +13,7 @@ public class KweetDTO implements Serializable {
     private String content;
     private String owner;
     private Date date;
+
     public KweetDTO() {
     }
 

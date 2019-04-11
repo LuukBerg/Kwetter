@@ -73,9 +73,6 @@ public class KweetEndpoint {
     @OnMessage
     public void onMessage(Session session, String message) throws IOException, EncodeException {
         System.out.println("Recieved websocket message: "+message + " from: " + sessions.get(session.getId()) + " sessionId: " + session.getId());
-
-
-
         User user = userService.findById(sessions.get(session.getId()));
         Kweet kweet = new Kweet(message, user.getProfile());
         kweetService.create(kweet);

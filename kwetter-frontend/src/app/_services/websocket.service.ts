@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Globals } from '../Globals/globals';
 import { AuthService } from './authentication.service';
+import { callbackify } from 'util';
+import { Kweet } from '../_models';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ import { AuthService } from './authentication.service';
 export class WebsocketService
 {
     websocket: WebSocket;
-    callback: ((message: any) => any) | null;
+    callback: ((message: Kweet) => any) | null;
 
     constructor(private globals: Globals, private authService : AuthService)
     {
@@ -27,5 +29,8 @@ export class WebsocketService
     onMessage(event: MessageEvent)
     {
         console.log(event.data);
+        this.callback(event.data);
+
+        //JSON.parse(event.data) as Kweet
     }
 }

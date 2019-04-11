@@ -18,6 +18,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
+import javax.ws.rs.core.UriInfo;
+import java.net.URI;
 import java.util.List;
 
 @Stateless
@@ -48,22 +50,35 @@ public class ProfileController {
     @GET
     @Path("/{id}/kweet")
     public List<KweetDTO> getKweetByProfile(@PathParam("id") long id){
-
         return KweetDTO.transform(kweetService.findByProfile(id));
     }
 
     @GET
     @Path("/{id}")
-    public ProfileDTO getProfileById(@PathParam("id") long id){
-        return ProfileDTO.transform(profileService.findbyId(id));
+    public ProfileDTO getProfileById(@PathParam("id") long id, @Context UriInfo uriInfo){
+        User user = userService.findByUsername(securityContext.getUserPrincipal().getName());
+        ProfileDTO dto = ProfileDTO.transform(profileService.findbyId(id));
+
+        dto.addLink(getUriForProfile(uriInfo, id, "getProfileById"), "self");
+        dto.addLink(getUriForProfile(uriInfo, id,"getFollowers"), "getFollowers");
+        dto.addLink(getUriForProfile(uriInfo, id, "getFollowing"), "getFollowing");
+        dto.addLink(getUriForProfile(uriInfo, id, "getKweetByProfile"), "getKweets");
+        if(user.getProfile().getId() != dto.getId()){
+            dto.addLink(getUriForProfile(uriInfo, id, "follow"), "follow");
+            dto.addLink(getUriForProfile(uriInfo, id, "unFollow"), "unfollow");
+        }
+        return dto;
+
     }
     @GET
     @Path("/username")
-    public Profile getProfileByUsername(@QueryParam("username") String username){
+    public ProfileDTO getProfileByUsername(@QueryParam("username") String username, @Context UriInfo uriInfo){
         User user = userService.findByUsername(username);
-        System.out.println(user);
-        System.out.println(user.getProfile());
-        return user.getProfile();
+        ProfileDTO dto = ProfileDTO.transform(user.getProfile());
+        dto.addLink(getUriForProfile(uriInfo, dto.getId(), "getProfileById"), "self");
+        dto.addLink(getUriForProfile(uriInfo, dto.getId(),"getFollowers"), "getFollowers");
+        dto.addLink(getUriForProfile(uriInfo, dto.getId(), "getFollowing"), "getFollowing");
+        return dto;
     }
 
     @GET
@@ -82,16 +97,27 @@ public class ProfileController {
     }
 
     @PUT
-    @Path("/follow/{followingid}")
-    public void follow(@PathParam("followingid") long followingId){
+    @Path("/follow/{id}")
+    public void follow(@PathParam("id") long followingId){
         User user = userService.findByUsername(securityContext.getUserPrincipal().getName());
         profileService.addFollow(user.getProfile().getId() ,followingId);
     }
 
     @PUT
-    @Path("/unfollow/{followingId}")
-    public void unFollow(@PathParam("followingId") long followingId){
+    @Path("/unfollow/{id}")
+    public void unFollow(@PathParam("id") long followingId){
         User user = userService.findByUsername(securityContext.getUserPrincipal().getName());
         profileService.unFollow(user.getProfile().getId(), followingId);
     }
+
+    private String getUriForProfile(UriInfo uriInfo, Long id, String method){
+        URI uri = uriInfo.getBaseUriBuilder()
+                .path(ProfileController.class)
+                .path(ProfileController.class, method)
+                .resolveTemplate("id", id)
+                .build();
+        return uri.toString();
+    }
+
+
 }
