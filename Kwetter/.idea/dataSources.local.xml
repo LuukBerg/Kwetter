@@ -10,5 +10,9 @@
       <auth-required>false</auth-required>
       <introspection-schemas>@:@</introspection-schemas>
     </data-source>
+    <data-source name="KwetterPU/Hibernate" uuid="0b73519f-abca-4a2f-afa8-065a1b2ea05b">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+      <user-name>root</user-name>
+    </data-source>
   </component>
 </project>

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { AuthService } from '../_services/authentication.service';
 import { UserService } from '../_services/user-service.service';
-import { User, Kweet } from '../_models';
+import { User, Kweet, Profile, Link } from '../_models';
 import { Subscription } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { KweetsComponent } from '../kweets/kweets.component';
@@ -13,6 +13,7 @@ import { Form, FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WebsocketService } from '../_services/websocket.service';
+import { addListener } from 'cluster';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private globals: Globals;
   private offset: number;
   submitted = false;
-
+  currentProfile : Profile;
   constructor(private router : Router,private formBuilder: FormBuilder, globals: Globals, private authService: AuthService, private userService: UserService, httpClient: HttpClient, private webSocket : WebsocketService) {
     console.log("started")
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
@@ -38,27 +39,52 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.httpClient = httpClient;
     this.globals = globals;
     this.offset = 0;
+    this.getCurrentProfile();
     this.getTimeline();
-    this.webSocket.open;
+ 
+    
   }
 
   ngOnInit() {
     this.postForm = this.formBuilder.group({
       content: ['', Validators.required],
     });
+  
+    
   }
   ngOnDestroy(): void {
     //prevent memory leaks
     this.currentUserSubscription.unsubscribe();
+    this.webSocket.close();
   }
-
+  getCurrentProfile() {
+    this.httpClient.get<Profile>(this.globals.baseurl + "profile/" + this.currentUser.profileId).subscribe(profile => {
+      this.currentProfile = profile;
+      let links = Link.asMap(this.currentProfile.links);
+      console.log(links)
+      console.log(links.self);
+    });
+  }
   get f() { return this.postForm.controls; }
 
-  getTimeline() {
+  async addListener(){
+    this.webSocket.obsArray.subscribe(kweet =>{
+        if(kweet.content != null){
+          console.log(kweet);
+          console.log("subkweet");
+          this.kweets.unshift(kweet);  
+        }
+        
+      //this.offset += 1;
+    });
+  }
+  async getTimeline() {
     console.log("gettime");
-    this.httpClient.get<Kweet[]>(this.globals.baseurl + 'kweet/' + this.currentUser.profileId + '/' + this.offset).subscribe(kweets => {
+    await this.httpClient.get<Kweet[]>(this.globals.baseurl + 'kweet/' + this.currentUser.profileId + '/' + this.offset).subscribe(kweets => {
       this.kweets = kweets;
     });
+    this.webSocket.open;
+    this.addListener();
     this.offset += 10;
   }
   async postKweet(event) {
@@ -70,12 +96,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
       this.kweet = new Kweet();
       this.kweet.content = this.f.content.value;
-      //this.kweets.unshift(kweet);
-     /* await this.httpClient.post<any>(this.globals.baseurl + "kweet/", this.kweet).subscribe(kweet => {
-        this.kweets.unshift(kweet);
-        console.log(kweet);
-      });
-      */
       this.webSocket.send(this.kweet.content);
       this.postForm.reset();
       this.submitted=false;
