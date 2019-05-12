@@ -57,15 +57,16 @@ public class ProfileDTO extends DTO implements Serializable {
         this.email = email;
     }
 
-    public static List<ProfileDTO> transform(List<Profile> profiles){
+    public static List<ProfileDTO> transform(List<Profile> profiles) {
         List<ProfileDTO> dtos = new ArrayList<>();
-        for(Profile profile : profiles){
-            dtos.add(new ProfileDTO(profile.getId(),profile.getOwner().getUsername(),profile.getDetails(),profile.getOwner().getEmail()));
+        for (Profile profile : profiles) {
+            dtos.add(new ProfileDTO(profile.getId(), profile.getOwner().getUsername(), profile.getDetails(), profile.getOwner().getEmail()));
         }
         return dtos;
     }
-    public static ProfileDTO transform(Profile profile){
-        return new ProfileDTO(profile.getId(),profile.getOwner().getUsername(),profile.getDetails(),profile.getOwner().getEmail());
+
+    public static ProfileDTO transform(Profile profile) {
+        return new ProfileDTO(profile.getId(), profile.getOwner().getUsername(), profile.getDetails(), profile.getOwner().getEmail());
     }
 
 

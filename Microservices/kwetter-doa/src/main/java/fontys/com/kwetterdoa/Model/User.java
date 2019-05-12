@@ -3,7 +3,6 @@ package fontys.com.kwetterdoa.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import fontys.com.kwetterdoa.Model.enums.Role;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -34,9 +33,10 @@ public class User implements Serializable {
         return id;
     }
 
-    public User(){
+    public User() {
 
     }
+
     public User(String username, Role role) {
         this.username = username;
         this.role = role;

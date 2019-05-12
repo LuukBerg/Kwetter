@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -19,7 +20,7 @@ public class Kweet implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-    @Size(max=140 ,message = "kweet cannot be longer then 140 characters")
+    @Size(max = 140, message = "kweet cannot be longer then 140 characters")
     private String content;
     private Date date;
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -33,7 +34,6 @@ public class Kweet implements Serializable {
         this.owner = owner;
         owner.addKweet(this);
     }
-
 
 
 }

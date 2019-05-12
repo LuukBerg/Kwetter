@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
@@ -16,7 +15,7 @@ import java.util.Date;
 public class Kweet implements Serializable {
 
     private long id;
-    @Size(max=140 ,message = "kweet cannot be longer then 140 characters")
+    @Size(max = 140, message = "kweet cannot be longer then 140 characters")
     private String content;
     private Date date;
 
@@ -30,7 +29,6 @@ public class Kweet implements Serializable {
         this.owner = owner;
         owner.addKweet(this);
     }
-
 
 
 }

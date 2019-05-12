@@ -25,7 +25,7 @@ public class Profile implements Serializable {
     private List<Kweet> kweets;
 
 
-    public Profile(User owner,Details details) {
+    public Profile(User owner, Details details) {
         this.owner = owner;
         this.following = new LinkedList<>();
         this.followers = new LinkedList<>();
@@ -34,7 +34,7 @@ public class Profile implements Serializable {
         owner.setProfile(this);
     }
 
-    public void addFollower(Profile profile){
+    public void addFollower(Profile profile) {
         followers.add(profile);
     }
 

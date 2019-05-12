@@ -35,7 +35,6 @@ public class UserDTO implements Serializable {
     }
 
 
-
     public long getProfileId() {
         return profileId;
     }
@@ -44,13 +43,14 @@ public class UserDTO implements Serializable {
         this.profileId = profileId;
     }
 
-    public static UserDTO transform(User user){
-        return new UserDTO(user.getId(),user.getUsername(), user.getProfile().getId(), null);
+    public static UserDTO transform(User user) {
+        return new UserDTO(user.getId(), user.getUsername(), user.getProfile().getId(), null);
     }
-    public static List<UserDTO> transform(List<User> users){
+
+    public static List<UserDTO> transform(List<User> users) {
         List<UserDTO> dtos = new ArrayList<>();
-        for (User user : users){
-            dtos.add(new UserDTO(user.getId(),user.getUsername(), user.getProfile().getId(), null));
+        for (User user : users) {
+            dtos.add(new UserDTO(user.getId(), user.getUsername(), user.getProfile().getId(), null));
         }
         return dtos;
 

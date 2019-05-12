@@ -11,8 +11,8 @@ public abstract class DTO {
         this.links = new ArrayList<>();
     }
 
-    public void addLink(String url, String rel){
-        links.add(new Link(url,rel));
+    public void addLink(String url, String rel) {
+        links.add(new Link(url, rel));
     }
 
     public List<Link> getLinks() {

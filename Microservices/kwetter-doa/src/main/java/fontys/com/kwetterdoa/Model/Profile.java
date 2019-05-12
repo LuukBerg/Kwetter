@@ -44,7 +44,7 @@ public class Profile implements Serializable {
     }
 
 
-    public Profile(User owner,Details details) {
+    public Profile(User owner, Details details) {
         this.owner = owner;
         this.following = new LinkedList<>();
         this.followers = new LinkedList<>();
@@ -53,7 +53,7 @@ public class Profile implements Serializable {
         owner.setProfile(this);
     }
 
-    public void addFollower(Profile profile){
+    public void addFollower(Profile profile) {
         followers.add(profile);
     }
 
@@ -85,7 +85,7 @@ public class Profile implements Serializable {
     }
 
     public void setId(long id) {
-        this.id =id;
+        this.id = id;
     }
 
     public void addFollowing(Profile followingProfile) {

@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 
 @SpringBootApplication
-public class KweetServiceApplication{
+public class KweetServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(KweetServiceApplication.class, args);

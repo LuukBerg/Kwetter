@@ -1,0 +1,10 @@
+spring:
+  environment: prod
+  hosts:
+    - http://localhost:9092
+    - http://localhost:8080
+server:
+  port: 9091
+
+
+

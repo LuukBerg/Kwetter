@@ -68,17 +68,19 @@ public class KweetDTO implements Serializable {
     public void setDate(Date date) {
         this.date = date;
     }
+
     //long id, long ownerId, String content, String owner, Date date
     //TODO better solution?
-    public static List<KweetDTO> transform(List<Kweet> kweets){
+    public static List<KweetDTO> transform(List<Kweet> kweets) {
         List<KweetDTO> kweetDTOS = new ArrayList<>();
-        for(Kweet kweet : kweets){
-            kweetDTOS.add(new KweetDTO(kweet.getId(),kweet.getOwner().getId(),kweet.getContent(),kweet.getOwner().getOwner().getUsername(),kweet.getDate()));
+        for (Kweet kweet : kweets) {
+            kweetDTOS.add(new KweetDTO(kweet.getId(), kweet.getOwner().getId(), kweet.getContent(), kweet.getOwner().getOwner().getUsername(), kweet.getDate()));
         }
         return kweetDTOS;
     }
-    public static KweetDTO transform(Kweet kweet){
-        return new KweetDTO(kweet.getId(),kweet.getOwner().getId(),kweet.getContent(),kweet.getOwner().getOwner().getUsername(),kweet.getDate());
+
+    public static KweetDTO transform(Kweet kweet) {
+        return new KweetDTO(kweet.getId(), kweet.getOwner().getId(), kweet.getContent(), kweet.getOwner().getOwner().getUsername(), kweet.getDate());
     }
 
 }

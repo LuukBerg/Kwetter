@@ -1,7 +1,6 @@
 package com.fontys.kweetservice.Model.DTO;
 
 
-
 import com.fontys.kweetservice.Model.Kweet;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,15 +27,16 @@ public class KweetDTO implements Serializable {
         this.content = content;
     }
 
-    public static List<KweetDTO> transform(List<Kweet> kweets){
+    public static List<KweetDTO> transform(List<Kweet> kweets) {
         List<KweetDTO> kweetDTOS = new ArrayList<>();
-        for(Kweet kweet : kweets){
-            kweetDTOS.add(new KweetDTO(kweet.getId(),kweet.getOwner().getId(),kweet.getContent(),kweet.getOwner().getOwner().getUsername(),kweet.getDate()));
+        for (Kweet kweet : kweets) {
+            kweetDTOS.add(new KweetDTO(kweet.getId(), kweet.getOwner().getId(), kweet.getContent(), kweet.getOwner().getOwner().getUsername(), kweet.getDate()));
         }
         return kweetDTOS;
     }
-    public static KweetDTO transform(Kweet kweet){
-        return new KweetDTO(kweet.getId(),kweet.getOwner().getId(),kweet.getContent(),kweet.getOwner().getOwner().getUsername(),kweet.getDate());
+
+    public static KweetDTO transform(Kweet kweet) {
+        return new KweetDTO(kweet.getId(), kweet.getOwner().getId(), kweet.getContent(), kweet.getOwner().getOwner().getUsername(), kweet.getDate());
     }
 
 }

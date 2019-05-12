@@ -1,7 +1,6 @@
 package com.fontys.kweetservice.Model.DTO;
 
 
-
 import com.fontys.kweetservice.Model.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,13 +27,14 @@ public class UserDTO implements Serializable {
     }
 
 
-    public static UserDTO transform(User user){
-        return new UserDTO(user.getId(),user.getUsername(), user.getProfile().getId(), null);
+    public static UserDTO transform(User user) {
+        return new UserDTO(user.getId(), user.getUsername(), user.getProfile().getId(), null);
     }
-    public static List<UserDTO> transform(List<User> users){
+
+    public static List<UserDTO> transform(List<User> users) {
         List<UserDTO> dtos = new ArrayList<>();
-        for (User user : users){
-            dtos.add(new UserDTO(user.getId(),user.getUsername(), user.getProfile().getId(), null));
+        for (User user : users) {
+            dtos.add(new UserDTO(user.getId(), user.getUsername(), user.getProfile().getId(), null));
         }
         return dtos;
 
