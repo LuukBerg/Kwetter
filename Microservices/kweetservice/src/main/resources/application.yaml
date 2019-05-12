@@ -1,0 +1,9 @@
+spring:
+  environment: prod
+  hosts:
+    - http://localhost:8082
+    - http://localhost:8080
+server:
+  port: 8081
+
+
