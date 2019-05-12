@@ -1,5 +1,7 @@
 package fontys.com.kwetterdoa.Resource;
 
+import fontys.com.kwetterdoa.Model.Profile;
+import fontys.com.kwetterdoa.Model.User;
 import fontys.com.kwetterdoa.Repository.KweetRepository;
 import fontys.com.kwetterdoa.Model.DTO.KweetDTO;
 import fontys.com.kwetterdoa.Model.Kweet;
@@ -29,12 +31,19 @@ public class KweetResource {
     }
     @PostMapping()
     public void createKweet(@RequestBody final KweetDTO kweetdto){
-        //Kweet kweet = new Kweet(kweetdto.getContent(), kweetdto.getOwnerId());
-        //kweetRepository.save()
+        //TODO getprofile to post kweet
+        //User owner,Details details
+        Kweet kweet = new Kweet(kweetdto.getContent(), new Profile());
+
+        kweetRepository.save(kweet);
     }
     @GetMapping(path = "/{id}/{offset}")
     public List<KweetDTO> getTimeline(@PathVariable("id") long id, @PathVariable("offset") int offset){
         return KweetDTO.transform(kweetRepository.getTimeline(id));
+    }
+    @GetMapping(path = "/byprofile/{id}")
+    public List<KweetDTO> getByProfile(@PathVariable("id")long id){
+        return KweetDTO.transform(kweetRepository.findbyProfileId(id));
     }
 
 
