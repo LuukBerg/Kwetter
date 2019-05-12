@@ -36,6 +36,7 @@ import { ProfileComponent } from './profile/profile.component';
     RegisterComponent,
     SearchComponent,
     ProfileComponent,
+    KweetsComponent
     
   ],
   

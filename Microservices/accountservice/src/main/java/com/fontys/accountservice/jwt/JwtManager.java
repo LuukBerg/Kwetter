@@ -4,24 +4,28 @@ import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.RSASSASigner;
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTParser;
+import javafx.beans.NamedArg;
 import net.minidev.json.JSONArray;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.annotation.ApplicationScope;
 
 
-import javax.inject.Named;
+
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.security.*;
 import java.security.cert.CertificateException;
 import java.text.ParseException;
 
 @ApplicationScope
-@Named
+@Configuration
 public class JwtManager {
     static {
         FileInputStream fis = null;
@@ -30,9 +34,10 @@ public class JwtManager {
         PrivateKey pk = null;
         try {
             KeyStore ks = KeyStore.getInstance("JKS");
-            String configDir = System.getProperty("");
-            String keystorePath = configDir + File.separator + "jwt.keystore";
-            fis = new FileInputStream(keystorePath);
+            Path configDir = FileSystems.getDefault().getPath("src/main/java/com/fontys/accountservice/jwt/jwt.keystore").toAbsolutePath();
+            //String keystorePath = configDir + "jwt.keystore";
+            System.out.println(configDir);
+            fis = new FileInputStream(configDir.toString());
             ks.load(fis, password);
             Key key = ks.getKey(alias, password);
             if (key instanceof PrivateKey) {

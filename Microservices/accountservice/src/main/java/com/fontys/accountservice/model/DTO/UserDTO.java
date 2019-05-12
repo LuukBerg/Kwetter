@@ -2,10 +2,7 @@ package com.fontys.accountservice.model.DTO;
 
 
 import com.fontys.accountservice.model.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,16 +12,13 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class UserDTO implements Serializable {
     private long id;
     private String username;
     private long profileId;
+    private String token;
 
-    public UserDTO(long id, String username, long profileId, String token) {
-        this.id = id;
-        this.username = username;
-        this.profileId = profileId;
-    }
 
 
     public static UserDTO transform(User user) {

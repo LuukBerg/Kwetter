@@ -37,9 +37,12 @@ export class AuthService {
       .set('username', username)
       .set('password', password);
     console.log(body);
+    console.log("tets")
     return this.http.post<any>(this.globals.baseurl + 'auth/login', body.toString(), { headers: this.headers })
       .pipe(map(user => {
+        console.log(user);
         if (user && user.token) {
+          console.log(user.token);
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
         }

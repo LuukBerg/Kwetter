@@ -21,7 +21,7 @@ public class User implements Serializable {
     @JsonIgnore
     private Profile profile;
     private String password;
-    private byte[] hashedPassword;
+    private String hashedPassword;
 
     //TODO implement jpa and constr
     private String email;
@@ -41,7 +41,6 @@ public class User implements Serializable {
         this.password = password;
         this.role = Role.USER;
     }
-
 }
 
 

@@ -23,8 +23,11 @@ public class UserResource {
     }
     @GetMapping("/username/{username}")
     public UserDTO getUserByUsername(@PathVariable("username") String username){
-        return UserDTO.transform(userRepository.findByUsername(username));
-
+        User user =userRepository.findByUsername(username);
+        if(user != null){
+            return UserDTO.transform(user);
+        }
+        return null;
     }
 
 }

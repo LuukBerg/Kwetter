@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.kweets = kweets;
     });
     this.webSocket.open;
-    this.addListener();
+    //this.addListener();
     this.offset += 10;
   }
   async postKweet(event) {

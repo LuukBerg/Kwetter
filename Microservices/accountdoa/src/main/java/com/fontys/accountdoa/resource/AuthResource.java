@@ -7,9 +7,7 @@ import com.fontys.accountdoa.Model.Profile;
 import com.fontys.accountdoa.Model.User;
 import com.fontys.accountdoa.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -17,17 +15,20 @@ public class AuthResource {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("/login")
-    public UserDTO login(User user){
-        User login = userRepository.login(user.getUsername(),user.getHashedPassword());
+    @GetMapping("/login/{username}/{password}")
+    public UserDTO login(@PathVariable("username") String username, @PathVariable("password") String hashed){
+        System.out.println(username+ " p: " + hashed);
+        User login = userRepository.login(username,hashed);
+        System.out.println(login);
         return new UserDTO(login.getId(),login.getUsername(),login.getProfile().getId(), "");
     }
 
     @PostMapping("/register")
-    public UserDTO register(RegisterDTO registerDTO){
+    public UserDTO register(@RequestBody RegisterDTO registerDTO){
         User user = new User(registerDTO.getUsername(),registerDTO.getEmail(),registerDTO.getPassword());
         Profile profile = new Profile(user,new Details(registerDTO.getName(),registerDTO.getBio(),registerDTO.getWeb(),registerDTO.getLocation()));
         user.setProfile(profile);
+        user.setHashedPassword(registerDTO.getHashed());
         user = userRepository.save(user);
         if(user != null){
             return UserDTO.transform(user);

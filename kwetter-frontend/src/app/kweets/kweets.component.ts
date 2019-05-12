@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ReactiveFormsModule} from '@angular/forms';
-@Component({
-  selector: 'app-kweets',
-  templateUrl: './kweets.component.html',
-})
+@Component({selector: 'app-kweets',templateUrl: './kweets.component.html'})
 
 export class KweetsComponent{
   

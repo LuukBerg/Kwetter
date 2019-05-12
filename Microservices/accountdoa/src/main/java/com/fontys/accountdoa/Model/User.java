@@ -3,12 +3,16 @@ package com.fontys.accountdoa.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fontys.accountdoa.Model.enums.Role;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
+@Getter
+@Setter
 public class User implements Serializable {
     @Id
     @GeneratedValue
@@ -25,7 +29,7 @@ public class User implements Serializable {
     private String password;
 
     @Column(name = "password")
-    private byte[] hashedPassword;
+    private String hashedPassword;
 
     //TODO implement jpa and constr
     private String email;
@@ -50,57 +54,6 @@ public class User implements Serializable {
         this.role = Role.USER;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public byte[] getHashedPassword() {
-        return hashedPassword;
-    }
-
-    public void setHashedPassword(byte[] hashedPassword) {
-        this.hashedPassword = hashedPassword;
-    }
 }
 
 

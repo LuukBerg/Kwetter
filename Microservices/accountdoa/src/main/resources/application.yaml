@@ -10,6 +10,6 @@ spring:
       generate-ddl: true
       show-sql: true
 server:
-  port: 9092
+  port: 9093
 
 

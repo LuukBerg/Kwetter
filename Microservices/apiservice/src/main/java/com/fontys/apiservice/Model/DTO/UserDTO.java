@@ -19,12 +19,8 @@ public class UserDTO implements Serializable {
     private long id;
     private String username;
     private long profileId;
+    private String token;
 
-    public UserDTO(long id, String username, long profileId, String token) {
-        this.id = id;
-        this.username = username;
-        this.profileId = profileId;
-    }
 
 
     public static UserDTO transform(User user) {

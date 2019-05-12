@@ -1,7 +1,10 @@
 package com.fontys.apiservice.Model.DTO;
 
+import lombok.ToString;
+
 import java.io.Serializable;
 
+@ToString
 public class RegisterDTO implements Serializable {
 
     private String username;
