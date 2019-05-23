@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private offset: number;
   submitted = false;
   currentProfile : Profile;
-  constructor(private router : Router,private formBuilder: FormBuilder, globals: Globals, private authService: AuthService, private userService: UserService, httpClient: HttpClient, private webSocket : WebsocketService) {
+  constructor(private router : Router,private formBuilder: FormBuilder, globals: Globals, private authService: AuthService, private userService: UserService, httpClient: HttpClient) {
     console.log("started")
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
       this.currentUser = user;
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     //prevent memory leaks
     this.currentUserSubscription.unsubscribe();
-    this.webSocket.close();
+    //this.webSocket.close();
   }
   getCurrentProfile() {
     this.httpClient.get<Profile>(this.globals.baseurl + "profile/" + this.currentUser.profileId).subscribe(profile => {
@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
   get f() { return this.postForm.controls; }
-
+/*
   async addListener(){
     this.webSocket.obsArray.subscribe(kweet =>{
         if(kweet.content != null){
@@ -78,12 +78,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       //this.offset += 1;
     });
   }
+  */
   async getTimeline() {
     console.log("gettime");
     await this.httpClient.get<Kweet[]>(this.globals.baseurl + 'kweet/' + this.currentUser.profileId + '/' + this.offset).subscribe(kweets => {
       this.kweets = kweets;
     });
-    this.webSocket.open;
+    //this.webSocket.open;
     //this.addListener();
     this.offset += 10;
   }
@@ -96,7 +97,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
       this.kweet = new Kweet();
       this.kweet.content = this.f.content.value;
-      this.webSocket.send(this.kweet.content);
+      await this.httpClient.post<any>(this.globals.baseurl + "kweet/", this.kweet).subscribe(kweet => {
+        this.kweets.unshift(kweet);
+        console.log(kweet);
+      });
+
       this.postForm.reset();
       this.submitted=false;
       

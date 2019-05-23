@@ -2,10 +2,7 @@ package com.fontys.kweetservice.Model.DTO;
 
 
 import com.fontys.kweetservice.Model.Kweet;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class KweetDTO implements Serializable {
     private long id;
     private long ownerId;

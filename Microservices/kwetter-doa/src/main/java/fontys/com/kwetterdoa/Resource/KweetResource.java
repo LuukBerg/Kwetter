@@ -1,14 +1,15 @@
 package fontys.com.kwetterdoa.Resource;
 
-import fontys.com.kwetterdoa.Model.Profile;
-import fontys.com.kwetterdoa.Model.User;
-import fontys.com.kwetterdoa.Repository.KweetRepository;
 import fontys.com.kwetterdoa.Model.DTO.KweetDTO;
+import fontys.com.kwetterdoa.Model.DTO.UserDTO;
 import fontys.com.kwetterdoa.Model.Kweet;
+import fontys.com.kwetterdoa.Model.Profile;
+import fontys.com.kwetterdoa.Repository.KweetRepository;
+import fontys.com.kwetterdoa.config.ServerProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 
@@ -19,6 +20,8 @@ public class KweetResource {
     @Autowired
     KweetRepository kweetRepository;
 
+    @Autowired
+    private ServerProperties server;
 
     @GetMapping(path = "/{id}")
     public KweetDTO getKweet(@PathVariable("id") long id) {
@@ -31,12 +34,16 @@ public class KweetResource {
         return KweetDTO.transform(kweetRepository.findAll());
     }
 
-    @PostMapping()
+    @PostMapping
     public void createKweet(@RequestBody final KweetDTO kweetdto) {
-        //TODO getprofile to post kweet
-        //User owner,Details details
-        Kweet kweet = new Kweet(kweetdto.getContent(), new Profile());
+        System.out.println(kweetdto);
+        RestTemplate restTemplate = new RestTemplate();
 
+        UserDTO userDTO = restTemplate.getForObject(server.getHosts().get(0) + "/api/user/username/" + kweetdto.getOwner(), UserDTO.class);
+        System.out.println(userDTO.getProfileId());
+        Profile profile = restTemplate.getForObject(server.getHosts().get(1) + "/api/profile/" + userDTO.getProfileId(), Profile.class);
+        System.out.println(profile);
+        Kweet kweet = new Kweet(kweetdto.getContent(), profile);
         kweetRepository.save(kweet);
     }
 

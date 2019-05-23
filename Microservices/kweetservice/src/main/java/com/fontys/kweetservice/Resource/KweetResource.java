@@ -3,6 +3,8 @@ package com.fontys.kweetservice.Resource;
 import com.fontys.kweetservice.Model.DTO.KweetDTO;
 import com.fontys.kweetservice.config.ServerProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,9 +25,10 @@ public class KweetResource {
     }
 
     @PostMapping
-    public KweetDTO create(KweetDTO kweetDTO) {
+    public KweetDTO create(@RequestBody KweetDTO kweetDTO, @RequestHeader("Authorization") String token) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.postForLocation(server.getHosts().get(0), kweetDTO);
+        kweetDTO.setOwner(verifyToken(token));
+        restTemplate.postForLocation(server.getHosts().get(0) + "/api/kweet", kweetDTO);
         return kweetDTO;
     }
 
@@ -49,6 +52,12 @@ public class KweetResource {
         RestTemplate restTemplate = new RestTemplate();
         KweetDTO dto = restTemplate.getForObject(server.getHosts().get(0) + "/api/kweet/" + id, KweetDTO.class);
         return dto;
+    }
+
+    public String verifyToken(String token){
+        RestTemplate restTemplate = new RestTemplate();
+        String username = restTemplate.getForObject(server.getHosts().get(2) + "/api/auth/verify/" + token, String.class);
+        return username;
     }
 
 }

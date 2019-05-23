@@ -9,6 +9,9 @@ spring:
       ddl-auto: update
       generate-ddl: true
       show-sql: true
+  hosts:
+    - http://localhost:9093
+    - http://localhost:1012
 server:
   port: 8082
 

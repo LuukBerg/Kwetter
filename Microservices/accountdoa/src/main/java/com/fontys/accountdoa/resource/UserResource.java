@@ -8,6 +8,9 @@ import com.fontys.accountdoa.Model.User;
 import com.fontys.accountdoa.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/user")
@@ -29,5 +32,8 @@ public class UserResource {
         }
         return null;
     }
-
+    @GetMapping(path = "/search/{query}")
+    public List<UserDTO> search(@PathVariable("query") String query){
+        return UserDTO.transform(userRepository.findPartialUsername(query));
+    }
 }

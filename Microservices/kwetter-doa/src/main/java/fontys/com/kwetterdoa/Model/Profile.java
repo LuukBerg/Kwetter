@@ -2,6 +2,7 @@ package fontys.com.kwetterdoa.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.ToString;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -11,6 +12,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
+@ToString
 @Entity
 public class Profile implements Serializable {
     @Id

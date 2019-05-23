@@ -1,12 +1,12 @@
 package com.fontys.accountservice.resource;
 
 import com.fontys.accountservice.config.ServerProperties;
+import com.fontys.accountservice.jwt.Jwt;
 import com.fontys.accountservice.jwt.JwtManager;
 import com.fontys.accountservice.model.DTO.RegisterDTO;
 import com.fontys.accountservice.model.DTO.UserDTO;
 import com.fontys.accountservice.model.User;
 import com.fontys.accountservice.model.enums.Role;
-import org.apache.catalina.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -55,6 +55,11 @@ public class AccountService {
         }
         return null;
 
+    }
+
+    @GetMapping("/verify/{token}")
+    public String verify(@PathVariable("token") String jwtoken){
+        return JwtManager.decodeToken(jwtoken);
     }
 
     private static String Hashpassword(String password) {

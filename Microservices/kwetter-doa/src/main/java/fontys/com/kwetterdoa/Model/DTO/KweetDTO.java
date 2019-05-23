@@ -1,12 +1,18 @@
 package fontys.com.kwetterdoa.Model.DTO;
 
 import fontys.com.kwetterdoa.Model.Kweet;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
+@ToString
 public class KweetDTO implements Serializable {
     private long id;
     private long ownerId;
@@ -26,46 +32,6 @@ public class KweetDTO implements Serializable {
         this.ownerId = ownerId;
         this.content = content;
         this.owner = owner;
-        this.date = date;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(long ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
         this.date = date;
     }
 

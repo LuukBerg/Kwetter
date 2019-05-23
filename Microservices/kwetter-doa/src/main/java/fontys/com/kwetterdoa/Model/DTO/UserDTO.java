@@ -2,11 +2,17 @@ package fontys.com.kwetterdoa.Model.DTO;
 
 
 import fontys.com.kwetterdoa.Model.User;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class UserDTO implements Serializable {
     long id;
     String username;

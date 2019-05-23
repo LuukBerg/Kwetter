@@ -1,11 +1,9 @@
 package com.fontys.kweetservice.Model.DTO;
 
 
+
 import com.fontys.kweetservice.Model.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class UserDTO implements Serializable {
     private long id;
     private String username;

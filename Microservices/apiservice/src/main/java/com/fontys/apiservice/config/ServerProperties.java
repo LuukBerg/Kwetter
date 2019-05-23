@@ -23,5 +23,8 @@ public class ServerProperties {
     private String environment;
     private List<String> hosts = new ArrayList<>();
 
+    public List<String> getHosts() {
+        return hosts;
+    }
 }
 

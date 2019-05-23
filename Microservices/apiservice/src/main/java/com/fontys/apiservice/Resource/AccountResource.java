@@ -29,7 +29,7 @@ public class AccountResource {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public @ResponseBody  UserDTO login(@RequestParam MultiValueMap paramMap) {
+    public UserDTO login(@RequestParam MultiValueMap paramMap) {
         String username = paramMap.get("username").toString();
         String password = paramMap.get("password").toString();
         username = username.replace("[", "");
@@ -37,8 +37,9 @@ public class AccountResource {
         password = password.replace("[", "");
         password = password.replace("]", "");
         RestTemplate restTemplate = new RestTemplate();
-        System.out.println(server.getHosts().get(1) + "/api/auth/login/" + username + "/" + password);
-        return restTemplate.getForObject(server.getHosts().get(1) + "/api/auth/login/" + username+ "/" + password, UserDTO.class);
+        UserDTO dto =  restTemplate.getForObject(server.getHosts().get(1) + "/api/auth/login/" + username+ "/" + password, UserDTO.class);
+        System.out.println(dto);
+        return dto;
 
     }
 }

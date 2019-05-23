@@ -1,6 +1,7 @@
 package com.fontys.apiservice.Resource;
 
 import com.fontys.apiservice.Model.DTO.KweetDTO;
+import com.fontys.apiservice.Model.DTO.ProfileDTO;
 import com.fontys.apiservice.config.ServerProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,5 +23,10 @@ public class ProfileResource {
     public List<KweetDTO> getKweetByProfile(@PathVariable("id") long id) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(server.getHosts().get(0) + "/byprofile/" + id, List.class);
+    }
+    @GetMapping("/{id}")
+    public ProfileDTO getProfile(@PathVariable("id") long id){
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(server.getHosts().get(0) + "/" + id, ProfileDTO.class);
     }
 }
